@@ -1,10 +1,10 @@
-package Interfaz;
+package UI;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class PantallaPrincipal {
+public class NuevoVehiculo {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class PantallaPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PantallaPrincipal window = new PantallaPrincipal();
+					NuevoVehiculo window = new NuevoVehiculo();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class PantallaPrincipal {
 	/**
 	 * Create the application.
 	 */
-	public PantallaPrincipal() {
+	public NuevoVehiculo() {
 		initialize();
 	}
 
