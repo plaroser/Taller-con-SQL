@@ -33,7 +33,11 @@ public class Mecanico extends Object {
 
 	@Override
 	public boolean equals(Object obj) {
+		if(obj instanceof Mecanico){
 		Mecanico m = (Mecanico) obj;
 		return this.getUsuario().equals(m.getUsuario())&&this.getContrasenia().equals(m.getContrasenia());
+		}else{
+			return false;
+		}
 	}
 }
