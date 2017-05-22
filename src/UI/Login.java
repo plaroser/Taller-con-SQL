@@ -31,6 +31,10 @@ public class Login {
 
 	private Collection<Mecanico> listaMecanicos;
 
+	public JFrame getFrame() {
+		return frame;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
