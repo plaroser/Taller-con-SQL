@@ -34,7 +34,7 @@ public class Login {
 	public JFrame getFrame() {
 		return frame;
 	}
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -112,18 +112,17 @@ public class Login {
 
 	private boolean validarLogin() {
 		String usuario = txtUsuario.getText();
-		String contrasenia = txtContrasenia.getText();
 
-		if (usuario.isEmpty() || contrasenia.isEmpty()) {
+		if (usuario.isEmpty() || new String(txtContrasenia.getPassword()).isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El usuario o la contraseña no pueden estar vacios.");
 			return false;
 		}
-		if (!Constants.CONSTRAINT_CONTRASENIA.matcher(contrasenia).matches()) {
+		if (!Constants.CONSTRAINT_CONTRASENIA.matcher(new String(txtContrasenia.getPassword())).matches()) {
 			JOptionPane.showMessageDialog(null, "La contraseña no coincide con el patron necesario");
 			return false;
 		}
-		
-		if (listaMecanicos.contains(new Mecanico(usuario, contrasenia))) {
+
+		if (listaMecanicos.contains(new Mecanico(usuario, new String(txtContrasenia.getPassword())))) {
 
 			return true;
 		} else {
