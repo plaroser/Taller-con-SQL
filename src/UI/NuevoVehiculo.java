@@ -7,6 +7,14 @@ import javax.swing.JFrame;
 public class NuevoVehiculo {
 
 	private JFrame frame;
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
 
 	/**
 	 * Launch the application.
