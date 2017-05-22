@@ -1,12 +1,20 @@
 package UI;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import res.Constants;
 
 public class Login {
 
 	private JFrame frame;
+	private JTextField txtUsuario;
+	private JTextField txtContrasenia;
 
 	/**
 	 * Launch the application.
@@ -28,6 +36,29 @@ public class Login {
 	 * Create the application.
 	 */
 	public Login() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 391, 375);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblLogin.setBounds(40, 32, 108, 34);
+		frame.getContentPane().add(lblLogin);
+
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(40, 97, 297, 45);
+		frame.getContentPane().add(txtUsuario);
+		txtUsuario.setColumns(10);
+
+		txtContrasenia = new JTextField();
+		txtContrasenia.setBounds(40, 171, 297, 45);
+		frame.getContentPane().add(txtContrasenia);
+		txtContrasenia.setColumns(10);
+
+		JButton btnNewButton = new JButton(Constants.go);
+		btnNewButton.setBounds(40, 248, 297, 45);
+		frame.getContentPane().add(btnNewButton);
 		initialize();
 	}
 
@@ -35,9 +66,16 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setComponetProperties();
+		setComponentAdapters();
+
 	}
 
+	private void setComponetProperties() {
+
+	}
+
+	private void setComponentAdapters() {
+
+	}
 }
