@@ -2,5 +2,5 @@ package Models;
 
 public class Mecanico {
 	private String usuario;
-	private String contraseña;
+	private String contrasenia;
 }
