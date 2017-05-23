@@ -87,7 +87,7 @@ public class PantallaPrincipal {
 		btnNV.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-					Cliente_Reparacion Ventana = new Cliente_Reparacion();
+					Vehiculo Ventana = new Vehiculo();
 					Ventana.getFrame().setVisible(true);
 					frame.dispose();
 			
