@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Models.Vehiculo;
@@ -45,7 +46,7 @@ public class BuscarVehiculo {
 	 * Create the application.
 	 */
 	public BuscarVehiculo(Collection<Vehiculo> listaActual) {
-		this.listaActual=listaActual;
+		this.listaActual = listaActual;
 		initialize();
 		setComponetProperties();
 		setComponentAdapters();
@@ -96,11 +97,34 @@ public class BuscarVehiculo {
 
 	private void setComponentAdapters() {
 		btnBuscar.addMouseListener(new MouseAdapter() {
+			// Vehiculo encontrado
+			Vehiculo vehiculoSeleccionado;
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String s = txtMatricula.getText();
-				if(Constants.REGEX_MATRICULA.matcher(s).matches()){
-					//Collection<Vehiculo> lista = UI.Vehiculo.
+				// recoger la matricula de la pantalla y pasarla a mayusculas
+				String s = txtMatricula.getText().toUpperCase();
+				// Comprobar que la matricula cumple los requisitos de una
+				// matricula
+				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
+					// Comprobar que la matricula esta dentro del sistema
+					if (listaActual.contains(new Vehiculo(s, null, null, 0, null, null, 0))) {
+						// Una vez que sabemos que esta en el sistema recorremos
+						// la lista y buscamos el vehiculo con dicha matricula
+						for (Vehiculo valor : listaActual) {
+							if (valor.getMatricula().equals(s)) {
+								vehiculoSeleccionado = valor;
+							}
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "El vehiculo no esta guardado en el sistema");
+
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"El formato de la matricula no es correcto\nIntroducir sin guiones ni espacios en blanco.");
+
 				}
 			}
 		});
