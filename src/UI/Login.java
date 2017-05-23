@@ -63,13 +63,18 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		listaMecanicos = new ArrayList();
+		lblLogin = new JLabel("Login");
+		txtUsuario = new JTextField();
+		txtContrasenia = new JPasswordField();
+		btnLogin = new JButton(Constants.go);
 		setComponetProperties();
 		setComponentAdapters();
 
 	}
 
 	private void setComponetProperties() {
-		listaMecanicos = new ArrayList();
+
 		listaMecanicos.add(new Usuario("usuario", "1234"));
 
 		frame = new JFrame();
@@ -77,22 +82,18 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblLogin.setBounds(40, 32, 108, 34);
 		frame.getContentPane().add(lblLogin);
 
-		txtUsuario = new JTextField();
 		txtUsuario.setBounds(40, 97, 297, 45);
 		frame.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(40, 171, 297, 45);
 		frame.getContentPane().add(txtContrasenia);
 		txtContrasenia.setColumns(10);
 
-		btnLogin = new JButton(Constants.go);
 		btnLogin.setBounds(40, 248, 297, 45);
 		frame.getContentPane().add(btnLogin);
 	}
