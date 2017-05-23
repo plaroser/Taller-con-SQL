@@ -36,14 +36,19 @@ public class Vehiculo {
 	private JLabel lblMatricula_1;
 	private JTextField textField;
 	private JLabel lblAoMatriculacion;
-
 	private JSpinner spinnerAnioMatricula;
 	private Date fecha;
-	private Collection listaVehiculo;
+	private Collection <Vehiculo>listaVehiculo;
 	
 
+	public Collection<Vehiculo> getListaVehiculo() {
+		return listaVehiculo;
+	}
 
-	
+	public void setListaVehiculo(Collection<Vehiculo> listaVehiculo) {
+		this.listaVehiculo = listaVehiculo;
+	}
+
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -219,8 +224,7 @@ public class Vehiculo {
 				new Integer(1950), // Límite inferior 
 				new Integer(2017), // Límite superior 
 				new Integer(1)); // incremento-decremento 
-		spinnerAnioMatricula = new JSpinner(model1);
-		spinnerAnioMatricula.setModel(model1);
+
 	
 		
 
