@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.util.Collection;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
@@ -33,8 +35,7 @@ public class Vehiculo {
 	private JTextField textField;
 	private DefaultListModel lista;
 	private JLabel lblAoMatriculacion;
-	private JSpinner spinnerAnioMatricula;
-	
+	private JSpinner spinnerAnioMatricula;	
 	
 		
 	
