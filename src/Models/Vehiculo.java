@@ -89,4 +89,10 @@ public class Vehiculo extends Object {
 			return false;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Vehiculo [Matricula=" + Matricula + ", marca=" + marca + ", modelo=" + modelo + ", puertas=" + puertas
+				+ ", color=" + color + ", anioMatriculacion=" + anioMatriculacion + ", CV=" + CV + "]";
+	}
 }
