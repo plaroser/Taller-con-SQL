@@ -32,6 +32,7 @@ public class Vehiculo {
 	private JTextField textModelo;
 	private JTextField textMatricula;
 	private JLabel lblMatricula;
+	private JTextField textCV;
 	private JLabel lblMarca;
 	private JLabel lblModelo;
 	private JLabel lblCombustible;
@@ -47,6 +48,7 @@ public class Vehiculo {
 	private JLabel lblColor;
 	private JSpinner spinnerPuertas;
 	private JButton buttonLimpiar;
+	private JLabel lblCV;
 	
 	
 	
@@ -194,14 +196,14 @@ public class Vehiculo {
 		frame.getContentPane().add(textModelo);
 		textModelo.setColumns(10);
 		
-		lblMatricula = new JLabel("Matricula:");
-		lblMatricula.setBounds(31, 141, 71, 16);
-		frame.getContentPane().add(lblMatricula);
+		lblCV = new JLabel("CV:");
+		lblCV.setBounds(31, 141, 71, 16);
+		frame.getContentPane().add(lblCV);
 		
-		textMatricula = new JTextField();
-		textMatricula.setBounds(154, 136, 171, 26);
-		frame.getContentPane().add(textMatricula);
-		textMatricula.setColumns(10);
+		textCV = new JTextField();
+		textCV.setBounds(154, 136, 171, 26);
+		frame.getContentPane().add(textCV);
+		textCV.setColumns(10);
 		
 		lblPuertas = new JLabel("Puertas:");
 		lblPuertas.setBounds(31, 182, 61, 16);
