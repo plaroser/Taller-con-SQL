@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Models.Mecanico;
+import Models.Usuario;
 import res.Constants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,7 +29,7 @@ public class Login {
 
 	private JButton btnLogin;
 
-	private Collection<Mecanico> listaMecanicos;
+	private Collection<Usuario> listaMecanicos;
 
 	public JFrame getFrame() {
 		return frame;
@@ -63,36 +63,37 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		listaMecanicos = new ArrayList();
+		lblLogin = new JLabel("Login");
+		txtUsuario = new JTextField();
+		txtContrasenia = new JPasswordField();
+		btnLogin = new JButton(Constants.go);
 		setComponetProperties();
 		setComponentAdapters();
 
 	}
 
 	private void setComponetProperties() {
-		listaMecanicos = new ArrayList();
-		listaMecanicos.add(new Mecanico("usuario", "1234"));
+
+		listaMecanicos.add(new Usuario("usuario", "1234"));
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 391, 375);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblLogin.setBounds(40, 32, 108, 34);
 		frame.getContentPane().add(lblLogin);
 
-		txtUsuario = new JTextField();
 		txtUsuario.setBounds(40, 97, 297, 45);
 		frame.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(40, 171, 297, 45);
 		frame.getContentPane().add(txtContrasenia);
 		txtContrasenia.setColumns(10);
 
-		btnLogin = new JButton(Constants.go);
 		btnLogin.setBounds(40, 248, 297, 45);
 		frame.getContentPane().add(btnLogin);
 	}
@@ -122,7 +123,7 @@ public class Login {
 			return false;
 		}
 
-		if (listaMecanicos.contains(new Mecanico(usuario, new String(txtContrasenia.getPassword())))) {
+		if (listaMecanicos.contains(new Usuario(usuario, new String(txtContrasenia.getPassword())))) {
 
 			return true;
 		} else {
