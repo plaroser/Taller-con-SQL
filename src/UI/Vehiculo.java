@@ -125,8 +125,6 @@ public class Vehiculo {
 					Cliente Ventana = new Cliente();
 					Ventana.getFrame().setVisible(true);
 					frame.dispose();
-			
-				
 			}
 		});
 	}
