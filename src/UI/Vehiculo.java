@@ -36,13 +36,13 @@ public class Vehiculo {
 	private JLabel lblMatricula_1;
 	private JTextField textField;
 	private JLabel lblAoMatriculacion;
+
 	private JSpinner spinnerAnioMatricula;
 	private Date fecha;
 	private Collection listaVehiculo;
 	
-	
-	
-		
+
+
 	
 	public JFrame getFrame() {
 		return frame;
