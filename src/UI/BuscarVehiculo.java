@@ -124,8 +124,8 @@ public class BuscarVehiculo {
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"El formato de la matricula no es correcto\nIntroducir sin guiones ni espacios en blanco.");
-
 				}
+				System.out.println(vehiculoSeleccionado);
 			}
 		});
 	}
