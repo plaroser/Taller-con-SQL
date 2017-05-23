@@ -37,8 +37,16 @@ public class Vehiculo {
 	private JTextField textField;
 	private JLabel lblAoMatriculacion;
 	private JSpinner spinnerAnioMatricula;
-	private Date fecha;
 	private Collection <Vehiculo>listaVehiculo;
+	private SpinnerNumberModel model1;
+	private SpinnerNumberModel model;
+	private JLabel lblPuertas;
+	private JComboBox comboBoxCombustible;
+	private JLabel lblColor;
+	private JSpinner spinnerPuertas;
+	private JButton buttonLimpiar;
+	
+	
 	
 
 	public Collection<Vehiculo> getListaVehiculo() {
@@ -138,7 +146,7 @@ public class Vehiculo {
 	private void Editar(){
 		btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnEditar.setBounds(222, 396, 135, 53);
+		btnEditar.setBounds(214, 396, 135, 53);
 		frame.getContentPane().add(btnEditar);
 		
 	}
@@ -183,16 +191,22 @@ public class Vehiculo {
 		frame.getContentPane().add(textMatricula);
 		textMatricula.setColumns(10);
 		
-		JLabel lblPuertas = new JLabel("Puertas:");
+		lblPuertas = new JLabel("Puertas:");
 		lblPuertas.setBounds(31, 182, 61, 16);
 		frame.getContentPane().add(lblPuertas);
 		
-		JSpinner spinnerPuertas = new JSpinner();
+		spinnerPuertas = new JSpinner();
 		spinnerPuertas.setBounds(154, 177, 79, 26);
 		frame.getContentPane().add(spinnerPuertas);
+		model = new SpinnerNumberModel(
+				new Integer(0), // Dato visualizado al inicio en el spinner 
+				new Integer(0), // Límite inferior 
+				new Integer(10), // Límite superior 
+				new Integer(1)); // incremento-decremento 
+		spinnerPuertas.setModel(model);
 		
 		
-		JLabel lblColor = new JLabel("Color:");
+		lblColor = new JLabel("Color:");
 		lblColor.setBounds(31, 217, 61, 16);
 		frame.getContentPane().add(lblColor);
 		
@@ -201,11 +215,11 @@ public class Vehiculo {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblCombustible = new JLabel("Combustible:");
+		lblCombustible = new JLabel("Combustible:");
 		lblCombustible.setBounds(23, 258, 87, 16);
 		frame.getContentPane().add(lblCombustible);
 		
-		JComboBox comboBoxCombustible = new JComboBox();
+		comboBoxCombustible = new JComboBox();
 		comboBoxCombustible.setBounds(154, 254, 171, 27);
 		frame.getContentPane().add(comboBoxCombustible);
 		comboBoxCombustible.addItem("Diesel");
@@ -219,11 +233,17 @@ public class Vehiculo {
 		spinnerAnioMatricula = new JSpinner();
 		spinnerAnioMatricula.setBounds(154, 298, 79, 26);
 		frame.getContentPane().add(spinnerAnioMatricula);
-		SpinnerNumberModel model1 = new SpinnerNumberModel(
+		model1 = new SpinnerNumberModel(
 				new Integer(1950), // Dato visualizado al inicio en el spinner 
 				new Integer(1950), // Límite inferior 
 				new Integer(2017), // Límite superior 
 				new Integer(1)); // incremento-decremento 
+		spinnerAnioMatricula.setModel(model1);
+		
+		buttonLimpiar = new JButton("Limpiar");
+		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		buttonLimpiar.setBounds(398, 396, 135, 53);
+		frame.getContentPane().add(buttonLimpiar);
 
 	
 		
