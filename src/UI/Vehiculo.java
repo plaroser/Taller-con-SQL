@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
+
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JTextArea;
@@ -40,7 +42,7 @@ public class Vehiculo {
 	private JTextField textColor;
 	private JLabel lblAoMatriculacion;
 	private JSpinner spinnerAnioMatricula;
-	private Collection <Vehiculo>listaVehiculo;
+	private Collection<Models.Vehiculo> listaVehiculo;
 	private SpinnerNumberModel model1;
 	private SpinnerNumberModel model;
 	private JLabel lblPuertas;
@@ -53,11 +55,11 @@ public class Vehiculo {
 	
 	
 
-	public Collection<Vehiculo> getListaVehiculo() {
+	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
 	}
 
-	public void setListaVehiculo(Collection<Vehiculo> listaVehiculo) {
+	public void setListaVehiculo(Collection<Models.Vehiculo> listaVehiculo) {
 		this.listaVehiculo = listaVehiculo;
 	}
 
@@ -76,7 +78,7 @@ public class Vehiculo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculo window = new Vehiculo();
+					Vehiculo window = new Vehiculo(new ArrayList<>());
 					window.frame.setVisible(true);
 				} catch (Exception a) {
 					a.printStackTrace();
@@ -88,7 +90,8 @@ public class Vehiculo {
 	/**
 	 * Create the application.
 	 */
-	public Vehiculo() {
+	public Vehiculo(Collection<Models.Vehiculo> listaVehiculo2) {
+		this.listaVehiculo=listaVehiculo2;
 		Componentes();
 		Cliente();
 		Reparar();
