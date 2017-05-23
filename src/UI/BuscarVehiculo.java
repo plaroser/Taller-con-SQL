@@ -51,6 +51,14 @@ public class BuscarVehiculo {
 		setComponentAdapters();
 	}
 
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -92,7 +100,7 @@ public class BuscarVehiculo {
 			public void mouseClicked(MouseEvent e) {
 				String s = txtMatricula.getText();
 				if(Constants.REGEX_MATRICULA.matcher(s).matches()){
-					Collection<Vehiculo> lista = UI.Vehicu
+					//Collection<Vehiculo> lista = UI.Vehiculo.
 				}
 			}
 		});
