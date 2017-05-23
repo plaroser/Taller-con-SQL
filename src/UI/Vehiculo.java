@@ -36,7 +36,7 @@ public class Vehiculo {
 	private JLabel lblModelo;
 	private JLabel lblCombustible;
 	private JLabel lblMatricula_1;
-	private JTextField textField;
+	private JTextField textColor;
 	private JLabel lblAoMatriculacion;
 	private JSpinner spinnerAnioMatricula;
 	private Collection <Vehiculo>listaVehiculo;
@@ -222,10 +222,10 @@ public class Vehiculo {
 		lblColor.setBounds(31, 217, 61, 16);
 		frame.getContentPane().add(lblColor);
 		
-		textField = new JTextField();
-		textField.setBounds(154, 215, 171, 26);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		textColor = new JTextField();
+		textColor.setBounds(154, 215, 171, 26);
+		frame.getContentPane().add(textColor);
+		textColor.setColumns(10);
 		
 		lblCombustible = new JLabel("Combustible:");
 		lblCombustible.setBounds(23, 258, 87, 16);
@@ -253,12 +253,26 @@ public class Vehiculo {
 		spinnerAnioMatricula.setModel(model1);
 		
 		buttonLimpiar = new JButton("Limpiar");
+		buttonLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				clearTxtField();
+			}
+		});
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonLimpiar.setBounds(398, 396, 135, 53);
 		frame.getContentPane().add(buttonLimpiar);
 
-	
-		
-
 	}
+	public void clearTxtField(){
+			textNombre.setText("");
+			textMarca.setText("");
+			textModelo.setText("");
+			textMatricula.setText("");
+			textMatricula.setText("");
+			spinnerPuertas.setValue(0);
+			textColor.setText("");
+			comboBoxCombustible.setSelectedItem("Diesel");
+			spinnerAnioMatricula.setValue(1950);
+		}
 }
