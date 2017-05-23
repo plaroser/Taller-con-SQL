@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Collection;
 import java.util.Date;
 
@@ -100,7 +102,7 @@ public class Vehiculo {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 555, 493);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Cliente - Reparacion");
+		frame.setTitle("Vehiculo");
 		frame.getContentPane().setLayout(null);
 		
 		
@@ -115,6 +117,16 @@ public class Vehiculo {
 		btnCliente.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnCliente.setBounds(398, 66, 135, 78);
 		frame.getContentPane().add(btnCliente);
+		btnCliente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+					Cliente Ventana = new Cliente();
+					Ventana.getFrame().setVisible(true);
+					frame.dispose();
+			
+				
+			}
+		});
 	}
 	
 
