@@ -12,14 +12,18 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 public class PantallaPrincipal {
 
 	private JFrame frame;
 	private JButton btnBV;
 	private JButton btnNV;
-	private Collection<Vehiculo> listaActual;
+	private Collection<Models.Vehiculo> listaVehiculo;
 
 	public JFrame getFrame() {
 		return frame;
@@ -58,10 +62,19 @@ public class PantallaPrincipal {
 		btnNV.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				UI.Vehiculo Ventana = new UI.Vehiculo();
+				UI.Vehiculo Ventana = new UI.Vehiculo(listaVehiculo);
 				Ventana.getFrame().setVisible(true);
-				frame.dispose();
+				frame.setVisible(false);
 
+			}
+		});
+
+		btnBV.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				BuscarVehiculo ventana = new BuscarVehiculo(listaVehiculo);
+				ventana.getFrame().setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 	}
@@ -79,12 +92,19 @@ public class PantallaPrincipal {
 		btnNV.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnNV.setBounds(265, 59, 194, 76);
 		frame.getContentPane().add(btnNV);
+		
+		//Vehiculos de demo
+		listaVehiculo.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte)3, "Verde", LocalDate.of(2015, 3, 2), 120));
+		listaVehiculo.add(new Vehiculo("2222BBB", "Audi", "A3", (byte)3, "Blanco", LocalDate.of(2015, 3, 2), 140));
+		listaVehiculo.add(new Vehiculo("333CCC", "BMW", "335", (byte)2, "Gris", LocalDate.of(2015, 3, 2), 120));
+		listaVehiculo.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte)2, "Negro", LocalDate.of(2015, 3, 2), 120));
 	}
 
 	/**
 	 * Componentes principales
 	 */
 	private void initialize() {
+		listaVehiculo = new ArrayList<Vehiculo>();
 		frame = new JFrame();
 		btnBV = new JButton("Buscar Vehiculo");
 		btnNV = new JButton("Nuevo Vehiculo");
