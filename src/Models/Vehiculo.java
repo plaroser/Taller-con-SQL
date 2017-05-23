@@ -1,6 +1,8 @@
 package Models;
 
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Vehiculo {
 	private String Matricula;
@@ -8,18 +10,18 @@ public class Vehiculo {
 	private String modelo;
 	private byte puertas;
 	private String color;
-	private Calendar anioMatriculacion;
+	private LocalDate anioMatriculacion;
 	private int CV;
 
-	public Vehiculo(String matricula, String marca, String modelo, byte puertas, String color,
-			Calendar anioMatriculacion, int cV) {
+	public Vehiculo(String matricula, String marca, String modelo, int i, String color,
+			LocalDate date, int cV) {
 		super();
 		Matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.puertas = puertas;
+		this.puertas = (byte) i;
 		this.color = color;
-		this.anioMatriculacion = anioMatriculacion;
+		this.anioMatriculacion = date;
 		CV = cV;
 	}
 
@@ -63,11 +65,11 @@ public class Vehiculo {
 		this.color = color;
 	}
 
-	public Calendar getAnioMatriculacion() {
+	public LocalDate getAnioMatriculacion() {
 		return anioMatriculacion;
 	}
 
-	public void setAnioMatriculacion(Calendar anioMatriculacion) {
+	public void setAnioMatriculacion(LocalDate anioMatriculacion) {
 		this.anioMatriculacion = anioMatriculacion;
 	}
 
