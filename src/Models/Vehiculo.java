@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Vehiculo {
+public class Vehiculo extends Object {
 	private String Matricula;
 	private String marca;
 	private String modelo;
@@ -79,5 +79,14 @@ public class Vehiculo {
 
 	public void setCV(int cV) {
 		CV = cV;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Vehiculo){
+		Vehiculo m = (Vehiculo) obj;
+		return this.getMatricula().equals(m.getMatricula());
+		}else{
+			return false;
+		}
 	}
 }
