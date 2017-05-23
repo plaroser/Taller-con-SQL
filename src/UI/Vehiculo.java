@@ -55,8 +55,8 @@ public class Vehiculo {
 				try {
 					Vehiculo window = new Vehiculo();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception a) {
+					a.printStackTrace();
 				}
 			}
 		});
