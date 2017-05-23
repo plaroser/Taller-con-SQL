@@ -5,9 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Models.Vehiculo;
+import res.Constants;
+
+import javax.sound.midi.ControllerEventListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class BuscarVehiculo {
 
@@ -15,6 +22,7 @@ public class BuscarVehiculo {
 	private JTextField txtMatricula;
 	private JLabel lblBuscar, lblMatricula;
 	JButton btnBuscar;
+	private Collection<Vehiculo> listaActual;
 
 	/**
 	 * Launch the application.
@@ -23,7 +31,8 @@ public class BuscarVehiculo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuscarVehiculo window = new BuscarVehiculo();
+					BuscarVehiculo window = new BuscarVehiculo(new ArrayList<Vehiculo>() {
+					});
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +44,8 @@ public class BuscarVehiculo {
 	/**
 	 * Create the application.
 	 */
-	public BuscarVehiculo() {
+	public BuscarVehiculo(Collection<Vehiculo> listaActual) {
+		this.listaActual=listaActual;
 		initialize();
 		setComponetProperties();
 		setComponentAdapters();
@@ -81,6 +91,9 @@ public class BuscarVehiculo {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String s = txtMatricula.getText();
+				if(Constants.REGEX_MATRICULA.matcher(s).matches()){
+					Collection<Vehiculo> lista = UI.Vehicu
+				}
 			}
 		});
 	}
