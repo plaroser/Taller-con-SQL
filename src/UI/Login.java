@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Models.Mecanico;
+import Models.Usuario;
 import res.Constants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,7 +29,7 @@ public class Login {
 
 	private JButton btnLogin;
 
-	private Collection<Mecanico> listaMecanicos;
+	private Collection<Usuario> listaMecanicos;
 
 	public JFrame getFrame() {
 		return frame;
@@ -70,7 +70,7 @@ public class Login {
 
 	private void setComponetProperties() {
 		listaMecanicos = new ArrayList();
-		listaMecanicos.add(new Mecanico("usuario", "1234"));
+		listaMecanicos.add(new Usuario("usuario", "1234"));
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 391, 375);
@@ -122,7 +122,7 @@ public class Login {
 			return false;
 		}
 
-		if (listaMecanicos.contains(new Mecanico(usuario, new String(txtContrasenia.getPassword())))) {
+		if (listaMecanicos.contains(new Usuario(usuario, new String(txtContrasenia.getPassword())))) {
 
 			return true;
 		} else {
