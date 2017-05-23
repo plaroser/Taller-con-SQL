@@ -6,9 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.util.Collection;
+import java.util.Date;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JTextArea;
@@ -31,9 +35,11 @@ public class Vehiculo {
 	private JLabel lblCombustible;
 	private JLabel lblMatricula_1;
 	private JTextField textField;
-	private DefaultListModel lista;
 	private JLabel lblAoMatriculacion;
 	private JSpinner spinnerAnioMatricula;
+	private Date fecha;
+	private Collection listaVehiculo;
+	
 	
 	
 		
@@ -208,10 +214,14 @@ public class Vehiculo {
 		spinnerAnioMatricula = new JSpinner();
 		spinnerAnioMatricula.setBounds(154, 298, 79, 26);
 		frame.getContentPane().add(spinnerAnioMatricula);
-		SpinnerDateModel model1 = new SpinnerDateModel();
+		SpinnerNumberModel model1 = new SpinnerNumberModel(
+				new Integer(1950), // Dato visualizado al inicio en el spinner 
+				new Integer(1950), // Límite inferior 
+				new Integer(2017), // Límite superior 
+				new Integer(1)); // incremento-decremento 
 		spinnerAnioMatricula = new JSpinner(model1);
-		spinnerAnioMatricula.setEditor(new JSpinner.DateEditor(spinnerAnioMatricula,"yyyy"));
-		
+		spinnerAnioMatricula.setModel(model1);
+	
 		
 
 	}
