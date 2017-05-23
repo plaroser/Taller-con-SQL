@@ -266,6 +266,7 @@ public class Vehiculo {
 		frame.getContentPane().add(buttonLimpiar);
 
 	}
+	//metodo para limpiar el formulario
 	public void clearTxtField(){
 			textNombre.setText("");
 			textMarca.setText("");
