@@ -56,6 +56,8 @@ public class Cliente {
 	 */
 	public Cliente() {
 		initialize();
+		setComponentProperties();
+		Botones();
 	}
 
 	/**
