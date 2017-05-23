@@ -5,8 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Models.ClienteModels;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Cliente {
 
@@ -25,6 +32,7 @@ public class Cliente {
 	private JLabel lblDireccion;
 	private JLabel lblTelefono;
 	private JLabel lblEmail;
+	private Collection <ClienteModels> listaClientes;
 
 	
 	public JFrame getFrame() {
@@ -142,6 +150,13 @@ public class Cliente {
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnGuardar.setBounds(305, 29, 117, 60);
 		frame.getContentPane().add(btnGuardar);
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+					 ClienteModels cliente1 = new ClienteModels(textNombre.getText(),textDni.getText(),textApellido.getText(),textDireccion.getText(),textTelf.getText(),textEmail.getText());
+					 listaClientes.add(cliente1);
+			}
+		});
 		
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));

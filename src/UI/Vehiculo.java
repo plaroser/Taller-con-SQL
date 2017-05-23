@@ -93,10 +93,7 @@ public class Vehiculo {
 	public Vehiculo(Collection<Models.Vehiculo> listaVehiculo2) {
 		this.listaVehiculo=listaVehiculo2;
 		Componentes();
-		Cliente();
-		Reparar();
-		Guardar();
-		Editar();
+		Botones();
 		setComponentProperties();
 	}
 
@@ -114,10 +111,11 @@ public class Vehiculo {
 		
 	}
 	
+
 	/**
-	 * Boton Cliente
+	 * Boton Cliente - Reparar - Guardar - Editar - Limpiar
 	 */
-	private void Cliente(){
+	private void Botones(){
 		btnCliente = new JButton("Cliente");
 		btnCliente.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnCliente.setBounds(398, 66, 135, 78);
@@ -130,39 +128,32 @@ public class Vehiculo {
 					frame.dispose();
 			}
 		});
-	}
-	
-
-	/**
-	 * Boton Cliente
-	 */
-	private void Reparar(){
+		
 		btnReparacion = new JButton("Reparar");
 		btnReparacion.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnReparacion.setBounds(398, 196, 135, 78);
 		frame.getContentPane().add(btnReparacion);
-
 		
-	}
-	
-	/**
-	 * Boton Guardar
-	 */
-	private void Guardar(){
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnGuardar.setBounds(31, 396, 135, 53);
 		frame.getContentPane().add(btnGuardar);
-	}
-	
-	/**
-	 * Boton Editar
-	 */
-	private void Editar(){
+
 		btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnEditar.setBounds(214, 396, 135, 53);
 		frame.getContentPane().add(btnEditar);
+		
+		buttonLimpiar = new JButton("Limpiar");
+		buttonLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				clearTxtField();
+			}
+		});
+		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		buttonLimpiar.setBounds(398, 396, 135, 53);
+		frame.getContentPane().add(buttonLimpiar);
 		
 	}
 	
@@ -255,16 +246,7 @@ public class Vehiculo {
 				new Integer(1)); // incremento-decremento 
 		spinnerAnioMatricula.setModel(model1);
 		
-		buttonLimpiar = new JButton("Limpiar");
-		buttonLimpiar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				clearTxtField();
-			}
-		});
-		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		buttonLimpiar.setBounds(398, 396, 135, 53);
-		frame.getContentPane().add(buttonLimpiar);
+		
 
 	}
 	//metodo para limpiar el formulario
