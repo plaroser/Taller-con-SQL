@@ -183,7 +183,7 @@ public class Cliente {
 		buttonVolver.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonVolver.setBounds(305, 184, 117, 60);
 		frame.getContentPane().add(buttonVolver);
-		btnLimpiar.addMouseListener(new MouseAdapter() {
+		buttonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 					Vehiculo Ventana = new Vehiculo(null, null);
