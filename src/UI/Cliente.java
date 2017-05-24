@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Models.ClienteModels;
@@ -32,6 +33,7 @@ public class Cliente {
 	private JLabel lblDireccion;
 	private JLabel lblTelefono;
 	private JLabel lblEmail;
+	private JButton buttonVolver;
 	private Collection <ClienteModels> listaClientes;
 
 	
@@ -64,8 +66,7 @@ public class Cliente {
 	 */
 	public Cliente() {
 		initialize();
-		setComponentProperties();
-		Botones();
+		
 	}
 
 	/**
@@ -77,8 +78,28 @@ public class Cliente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Cliente");
 		frame.getContentPane().setLayout(null);
+		listaClientes = new ArrayList<Models.ClienteModels>();
+		lblNombre = new JLabel("Nombre:");
+		textNombre = new JTextField();
+		lblDni = new JLabel("DNI:");
+		textDni = new JTextField();
+		lblApellidos = new JLabel("Apellidos:");
+		textApellido = new JTextField();
+		lblDireccion = new JLabel("Direccion:");
+		textDireccion = new JTextField();
+		lblTelefono = new JLabel("Telefono:");
+		textTelf = new JTextField();
+		lblEmail = new JLabel("Email:");
+		textEmail = new JTextField();
+		btnGuardar = new JButton("Guardar");
+		btnLimpiar = new JButton("Limpiar");
+		buttonVolver = new JButton("Volver");
+
+
 		
 		
+		setComponentProperties();
+		setComponentAdapters();
 		
 	}
 	
@@ -87,90 +108,110 @@ public class Cliente {
 	 */
 	private void setComponentProperties(){
 
-		lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(35, 27, 61, 16);
 		frame.getContentPane().add(lblNombre);
 		
-		textNombre = new JTextField();
+		
 		textNombre.setBounds(108, 22, 148, 26);
 		frame.getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
-		lblDni = new JLabel("DNI:");
+		
 		lblDni.setBounds(35, 108, 61, 16);
 		frame.getContentPane().add(lblDni);
 		
-		textDni = new JTextField();
+		
 		textDni.setBounds(108, 103, 148, 26);
 		frame.getContentPane().add(textDni);
 		textDni.setColumns(10);
 		
-		lblApellidos = new JLabel("Apellidos:");
+		
 		lblApellidos.setBounds(35, 65, 72, 16);
 		frame.getContentPane().add(lblApellidos);
 		
-		textApellido = new JTextField();
+		
 		textApellido.setBounds(108, 60, 148, 26);
 		frame.getContentPane().add(textApellido);
 		textApellido.setColumns(10);
 		
-		lblDireccion = new JLabel("Direccion:");
+		
 		lblDireccion.setBounds(35, 149, 72, 16);
 		frame.getContentPane().add(lblDireccion);
 		
-		textDireccion = new JTextField();
+		
 		textDireccion.setBounds(108, 144, 148, 26);
 		frame.getContentPane().add(textDireccion);
 		textDireccion.setColumns(10);
 		
-		lblTelefono = new JLabel("Telefono:");
+		
 		lblTelefono.setBounds(35, 189, 61, 16);
 		frame.getContentPane().add(lblTelefono);
 		
-		textTelf = new JTextField();
+		
 		textTelf.setBounds(108, 184, 148, 26);
 		frame.getContentPane().add(textTelf);
 		textTelf.setColumns(10);
 		
-		lblEmail = new JLabel("Email:");
+		
 		lblEmail.setBounds(35, 232, 61, 16);
 		frame.getContentPane().add(lblEmail);
 		
-		textEmail = new JTextField();
 		textEmail.setBounds(108, 227, 148, 26);
 		frame.getContentPane().add(textEmail);
 		textEmail.setColumns(10);
+		
+		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		btnGuardar.setBounds(305, 29, 117, 60);
+		frame.getContentPane().add(btnGuardar);
+		
+		btnLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		btnLimpiar.setBounds(305, 108, 117, 60);
+		frame.getContentPane().add(btnLimpiar);
+		
+		buttonVolver.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		buttonVolver.setBounds(305, 184, 117, 60);
+		frame.getContentPane().add(buttonVolver);
 	}
 	
 	/**
 	 * Botones Limpiar y Guardar
 	 */
-	private void Botones(){
-		btnGuardar = new JButton("Guardar");
-		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnGuardar.setBounds(305, 29, 117, 60);
-		frame.getContentPane().add(btnGuardar);
+	private void setComponentAdapters(){
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 					 ClienteModels cliente1 = new ClienteModels(textNombre.getText(),textDni.getText(),textApellido.getText(),textDireccion.getText(),textTelf.getText(),textEmail.getText());
 					 listaClientes.add(cliente1);
+					 if (listaClientes.add(cliente1)){
+						 JOptionPane.showMessageDialog(null, "Ha sido añadido correctamente");
+					 }
+					 else if(listaClientes.contains(cliente1)){
+						 JOptionPane.showMessageDialog(null, "Este cliente ya ha sido registrado anteriormente");
+					 }
+					 else{
+						 JOptionPane.showMessageDialog(null, "No ha sido añadido correctamente");
+					 }
 			}
 		});
 		
-		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				clearTxtField();
 			}
 		});
-		btnLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnLimpiar.setBounds(305, 150, 117, 60);
-		frame.getContentPane().add(btnLimpiar);
 		
+		buttonVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+					Vehiculo Ventana = new Vehiculo(null, null);
+					Ventana.getFrame().setVisible(true);
+					frame.dispose();
+			}
+		});
 	}
-	public void clearTxtField(){
+	
+	private void clearTxtField(){
 		textNombre.setText("");
 		textDni.setText("");
 		textApellido.setText("");

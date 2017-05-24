@@ -51,6 +51,7 @@ public class Vehiculo {
 	private JSpinner spinnerPuertas;
 	private JButton buttonLimpiar;
 	private JLabel lblCV;
+	private Models.Vehiculo vehiculoSeleccionado;
 	
 	
 	
@@ -78,7 +79,7 @@ public class Vehiculo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculo window = new Vehiculo(new ArrayList<>());
+					Vehiculo window = new Vehiculo(new ArrayList<>(), null);
 					window.frame.setVisible(true);
 				} catch (Exception a) {
 					a.printStackTrace();
@@ -90,8 +91,9 @@ public class Vehiculo {
 	/**
 	 * Create the application.
 	 */
-	public Vehiculo(Collection<Models.Vehiculo> listaVehiculo2) {
-		this.listaVehiculo=listaVehiculo2;
+	public Vehiculo(Collection<Models.Vehiculo> listaVehiculo, Models.Vehiculo v) {
+		this.listaVehiculo=listaVehiculo;
+		this.vehiculoSeleccionado=v;
 		Componentes();
 		Botones();
 		setComponentProperties();
@@ -113,7 +115,6 @@ public class Vehiculo {
 	
 
 	/**
-	 * Boton Cliente - Reparar - Guardar - Editar - Limpiar
 	 */
 	private void Botones(){
 		btnCliente = new JButton("Cliente");

@@ -62,7 +62,7 @@ public class PantallaPrincipal {
 		btnNV.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				UI.Vehiculo Ventana = new UI.Vehiculo(listaVehiculo);
+				UI.Vehiculo Ventana = new UI.Vehiculo(listaVehiculo, null);
 				Ventana.getFrame().setVisible(true);
 				frame.setVisible(false);
 
