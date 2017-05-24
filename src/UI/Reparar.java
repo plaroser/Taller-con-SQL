@@ -36,10 +36,13 @@ public class Reparar {
 	private JTextField textPrecio;
 	private JTextField textMecanico;
 	private JButton btnEditar;
+	private JButton btnLimpiar;
 	private JButton btnVolver;
 	private JSpinner spinnerFsalida;
 	private JSpinner spinnerFEntrada;
 	private JTextPane textPane;
+	private JLabel lblMatricula;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -68,33 +71,64 @@ public class Reparar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		lblMatricula = new JLabel("Matr\u00EDcula:");
+		textMatricula = new JTextField();
+		lblFechaEntrada = new JLabel("Fecha Entrada:");
+		spinnerFEntrada = new JSpinner(new SpinnerDateModel(new Date(1483225200872L), null, null, Calendar.DAY_OF_MONTH));
+		lblFechaSalida = new JLabel("Fecha Salida:");
+		spinnerFsalida = new JSpinner(new SpinnerDateModel(new Date(1483225200378L), null, null, Calendar.DAY_OF_MONTH));
+		lblPrecio = new JLabel("Precio:");
+		textPrecio = new JTextField();
+		lblMecnico = new JLabel("Mec\u00E1nico:");
+		textMecanico = new JTextField();
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Pendiente", "Entregado"}));
+		setComponentPropierties();
+		setComponentAdapters();
+		
+	}
+	
+	private void setComponentAdapters(){
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearText();
+			}
+		}); 
+		
+		
+		btnVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Vehiculo ventana = new Vehiculo();
+				ventana.getFrame().setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+	}
+	
+	
+	private void setComponentPropierties(){
 		frame = new JFrame();
 		frame.setBounds(100, 100, 680, 501);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblMatrcula = new JLabel("Matr\u00EDcula:");
-		lblMatrcula.setBounds(55, 66, 63, 14);
-		frame.getContentPane().add(lblMatrcula);
-		
-		textMatricula = new JTextField();
+		lblMatricula.setBounds(55, 66, 63, 14);
+		frame.getContentPane().add(lblMatricula);
+				
 		textMatricula.setBounds(150, 63, 86, 20);
 		frame.getContentPane().add(textMatricula);
-		textMatricula.setColumns(10);
+		textMatricula.setColumns(10);		
 		
-		lblFechaEntrada = new JLabel("Fecha Entrada:");
 		lblFechaEntrada.setBounds(55, 115, 86, 14);
-		frame.getContentPane().add(lblFechaEntrada);
+		frame.getContentPane().add(lblFechaEntrada);		
 		
-		lblFechaSalida = new JLabel("Fecha Salida:");
 		lblFechaSalida.setBounds(55, 164, 86, 14);
-		frame.getContentPane().add(lblFechaSalida);
+		frame.getContentPane().add(lblFechaSalida);		
 		
-		lblPrecio = new JLabel("Precio:");
 		lblPrecio.setBounds(55, 211, 63, 14);
 		frame.getContentPane().add(lblPrecio);
-		
-		lblMecnico = new JLabel("Mec\u00E1nico:");
+				
 		lblMecnico.setBounds(55, 260, 63, 14);
 		frame.getContentPane().add(lblMecnico);
 		
@@ -105,31 +139,24 @@ public class Reparar {
 		lblNewLabel = new JLabel("Comentarios:");
 		lblNewLabel.setBounds(55, 371, 86, 14);
 		frame.getContentPane().add(lblNewLabel);
-		
-		textPrecio = new JTextField();
+				
 		textPrecio.setBounds(150, 208, 86, 20);
 		frame.getContentPane().add(textPrecio);
 		textPrecio.setColumns(10);
-		
-		textMecanico = new JTextField();
+				
 		textMecanico.setBounds(150, 257, 86, 20);
 		frame.getContentPane().add(textMecanico);
 		textMecanico.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Pendiente", "Entregado"}));
 		comboBox.setBounds(188, 303, 112, 25);
 		frame.getContentPane().add(comboBox);
 		
 		SpinnerDateModel model = new SpinnerDateModel();
 		
-		JSpinner spinnerFEntrada = new JSpinner(new SpinnerDateModel(new Date(1483225200872L), null, null, Calendar.DAY_OF_MONTH));
 		spinnerFEntrada.setBounds(150, 112, 86, 20);
 		frame.getContentPane().add(spinnerFEntrada);
 		spinnerFEntrada.setEditor(new JSpinner.DateEditor(spinnerFEntrada,"dd-mm-yyyy"));
 	
-		
-		JSpinner spinnerFsalida = new JSpinner(new SpinnerDateModel(new Date(1483225200378L), null, null, Calendar.DAY_OF_MONTH));
 		spinnerFsalida.setBounds(150, 161, 86, 20);
 		frame.getContentPane().add(spinnerFsalida);
 		spinnerFsalida.setEditor(new JSpinner.DateEditor(spinnerFsalida,"dd-mm-yyyy"));
@@ -141,11 +168,7 @@ public class Reparar {
 		
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLimpiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearText();
-			}
-		}); 
+
 		btnLimpiar.setBounds(470, 143, 141, 69);
 		frame.getContentPane().add(btnLimpiar);
 		
@@ -162,15 +185,6 @@ public class Reparar {
 		textPane = new JTextPane();
 		textPane.setBounds(150, 365, 153, 86);
 		frame.getContentPane().add(textPane);
-		
-		btnVolver.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Vehiculo ventana = new Vehiculo();
-				ventana.getFrame().setVisible(true);
-				frame.setVisible(false);
-			}
-		});
 	}
 	
 	public void clearText(){
