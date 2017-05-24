@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Containers.Container;
 import Models.Vehiculo;
 import res.Constants;
 
@@ -125,7 +126,7 @@ public class BuscarVehiculo {
 					JOptionPane.showMessageDialog(null,
 							"El formato de la matricula no es correcto\nIntroducir sin guiones ni espacios en blanco.");
 				}
-				System.out.println(vehiculoSeleccionado);
+				Container.vehiculoActivo = vehiculoSeleccionado;
 			}
 		});
 	}

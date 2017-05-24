@@ -79,7 +79,7 @@ public class Vehiculo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vehiculo window = new Vehiculo(new ArrayList<>(), null);
+					Vehiculo window = new Vehiculo();
 					window.frame.setVisible(true);
 				} catch (Exception a) {
 					a.printStackTrace();
@@ -91,9 +91,7 @@ public class Vehiculo {
 	/**
 	 * Create the application.
 	 */
-	public Vehiculo(Collection<Models.Vehiculo> listaVehiculo, Models.Vehiculo v) {
-		this.listaVehiculo = listaVehiculo;
-		this.vehiculoSeleccionado = v;
+	public Vehiculo() {
 		initialize();
 	}
 
