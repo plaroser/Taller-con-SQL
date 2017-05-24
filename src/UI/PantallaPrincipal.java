@@ -107,13 +107,7 @@ public class PantallaPrincipal {
 		btnCS.setBounds(149, 147, 194, 76);
 		frame.getContentPane().add(btnCS);
 
-		// Vehiculos de demo
-		listaVehiculo
-				.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde", LocalDate.of(2015, 3, 2), 120));
-		listaVehiculo.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140));
-		listaVehiculo.add(new Vehiculo("333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120));
-		listaVehiculo.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120));
-	}
+		}
 
 	/**
 	 * Componentes principales

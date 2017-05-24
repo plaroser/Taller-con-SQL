@@ -15,6 +15,7 @@ import javax.sound.midi.ControllerEventListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -33,8 +34,7 @@ public class BuscarVehiculo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuscarVehiculo window = new BuscarVehiculo(new ArrayList<Vehiculo>() {
-					});
+					BuscarVehiculo window = new BuscarVehiculo();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +46,7 @@ public class BuscarVehiculo {
 	/**
 	 * Create the application.
 	 */
-	public BuscarVehiculo(Collection<Vehiculo> listaActual) {
-		this.listaActual = listaActual;
+	public BuscarVehiculo() {
 		initialize();
 		setComponetProperties();
 		setComponentAdapters();
@@ -75,6 +74,16 @@ public class BuscarVehiculo {
 		txtMatricula = new JTextField();
 
 		btnBuscar = new JButton("Buscar");
+
+		// Vehiculos de demo
+		Container.listaVehiculos
+				.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde", LocalDate.of(2015, 3, 2), 120));
+		Container.listaVehiculos
+				.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140));
+		Container.listaVehiculos
+				.add(new Vehiculo("333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120));
+		Container.listaVehiculos
+				.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120));
 
 	}
 
@@ -132,7 +141,7 @@ public class BuscarVehiculo {
 					JOptionPane.showMessageDialog(null,
 							"El formato de la matricula no es correcto\nIntroducir sin guiones ni espacios en blanco.");
 				}
-				
+
 			}
 		});
 	}
