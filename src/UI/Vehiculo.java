@@ -260,6 +260,7 @@ public class Vehiculo {
 		textColor.setEnabled(false);
 		comboBoxCombustible.setEnabled(false);
 		spinnerAnioMatricula.setEnabled(false);
+		buttonLimpiar.setEnabled(false);
 	}
 
 	public void imprimirVehiculo(Models.Vehiculo v) {
