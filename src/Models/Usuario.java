@@ -1,5 +1,6 @@
 package Models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Usuario extends Object {
@@ -9,7 +10,7 @@ public class Usuario extends Object {
 	private String apellidos;
 	private float sueldo;
 	private int diasVacaciones;
-	private Date fechaContratacion;
+	private LocalDate fechaContratacion;
 
 	public Usuario(String usuario, String contrasenia) {
 		super();
@@ -18,7 +19,7 @@ public class Usuario extends Object {
 	}
 
 	public Usuario(String usuario, String contrasenia, String nombre, String apellidos, float sueldo,
-			int diasVacaciones, Date fechaContratacion) {
+			int diasVacaciones, LocalDate fechaContratacion) {
 		super();
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
