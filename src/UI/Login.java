@@ -81,6 +81,7 @@ public class Login {
 		frame.setBounds(100, 100, 391, 375);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Login");
 
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblLogin.setBounds(40, 32, 108, 34);
@@ -115,11 +116,11 @@ public class Login {
 		String usuario = txtUsuario.getText();
 
 		if (usuario.isEmpty() || new String(txtContrasenia.getPassword()).isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El usuario o la contraseña no pueden estar vacios.");
+			JOptionPane.showMessageDialog(null, "El usuario o la contraseï¿½a no pueden estar vacios.");
 			return false;
 		}
 		if (!Constants.CONSTRAINT_CONTRASENIA.matcher(new String(txtContrasenia.getPassword())).matches()) {
-			JOptionPane.showMessageDialog(null, "La contraseña no coincide con el patron necesario");
+			JOptionPane.showMessageDialog(null, "La contraseï¿½a no coincide con el patron necesario");
 			return false;
 		}
 
@@ -127,7 +128,7 @@ public class Login {
 
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctos.");
+			JOptionPane.showMessageDialog(null, "El usuario o la contraseï¿½a no son correctos.");
 			return false;
 		}
 
