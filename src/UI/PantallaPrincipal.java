@@ -23,6 +23,7 @@ public class PantallaPrincipal {
 	private JFrame frame;
 	private JButton btnBV;
 	private JButton btnNV;
+	private JButton btnCS;
 	private Collection<Models.Vehiculo> listaVehiculo;
 
 	public JFrame getFrame() {
@@ -77,10 +78,19 @@ public class PantallaPrincipal {
 				frame.setVisible(false);
 			}
 		});
+		
+		btnCS.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login ventana = new Login();
+				ventana.getFrame().setVisible(true);
+				frame.setVisible(false);
+			}
+		});
 	}
 
 	private void setComponetProperties() {
-		frame.setBounds(100, 100, 519, 232);
+		frame.setBounds(100, 100, 519, 270);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Pantalla Principal");
 		frame.getContentPane().setLayout(null);
@@ -90,8 +100,12 @@ public class PantallaPrincipal {
 		frame.getContentPane().add(btnBV);
 
 		btnNV.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnNV.setBounds(265, 59, 194, 76);
+		btnNV.setBounds(258, 59, 194, 76);
 		frame.getContentPane().add(btnNV);
+		
+		btnCS.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		btnCS.setBounds(149, 147, 194, 76);
+		frame.getContentPane().add(btnCS);
 		
 		//Vehiculos de demo
 		listaVehiculo.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte)3, "Verde", LocalDate.of(2015, 3, 2), 120));
@@ -108,6 +122,7 @@ public class PantallaPrincipal {
 		frame = new JFrame();
 		btnBV = new JButton("Buscar Vehiculo");
 		btnNV = new JButton("Nuevo Vehiculo");
+		btnCS = new JButton("Cerrar Sesion");
 
 	}
 
