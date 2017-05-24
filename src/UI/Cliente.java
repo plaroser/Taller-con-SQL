@@ -159,8 +159,23 @@ public class Cliente {
 		});
 		
 		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				clearTxtField();
+			}
+		});
 		btnLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnLimpiar.setBounds(305, 150, 117, 60);
 		frame.getContentPane().add(btnLimpiar);
+		
+	}
+	public void clearTxtField(){
+		textNombre.setText("");
+		textDni.setText("");
+		textApellido.setText("");
+		textDireccion.setText("");
+		textTelf.setText("");
+		textEmail.setText("");		
 	}
 }
