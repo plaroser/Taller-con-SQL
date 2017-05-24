@@ -13,8 +13,7 @@ public class Vehiculo extends Object {
 	private LocalDate anioMatriculacion;
 	private int CV;
 
-	public Vehiculo(String matricula, String marca, String modelo, int i, String color,
-			LocalDate date, int cV) {
+	public Vehiculo(String matricula, String marca, String modelo, int i, String color, LocalDate date, int cV) {
 		super();
 		Matricula = matricula;
 		this.marca = marca;
@@ -80,12 +79,13 @@ public class Vehiculo extends Object {
 	public void setCV(int cV) {
 		CV = cV;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Vehiculo){
-		Vehiculo m = (Vehiculo) obj;
-		return this.getMatricula().equals(m.getMatricula());
-		}else{
+		if (obj instanceof Vehiculo) {
+			Vehiculo m = (Vehiculo) obj;
+			return this.getMatricula().equals(m.getMatricula());
+		} else {
 			return false;
 		}
 	}
