@@ -83,6 +83,7 @@ public class Reparar {
 		textMecanico = new JTextField();
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Pendiente", "Entregado"}));
+		btnLimpiar = new JButton();
 		setComponentPropierties();
 		setComponentAdapters();
 		
