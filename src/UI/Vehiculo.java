@@ -115,7 +115,6 @@ public class Vehiculo {
 	
 
 	/**
-	 * Boton Cliente - Reparar - Guardar - Editar - Limpiar
 	 */
 	private void Botones(){
 		btnCliente = new JButton("Cliente");
