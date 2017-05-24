@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Models.ClienteModels;
@@ -32,6 +33,7 @@ public class Cliente {
 	private JLabel lblDireccion;
 	private JLabel lblTelefono;
 	private JLabel lblEmail;
+	private JButton buttonVolver;
 	private Collection <ClienteModels> listaClientes;
 
 	
@@ -65,7 +67,7 @@ public class Cliente {
 	public Cliente() {
 		initialize();
 		setComponentProperties();
-		Botones();
+		setComponentAdapters();
 	}
 
 	/**
@@ -77,6 +79,7 @@ public class Cliente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Cliente");
 		frame.getContentPane().setLayout(null);
+		listaClientes = new ArrayList<Models.ClienteModels>();
 		
 		
 		
@@ -140,12 +143,13 @@ public class Cliente {
 		textEmail.setBounds(108, 227, 148, 26);
 		frame.getContentPane().add(textEmail);
 		textEmail.setColumns(10);
+		
 	}
 	
 	/**
 	 * Botones Limpiar y Guardar
 	 */
-	private void Botones(){
+	private void setComponentAdapters(){
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnGuardar.setBounds(305, 29, 117, 60);
@@ -155,6 +159,12 @@ public class Cliente {
 			public void mouseClicked(MouseEvent e){
 					 ClienteModels cliente1 = new ClienteModels(textNombre.getText(),textDni.getText(),textApellido.getText(),textDireccion.getText(),textTelf.getText(),textEmail.getText());
 					 listaClientes.add(cliente1);
+					 if (listaClientes.add(cliente1) == true){
+						 JOptionPane.showMessageDialog(null, "Ha sido añadido correctamente");
+					 }
+					 else{
+						 JOptionPane.showMessageDialog(null, "No ha sido añadido correctamente");
+					 }
 			}
 		});
 		
@@ -166,8 +176,23 @@ public class Cliente {
 			}
 		});
 		btnLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnLimpiar.setBounds(305, 150, 117, 60);
+		btnLimpiar.setBounds(305, 108, 117, 60);
 		frame.getContentPane().add(btnLimpiar);
+		
+		buttonVolver = new JButton("Volver");
+		buttonVolver.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		buttonVolver.setBounds(305, 184, 117, 60);
+		frame.getContentPane().add(buttonVolver);
+		btnLimpiar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+					Vehiculo Ventana = new Vehiculo(null, null);
+					Ventana.getFrame().setVisible(true);
+					frame.dispose();
+			}
+		});
+		
+		
 		
 	}
 	public void clearTxtField(){
