@@ -31,10 +31,9 @@ public class Vehiculo {
 	private JButton btnCliente;
 	private JButton btnGuardar;
 	private JButton btnEditar;
-	private JTextField textNombre;
+	private JTextField txtMatricula;
 	private JTextField textMarca;
 	private JTextField textModelo;
-	private JTextField textMatricula;
 	private JLabel lblMatricula;
 	private JTextField textCV;
 	private JLabel lblMarca;
@@ -54,7 +53,6 @@ public class Vehiculo {
 	private JButton buttonLimpiar;
 	private JLabel lblCV;
 	private Models.Vehiculo vehiculoSeleccionado;
-	
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -100,9 +98,9 @@ public class Vehiculo {
 		btnCliente = new JButton("Cliente");
 		btnReparacion = new JButton("Reparar");
 		btnGuardar = new JButton("Guardar");
-		textNombre = new JTextField();
+		txtMatricula = new JTextField();
 		buttonLimpiar = new JButton("Limpiar");
-		
+
 		btnEditar = new JButton("Editar");
 		textColor = new JTextField();
 		lblMatricula_1 = new JLabel("Matricula:");
@@ -115,7 +113,6 @@ public class Vehiculo {
 		spinnerPuertas = new JSpinner();
 		comboBoxCombustible = new JComboBox();
 		lblColor = new JLabel("Color");
-		textMatricula = new JTextField();
 		setComponetProperties();
 		setComponentAdapters();
 	}
@@ -136,10 +133,7 @@ public class Vehiculo {
 				clearTxtField();
 			}
 		});
-		
-		
-		
-		
+
 	}
 
 	private void setComponetProperties() {
@@ -151,9 +145,9 @@ public class Vehiculo {
 		lblMatricula_1.setBounds(31, 29, 79, 16);
 		frame.getContentPane().add(lblMatricula_1);
 
-		textNombre.setBounds(154, 24, 171, 26);
-		frame.getContentPane().add(textNombre);
-		textNombre.setColumns(10);
+		txtMatricula.setBounds(154, 24, 171, 26);
+		frame.getContentPane().add(txtMatricula);
+		txtMatricula.setColumns(10);
 
 		lblMarca.setBounds(31, 66, 61, 16);
 		frame.getContentPane().add(lblMarca);
@@ -240,34 +234,43 @@ public class Vehiculo {
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonLimpiar.setBounds(398, 396, 135, 53);
 		frame.getContentPane().add(buttonLimpiar);
-		
-	
+
 	}
 
 	/**
 	 * Algo
 	 */
 	public void clearTxtField() {
-		textNombre.setText("");
+		txtMatricula.setText("");
 		textMarca.setText("");
 		textModelo.setText("");
-		textMatricula.setText("");
 		textCV.setText("");
 		spinnerPuertas.setValue(0);
 		textColor.setText("");
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(1950);
 	}
+
 	public void ModoLeer() {
-		textNombre.setEnabled(false);
+		txtMatricula.setEnabled(false);
 		textMarca.setEnabled(false);
 		textModelo.setEnabled(false);
-		textMatricula.setEnabled(false);
 		textCV.setEnabled(false);
 		spinnerPuertas.setEnabled(false);
 		textColor.setEnabled(false);
 		comboBoxCombustible.setEnabled(false);
 		spinnerAnioMatricula.setEnabled(false);
 	}
-	
+
+	public void imprimirVehiculo(Models.Vehiculo v) {
+		txtMatricula.setText(v.getMatricula());
+		textMarca.setText(v.getMarca());
+		textModelo.setText(v.getModelo());
+		textCV.setText(String.valueOf(v.getCV()));
+		spinnerPuertas.setValue(v.getPuertas());
+		textColor.setText(v.getColor());
+		comboBoxCombustible.setSelectedItem("Diesel");
+		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
+	}
+
 }

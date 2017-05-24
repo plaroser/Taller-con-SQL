@@ -117,6 +117,8 @@ public class BuscarVehiculo {
 								vehiculoSeleccionado = valor;
 								Container.vehiculoActivo = vehiculoSeleccionado;
 								UI.Vehiculo ventana = new UI.Vehiculo();
+								ventana.imprimirVehiculo(vehiculoSeleccionado);
+								ventana.ModoLeer();
 								ventana.getFrame().setVisible(true);
 								frame.dispose();
 							}

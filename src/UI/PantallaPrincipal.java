@@ -78,7 +78,7 @@ public class PantallaPrincipal {
 				frame.setVisible(false);
 			}
 		});
-		
+
 		btnCS.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -102,16 +102,17 @@ public class PantallaPrincipal {
 		btnNV.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnNV.setBounds(258, 59, 194, 76);
 		frame.getContentPane().add(btnNV);
-		
+
 		btnCS.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnCS.setBounds(149, 147, 194, 76);
 		frame.getContentPane().add(btnCS);
-		
-		//Vehiculos de demo
-		listaVehiculo.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte)3, "Verde", LocalDate.of(2015, 3, 2), 120));
-		listaVehiculo.add(new Vehiculo("2222BBB", "Audi", "A3", (byte)3, "Blanco", LocalDate.of(2015, 3, 2), 140));
-		listaVehiculo.add(new Vehiculo("333CCC", "BMW", "335", (byte)2, "Gris", LocalDate.of(2015, 3, 2), 120));
-		listaVehiculo.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte)2, "Negro", LocalDate.of(2015, 3, 2), 120));
+
+		// Vehiculos de demo
+		listaVehiculo
+				.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde", LocalDate.of(2015, 3, 2), 120));
+		listaVehiculo.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140));
+		listaVehiculo.add(new Vehiculo("333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120));
+		listaVehiculo.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120));
 	}
 
 	/**
