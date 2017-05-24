@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Containers.Container;
 import Models.Vehiculo;
 
 import javax.swing.JButton;
@@ -73,7 +74,7 @@ public class PantallaPrincipal {
 		btnBV.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				BuscarVehiculo ventana = new BuscarVehiculo(listaVehiculo);
+				BuscarVehiculo ventana = new BuscarVehiculo();
 				ventana.getFrame().setVisible(true);
 				frame.setVisible(false);
 			}
@@ -113,7 +114,7 @@ public class PantallaPrincipal {
 	 * Componentes principales
 	 */
 	private void initialize() {
-		listaVehiculo = new ArrayList<Vehiculo>();
+		listaVehiculo = Container.listaVehiculos;
 		frame = new JFrame();
 		btnBV = new JButton("Buscar Vehiculo");
 		btnNV = new JButton("Nuevo Vehiculo");

@@ -75,6 +75,7 @@ public class BuscarVehiculo {
 
 		btnBuscar = new JButton("Buscar");
 
+		Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
 		Container.listaVehiculos
 				.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde", LocalDate.of(2015, 3, 2), 120));
@@ -84,7 +85,7 @@ public class BuscarVehiculo {
 				.add(new Vehiculo("333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120));
 		Container.listaVehiculos
 				.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120));
-
+		listaActual = Container.listaVehiculos;
 	}
 
 	private void setComponetProperties() {
