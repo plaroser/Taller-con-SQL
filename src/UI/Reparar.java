@@ -145,7 +145,7 @@ public class Reparar {
 			public void actionPerformed(ActionEvent arg0) {
 				clearText();
 			}
-		});
+		}); 
 		btnLimpiar.setBounds(470, 143, 141, 69);
 		frame.getContentPane().add(btnLimpiar);
 		
