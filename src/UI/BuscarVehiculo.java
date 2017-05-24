@@ -115,6 +115,10 @@ public class BuscarVehiculo {
 						for (Vehiculo valor : listaActual) {
 							if (valor.getMatricula().equals(s)) {
 								vehiculoSeleccionado = valor;
+								Container.vehiculoActivo = vehiculoSeleccionado;
+								UI.Vehiculo ventana = new UI.Vehiculo();
+								ventana.getFrame().setVisible(true);
+								frame.dispose();
 							}
 						}
 					} else {
@@ -126,7 +130,7 @@ public class BuscarVehiculo {
 					JOptionPane.showMessageDialog(null,
 							"El formato de la matricula no es correcto\nIntroducir sin guiones ni espacios en blanco.");
 				}
-				Container.vehiculoActivo = vehiculoSeleccionado;
+				
 			}
 		});
 	}
