@@ -54,7 +54,7 @@ public class Vehiculo {
 	private JButton buttonLimpiar;
 	private JLabel lblCV;
 	private Models.Vehiculo vehiculoSeleccionado;
-	private JButton btnLeer;
+	
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -102,7 +102,7 @@ public class Vehiculo {
 		btnGuardar = new JButton("Guardar");
 		textNombre = new JTextField();
 		buttonLimpiar = new JButton("Limpiar");
-		btnLeer = new JButton("leer");
+		
 		btnEditar = new JButton("Editar");
 		textColor = new JTextField();
 		lblMatricula_1 = new JLabel("Matricula:");
@@ -138,12 +138,7 @@ public class Vehiculo {
 		});
 		
 		
-		btnLeer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ModoLeer();
-			}
-		});
+		
 		
 	}
 
@@ -246,9 +241,7 @@ public class Vehiculo {
 		buttonLimpiar.setBounds(398, 396, 135, 53);
 		frame.getContentPane().add(buttonLimpiar);
 		
-		btnLeer.setFont(new Font("Lucida Grande", Font.PLAIN, 19));	
-		btnLeer.setBounds(53, 345, 97, 25);
-		frame.getContentPane().add(btnLeer);
+	
 	}
 
 	/**
