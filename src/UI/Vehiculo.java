@@ -21,6 +21,8 @@ import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Vehiculo {
 
@@ -52,6 +54,7 @@ public class Vehiculo {
 	private JButton buttonLimpiar;
 	private JLabel lblCV;
 	private Models.Vehiculo vehiculoSeleccionado;
+	private JButton btnLeer;
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -101,6 +104,7 @@ public class Vehiculo {
 		btnGuardar = new JButton("Guardar");
 		textNombre = new JTextField();
 		buttonLimpiar = new JButton("Limpiar");
+		btnLeer = new JButton("leer");
 		btnEditar = new JButton("Editar");
 		textColor = new JTextField();
 		lblMatricula_1 = new JLabel("Matricula:");
@@ -134,6 +138,15 @@ public class Vehiculo {
 				clearTxtField();
 			}
 		});
+		
+		
+		btnLeer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModoLeer();
+			}
+		});
+		
 	}
 
 	private void setComponetProperties() {
@@ -234,6 +247,10 @@ public class Vehiculo {
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonLimpiar.setBounds(398, 396, 135, 53);
 		frame.getContentPane().add(buttonLimpiar);
+		
+		btnLeer.setFont(new Font("Lucida Grande", Font.PLAIN, 19));	
+		btnLeer.setBounds(53, 345, 97, 25);
+		frame.getContentPane().add(btnLeer);
 	}
 
 	/**
@@ -250,4 +267,16 @@ public class Vehiculo {
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(1950);
 	}
+	public void ModoLeer() {
+		textNombre.setEnabled(false);
+		textMarca.setEnabled(false);
+		textModelo.setEnabled(false);
+		textMatricula.setEnabled(false);
+		textCV.setEnabled(false);
+		spinnerPuertas.setEnabled(false);
+		textColor.setEnabled(false);
+		comboBoxCombustible.setEnabled(false);
+		spinnerAnioMatricula.setEnabled(false);
+	}
+	
 }
