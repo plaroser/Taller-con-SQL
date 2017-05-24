@@ -204,7 +204,7 @@ public class Cliente {
 		buttonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-					Vehiculo Ventana = new Vehiculo(null, null);
+					Vehiculo Ventana = new Vehiculo();
 					Ventana.getFrame().setVisible(true);
 					frame.dispose();
 			}
