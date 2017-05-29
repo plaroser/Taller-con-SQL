@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -16,6 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.Spring;
+
+import Containers.Container;
 
 import javax.swing.JSpinner;
 import javax.swing.JList;
@@ -35,7 +39,7 @@ public class Vehiculo {
 	private JTextField textMarca;
 	private JTextField textModelo;
 	private JLabel lblMatricula;
-	private JTextField textCV;
+	private JSpinner SpinnerCV;
 	private JLabel lblMarca;
 	private JLabel lblModelo;
 	private JLabel lblCombustible;
@@ -98,6 +102,7 @@ public class Vehiculo {
 		btnCliente = new JButton("Cliente");
 		btnReparacion = new JButton("Reparar");
 		btnGuardar = new JButton("Guardar");
+
 		txtMatricula = new JTextField();
 		buttonLimpiar = new JButton("Limpiar");
 
@@ -109,7 +114,7 @@ public class Vehiculo {
 		lblModelo = new JLabel("Modelo:");
 		textModelo = new JTextField();
 		lblCV = new JLabel("CV:");
-		textCV = new JTextField();
+		SpinnerCV = new JSpinner();
 		spinnerPuertas = new JSpinner();
 		comboBoxCombustible = new JComboBox();
 		lblColor = new JLabel("Color");
@@ -133,12 +138,21 @@ public class Vehiculo {
 				clearTxtField();
 			}
 		});
-		btnEditar.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				ModoEditar();}
+		btnEditar.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				ModoEditar();
+			}
 		});
-			
 		
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Models.Vehiculo aux=leerVehiculo();
+				Container.listaVehiculos.add(aux);
+				ModoLeer();
+				Container.vehiculoActivo=Container.listaVehiculos.size()-1;
+			}
+		});
 
 	}
 
@@ -172,9 +186,8 @@ public class Vehiculo {
 		lblCV.setBounds(31, 141, 71, 16);
 		frame.getContentPane().add(lblCV);
 
-		textCV.setBounds(154, 136, 171, 26);
-		frame.getContentPane().add(textCV);
-		textCV.setColumns(10);
+		SpinnerCV.setBounds(154, 136, 171, 26);
+		frame.getContentPane().add(SpinnerCV);
 
 		lblPuertas = new JLabel("Puertas:");
 		lblPuertas.setBounds(31, 182, 61, 16);
@@ -250,7 +263,7 @@ public class Vehiculo {
 		txtMatricula.setText("");
 		textMarca.setText("");
 		textModelo.setText("");
-		textCV.setText("");
+		SpinnerCV.setValue(0);
 		spinnerPuertas.setValue(0);
 		textColor.setText("");
 		comboBoxCombustible.setSelectedItem("Diesel");
@@ -261,34 +274,50 @@ public class Vehiculo {
 		txtMatricula.setEnabled(false);
 		textMarca.setEnabled(false);
 		textModelo.setEnabled(false);
-		textCV.setEnabled(false);
+		SpinnerCV.setEnabled(false);
 		spinnerPuertas.setEnabled(false);
 		textColor.setEnabled(false);
 		comboBoxCombustible.setEnabled(false);
 		spinnerAnioMatricula.setEnabled(false);
 		buttonLimpiar.setEnabled(false);
+		btnGuardar.setEnabled(false);
 	}
-	public void ModoEditar(){
+
+	public void ModoEditar() {
 		txtMatricula.setEnabled(true);
 		textMarca.setEnabled(true);
 		textModelo.setEnabled(true);
-		textCV.setEnabled(true);
+		SpinnerCV.setEnabled(true);
 		spinnerPuertas.setEnabled(true);
 		textColor.setEnabled(true);
 		comboBoxCombustible.setEnabled(true);
 		spinnerAnioMatricula.setEnabled(true);
 		buttonLimpiar.setEnabled(true);
+		btnGuardar.setEnabled(true);
 	}
 
 	public void imprimirVehiculo(Models.Vehiculo v) {
 		txtMatricula.setText(v.getMatricula());
 		textMarca.setText(v.getMarca());
 		textModelo.setText(v.getModelo());
-		textCV.setText(String.valueOf(v.getCV()));
+		SpinnerCV.setValue(String.valueOf(v.getCV()));
 		spinnerPuertas.setValue(v.getPuertas());
 		textColor.setText(v.getColor());
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
+	}
+
+	public Models.Vehiculo leerVehiculo() {
+		String Matricula = txtMatricula.getText();
+		String Marca = textMarca.getText();
+		String Modelo = textModelo.getText();
+		int CV = (int) SpinnerCV.getValue();
+		int Puertas = (int) spinnerPuertas.getValue();
+		String Color = textColor.getText();
+		String Combustible = (String) comboBoxCombustible.getSelectedItem();
+		int AnioMatricula = (int) spinnerAnioMatricula.getValue();
+		return new Models.Vehiculo(Matricula, Marca, Modelo, Puertas, Color, LocalDate.of(AnioMatricula, 1, 1), CV,
+				Combustible);
 	}
 
 }
