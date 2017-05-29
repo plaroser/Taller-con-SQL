@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Containers.Container;
 import Models.ClienteModels;
 
 import javax.swing.JButton;
@@ -206,6 +207,8 @@ public class Cliente {
 			public void mouseClicked(MouseEvent e){
 					Vehiculo Ventana = new Vehiculo();
 					Ventana.getFrame().setVisible(true);
+					Ventana.imprimirVehiculoPorIndice(Container.vehiculoActivo);
+					Ventana.ModoLeer();
 					frame.dispose();
 			}
 		});

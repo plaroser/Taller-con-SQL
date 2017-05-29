@@ -143,14 +143,14 @@ public class Vehiculo {
 				ModoEditar();
 			}
 		});
-		
+
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Models.Vehiculo aux=leerVehiculo();
+				Models.Vehiculo aux = leerVehiculo();
 				Container.listaVehiculos.add(aux);
 				ModoLeer();
-				Container.vehiculoActivo=Container.listaVehiculos.size()-1;
+				Container.vehiculoActivo = Container.listaVehiculos.size() - 1;
 			}
 		});
 
@@ -300,11 +300,18 @@ public class Vehiculo {
 		txtMatricula.setText(v.getMatricula());
 		textMarca.setText(v.getMarca());
 		textModelo.setText(v.getModelo());
-		SpinnerCV.setValue(String.valueOf(v.getCV()));
+		SpinnerCV.setValue(v.getCV());
 		spinnerPuertas.setValue(v.getPuertas());
 		textColor.setText(v.getColor());
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
+	}
+
+	public void imprimirVehiculoPorIndice(int Indice) {
+		if(Indice!=-1)
+		imprimirVehiculo(Container.listaVehiculos.get(Indice));
+		else
+			clearTxtField();
 	}
 
 	public Models.Vehiculo leerVehiculo() {
