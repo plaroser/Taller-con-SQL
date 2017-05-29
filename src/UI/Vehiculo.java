@@ -133,6 +133,12 @@ public class Vehiculo {
 				clearTxtField();
 			}
 		});
+		btnEditar.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				ModoEditar();}
+		});
+			
+		
 
 	}
 
@@ -261,6 +267,17 @@ public class Vehiculo {
 		comboBoxCombustible.setEnabled(false);
 		spinnerAnioMatricula.setEnabled(false);
 		buttonLimpiar.setEnabled(false);
+	}
+	public void ModoEditar(){
+		txtMatricula.setEnabled(true);
+		textMarca.setEnabled(true);
+		textModelo.setEnabled(true);
+		textCV.setEnabled(true);
+		spinnerPuertas.setEnabled(true);
+		textColor.setEnabled(true);
+		comboBoxCombustible.setEnabled(true);
+		spinnerAnioMatricula.setEnabled(true);
+		buttonLimpiar.setEnabled(true);
 	}
 
 	public void imprimirVehiculo(Models.Vehiculo v) {

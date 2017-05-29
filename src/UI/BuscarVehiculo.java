@@ -120,9 +120,17 @@ public class BuscarVehiculo {
 					if (listaActual.contains(new Vehiculo(s, null, null, 0, null, null, 0))) {
 						// Una vez que sabemos que esta en el sistema recorremos
 						// la lista y buscamos el vehiculo con dicha matricula
+<<<<<<< Upstream, based on origin/master
 						for (int i = 0;i<Container.listaVehiculos.size();i++) {
 							if (Container.listaVehiculos.get(i).getMatricula().equals(s)) {
 								//Container.vehiculoActivo;
+=======
+						for (Vehiculo valor : listaActual) {
+							if (valor.getMatricula().equals(s)) {
+								vehiculoSeleccionado = valor;
+								
+								Container.vehiculoActivo = vehiculoSeleccionado;
+>>>>>>> 55f8741 Metodo editar
 								UI.Vehiculo ventana = new UI.Vehiculo();
 								Container.vehiculoActivo = i;
 								ventana.imprimirVehiculo(Container.listaVehiculos.get(i));
