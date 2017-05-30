@@ -109,7 +109,7 @@ public class Reparar {
 		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
 		btnIniciarContador = new JButton("Iniciar Reparacion");
-		btnDetenerContador = new JButton("Detener Reparacion");
+		btnDetenerContador = new JButton("Modificar Reparacion");
 		lblTotal = new JLabel("TOTAL:");
 
 		setComponentPropierties();
