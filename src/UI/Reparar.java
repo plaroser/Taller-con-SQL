@@ -243,6 +243,9 @@ public class Reparar {
 		btnLimpiar.setEnabled(false);
 		btnVolver.setEnabled(false);
 		btnGuardar.setEnabled(false);
+		btnAnterior.setEnabled(true);
+		btnSiguiente.setEnabled(true);
+		progressBar.setEnabled(true);
 	}
 	
 	/**
@@ -259,6 +262,7 @@ public class Reparar {
 		btnGuardar.setEnabled(true);
 		btnLimpiar.setEnabled(true);
 		btnVolver.setEnabled(true);
+		btnEditar.setEnabled(false);
 		btnAnterior.setEnabled(false);
 		btnSiguiente.setEnabled(false);
 		progressBar.setEnabled(false);
