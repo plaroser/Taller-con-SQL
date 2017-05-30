@@ -16,7 +16,7 @@ public class Vehiculo extends Object {
 	private String combustible;
 	private LinkedList<Reparar> listaREparaciones;
 	private String tipovheiculo;
-	
+
 	
 	public Vehiculo(String matricula, String marca, String modelo, int puertas, String color,
 			LocalDate anioMatriculacion, int cV, String combustible, String tipovheiculo) {
