@@ -115,8 +115,14 @@ public class Reparar {
 		textTInvertido = new JTextField();
 		JLabel lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
+<<<<<<< Upstream, based on origin/master
 		JButton btnIniciarContador = new JButton("Iniciar Reparacion");
 		JButton btnDetenerContador = new JButton("Detener Reparacion");
+=======
+		btnIniciarContador = new JButton("Iniciar Reparacion");
+		
+		btnDetenerContador = new JButton("Detener Reparacion");
+>>>>>>> 1a8ab83 Reparar v2
 		lblTotal = new JLabel("TOTAL:");
 
 		setComponentPropierties();
@@ -172,6 +178,12 @@ public class Reparar {
 				imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(AnteriorIndice));
 =======
 >>>>>>> b031f90 Error reparado
+			}
+		});
+		
+		btnIniciarContador.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 			}
 		});
 	}
