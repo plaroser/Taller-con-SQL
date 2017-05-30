@@ -1,6 +1,5 @@
 package UI;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +14,6 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class BuscarVehiculo {
@@ -26,21 +24,6 @@ public class BuscarVehiculo {
 	JButton btnBuscar;
 	private Collection<Vehiculo> listaActual;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuscarVehiculo window = new BuscarVehiculo();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -74,16 +57,16 @@ public class BuscarVehiculo {
 
 		btnBuscar = new JButton("Buscar");
 
-		Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
+		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
+		Container.listaVehiculos.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde",
+				LocalDate.of(2015, 3, 2), 120, "Diesel"));
+		Container.listaVehiculos.add(
+				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel"));
 		Container.listaVehiculos
-				.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde", LocalDate.of(2015, 3, 2), 120, "Diesel"));
-		Container.listaVehiculos
-				.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel"));
-		Container.listaVehiculos
-				.add(new Vehiculo("333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel"));
-		Container.listaVehiculos
-				.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel"));
+		Container.listaVehiculos.add(
+				new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel"));
 		listaActual = Container.listaVehiculos;
 	}
 
@@ -115,13 +98,14 @@ public class BuscarVehiculo {
 				// Comprobar que la matricula cumple los requisitos de una
 				// matricula
 				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
+					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null);
 					// Comprobar que la matricula esta dentro del sistema
-					if (listaActual.contains(new Vehiculo(s, null, null, (byte) 0, null, null, 0,null))) {
+					if (listaActual.contains(vehiculoAux)) {
 						// Una vez que sabemos que esta en el sistema recorremos
 						// la lista y buscamos el vehiculo con dicha matricula
-						for (int i = 0;i<Container.listaVehiculos.size();i++) {
-							if (Container.listaVehiculos.get(i).getMatricula().equals(s)) {
-								//Container.vehiculoActivo;
+						for (int i = 0; i < Container.listaVehiculos.size(); i++) {
+							if (Container.listaVehiculos.get(i).equals(vehiculoAux)) {
+								// Container.vehiculoActivo;
 								UI.Vehiculo ventana = new UI.Vehiculo();
 								Container.vehiculoActivo = i;
 								ventana.imprimirVehiculo(Container.listaVehiculos.get(i));
