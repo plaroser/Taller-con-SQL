@@ -65,6 +65,7 @@ public class Reparar {
 	private ListIterator<Models.Reparar> iterador;
 	private ImageIcon imagen;
 	private ImageIcon imagen1;
+	private JButton btnNuevaReparacion;
 
 	/**
 	 * Create the application.
@@ -119,7 +120,8 @@ public class Reparar {
 	private void setComponentAdapters() {
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				clearText();
+				if (btnLimpiar.isEnabled())
+					clearText();
 			}
 		});
 
@@ -263,14 +265,21 @@ public class Reparar {
 		textTotal.setBounds(519, 503, 135, 25);
 		frame.getContentPane().add(textTotal);
 		textTotal.setColumns(10);
+
+		btnNuevaReparacion = new JButton("Nueva Reparacion");
+		btnNuevaReparacion.setBounds(370, 260, 97, 25);
+		frame.getContentPane().add(btnNuevaReparacion);
 	}
 
 	public void clearText() {
-		spinnerFEntrada.setValue(01 / 01 / 2017);
-		spinnerFsalida.setValue(01 / 01 / 2017);
+		spinnerFEntrada.setEditor(new JSpinner.DateEditor(spinnerFEntrada, "dd-mm-yyyy"));
+		spinnerFsalida.setEditor(new JSpinner.DateEditor(spinnerFEntrada, "dd-mm-yyyy"));
 		textPrecio.setText("");
-		textMecanico.setText("");
 		textComentarios.setText("");
+	}
+
+	public void nuevaReparacion() {
+
 	}
 
 	/**
@@ -298,7 +307,7 @@ public class Reparar {
 		spinnerFEntrada.setEnabled(true);
 		spinnerFsalida.setEnabled(true);
 		textPrecio.setEnabled(true);
-		textMecanico.setEnabled(true);
+		textMecanico.setEnabled(false);
 		comboBox.setEnabled(true);
 		textComentarios.setEnabled(true);
 		btnGuardar.setEnabled(true);
