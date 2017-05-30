@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ListSelectionModel;
 
 public class Vehiculo {
 
@@ -60,6 +61,7 @@ public class Vehiculo {
 	private JLabel lblCV;
 	private Models.Vehiculo vehiculoSeleccionado;
 	private JLabel lblTipo;
+	private JList listaTipoVehiculo;
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -107,7 +109,12 @@ public class Vehiculo {
 		spinnerPuertas = new JSpinner();
 		comboBoxCombustible = new JComboBox();
 		comboBoxCombustible.setModel(new DefaultComboBoxModel(new String[] {"Ninguno", "Diesel", "Gasolina", "Electrico"}));
+		listaTipoVehiculo = new JList();
+		listaTipoVehiculo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lblColor = new JLabel("Color");
+		lblAoMatriculacion = new JLabel("Año Matriculacion:");
+		lblPuertas = new JLabel("Puertas:");
+		spinnerAnioMatricula = new JSpinner();
 		setComponetProperties();
 		setComponentAdapters();
 	}
@@ -193,7 +200,7 @@ public class Vehiculo {
 		SpinnerCV.setBounds(154, 136, 171, 26);
 		frame.getContentPane().add(SpinnerCV);
 
-		lblPuertas = new JLabel("Puertas:");
+		
 		lblPuertas.setBounds(31, 182, 61, 16);
 		frame.getContentPane().add(lblPuertas);
 
@@ -217,6 +224,7 @@ public class Vehiculo {
 		lblCombustible.setBounds(23, 258, 87, 16);
 		frame.getContentPane().add(lblCombustible);
 
+		
 		comboBoxCombustible.setBounds(154, 254, 171, 27);
 		frame.getContentPane().add(comboBoxCombustible);
 		comboBoxCombustible.addItem("Diesel");
@@ -226,11 +234,13 @@ public class Vehiculo {
 		lblTipo.setBounds(369, 66, 30, 16);
 		frame.getContentPane().add(lblTipo);
 		
-		lblAoMatriculacion = new JLabel("Año Matriculacion:");
+		listaTipoVehiculo.setBounds(411, 42, 79, 78);
+		frame.getContentPane().add(listaTipoVehiculo);
+		
 		lblAoMatriculacion.setBounds(23, 303, 118, 16);
 		frame.getContentPane().add(lblAoMatriculacion);
 
-		spinnerAnioMatricula = new JSpinner();
+		
 		spinnerAnioMatricula.setBounds(154, 298, 79, 26);
 		frame.getContentPane().add(spinnerAnioMatricula);
 		model1 = new SpinnerNumberModel(new Integer(1950), // Dato visualizado
@@ -240,6 +250,8 @@ public class Vehiculo {
 				new Integer(2017), // Límite superior
 				new Integer(1)); // incremento-decremento
 		spinnerAnioMatricula.setModel(model1);
+		
+	
 
 		btnCliente.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnCliente.setBounds(398, 163, 135, 78);
@@ -261,18 +273,23 @@ public class Vehiculo {
 		buttonLimpiar.setBounds(398, 396, 135, 53);
 		frame.getContentPane().add(buttonLimpiar);
 		
-		JList listaTipoVehiculo = new JList();
+		
+		
+		
 		listaTipoVehiculo.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Coche", "Motocicleta", "Cami\u00F3n", "Bicicleta"};
+			String[] values = new String[] {"Coche", "Moto", "Cami\u00C3\u00B3n", "Bicicleta"};
+			
 			public int getSize() {
 				return values.length;
 			}
 			public Object getElementAt(int index) {
+				
 				return values[index];
 			}
+			
 		});
-		listaTipoVehiculo.setBounds(411, 42, 79, 78);
-		frame.getContentPane().add(listaTipoVehiculo);
+
+		selecciontipo();
 		
 		
 
@@ -281,6 +298,20 @@ public class Vehiculo {
 	/**
 	 * Algo
 	 */
+	public void selecciontipo(){
+		int index =0;
+		if(Container.tipoVehiculo=="Coche"){
+				index=0;
+		}else if(Container.tipoVehiculo=="Moto"){
+			index=1;
+		}else if(Container.tipoVehiculo=="Cami\u00C3\u00B3n"){
+			index=2;
+		}else if(Container.tipoVehiculo=="Bicicleta"){
+			index=3;
+		}
+		listaTipoVehiculo.setSelectedIndex(index);
+		listaTipoVehiculo.setEnabled(false);
+	}
 	public void clearTxtField() {
 		txtMatricula.setText("");
 		textMarca.setText("");
@@ -303,6 +334,7 @@ public class Vehiculo {
 		spinnerAnioMatricula.setEnabled(false);
 		buttonLimpiar.setEnabled(false);
 		btnGuardar.setEnabled(false);
+		listaTipoVehiculo.setEnabled(false);
 	}
 
 	public void ModoEditar() {
@@ -316,6 +348,7 @@ public class Vehiculo {
 		spinnerAnioMatricula.setEnabled(true);
 		buttonLimpiar.setEnabled(true);
 		btnGuardar.setEnabled(true);
+		listaTipoVehiculo.setEnabled(true);
 	}
 
 	public void imprimirVehiculo(Models.Vehiculo v) {
@@ -335,7 +368,7 @@ public class Vehiculo {
 		else
 			clearTxtField();
 	}
-
+	
 	public Models.Vehiculo leerVehiculo() {
 		String Matricula = txtMatricula.getText().toUpperCase();
 		String Marca = textMarca.getText().toUpperCase();
@@ -345,6 +378,7 @@ public class Vehiculo {
 		String Color = textColor.getText().toUpperCase();
 		String Combustible = (String) comboBoxCombustible.getSelectedItem();
 		int AnioMatricula = (int) spinnerAnioMatricula.getValue();
+		
 		return new Models.Vehiculo(Matricula, Marca, Modelo, Puertas, Color, LocalDate.of(AnioMatricula, 1, 1), CV,
 				Combustible);
 	}
