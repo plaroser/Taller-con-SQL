@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Frame;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,8 +30,14 @@ public class Login {
 	private JLabel lblLogin;
 
 	private JButton btnLogin;
+	
+	private JLabel lblUsuario;
+	
+	private JLabel lblContraseña;
 
 	private Collection<Usuario> listaMecanicos;
+	
+	private JLabel Imagen;
 
 	public JFrame getFrame() {
 		return frame;
@@ -69,6 +76,9 @@ public class Login {
 		txtUsuario = new JTextField();
 		txtContrasenia = new JPasswordField();
 		btnLogin = new JButton(Constants.go);
+		lblContraseña = new JLabel("Contraseña:");
+		lblUsuario = new JLabel("Usuario:");
+		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/tech_icon.png")));
 		setComponetProperties();
 		setComponentAdapters();
 
@@ -79,25 +89,38 @@ public class Login {
 		listaMecanicos.add(new Usuario("usuario", "1234"));
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 391, 375);
+		frame.setBounds(100, 100, 601, 375);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Login");
 
-		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblLogin.setBounds(40, 32, 108, 34);
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblLogin.setBounds(45, 23, 171, 45);
 		frame.getContentPane().add(lblLogin);
 
-		txtUsuario.setBounds(40, 97, 297, 45);
+		txtUsuario.setBounds(342, 99, 235, 45);
 		frame.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		txtContrasenia.setBounds(40, 171, 297, 45);
+		txtContrasenia.setBounds(342, 172, 235, 45);
 		frame.getContentPane().add(txtContrasenia);
 		txtContrasenia.setColumns(10);
 
-		btnLogin.setBounds(40, 248, 297, 45);
+		btnLogin.setBounds(98, 255, 343, 80);
 		frame.getContentPane().add(btnLogin);
+		
+		Imagen.setBounds(6, 54, 192, 212);
+		frame.getContentPane().add(Imagen);
+		
+		
+		lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		lblUsuario.setBounds(235, 115, 81, 26);
+		frame.getContentPane().add(lblUsuario);
+		
+		
+		lblContraseña.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		lblContraseña.setBounds(220, 179, 121, 30);
+		frame.getContentPane().add(lblContraseña);
 	}
 
 	private void setComponentAdapters() {
