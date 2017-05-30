@@ -59,6 +59,7 @@ public class Vehiculo {
 	private JButton buttonLimpiar;
 	private JLabel lblCV;
 	private Models.Vehiculo vehiculoSeleccionado;
+	private JLabel lblTipo;
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -98,6 +99,8 @@ public class Vehiculo {
 		lblMarca = new JLabel("Marca:");
 		textMarca = new JTextField();
 		lblModelo = new JLabel("Modelo:");
+		lblTipo = new JLabel("Tipo:");
+		lblCombustible = new JLabel("Combustible:");
 		textModelo = new JTextField();
 		lblCV = new JLabel("CV:");
 		SpinnerCV = new JSpinner();
@@ -210,7 +213,7 @@ public class Vehiculo {
 		frame.getContentPane().add(textColor);
 		textColor.setColumns(10);
 
-		lblCombustible = new JLabel("Combustible:");
+		
 		lblCombustible.setBounds(23, 258, 87, 16);
 		frame.getContentPane().add(lblCombustible);
 
@@ -220,6 +223,9 @@ public class Vehiculo {
 		comboBoxCombustible.addItem("Gasolina");
 		comboBoxCombustible.addItem("Electrico");
 
+		lblTipo.setBounds(369, 66, 30, 16);
+		frame.getContentPane().add(lblTipo);
+		
 		lblAoMatriculacion = new JLabel("Año Matriculacion:");
 		lblAoMatriculacion.setBounds(23, 303, 118, 16);
 		frame.getContentPane().add(lblAoMatriculacion);
@@ -265,8 +271,10 @@ public class Vehiculo {
 				return values[index];
 			}
 		});
-		listaTipoVehiculo.setBounds(407, 28, 79, 78);
+		listaTipoVehiculo.setBounds(411, 42, 79, 78);
 		frame.getContentPane().add(listaTipoVehiculo);
+		
+		
 
 	}
 
