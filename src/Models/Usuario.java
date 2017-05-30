@@ -46,6 +46,46 @@ public class Usuario extends Object {
 		this.contrasenia = contrasenia;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public float getSueldo() {
+		return sueldo;
+	}
+
+	public void setSueldo(float sueldo) {
+		this.sueldo = sueldo;
+	}
+
+	public int getDiasVacaciones() {
+		return diasVacaciones;
+	}
+
+	public void setDiasVacaciones(int diasVacaciones) {
+		this.diasVacaciones = diasVacaciones;
+	}
+
+	public LocalDate getFechaContratacion() {
+		return fechaContratacion;
+	}
+
+	public void setFechaContratacion(LocalDate fechaContratacion) {
+		this.fechaContratacion = fechaContratacion;
+	}
+
 	@Override
 	public String toString() {
 		return "Mecanico [usuario=" + usuario + ", contrasenia=" + contrasenia + "]";

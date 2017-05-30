@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Reparar extends Object {
 	
-	private String Matricula;
 	private LocalDate Fecha_Entrada;
 	private LocalDate Fecha_Salida;
 	private float Precio;
@@ -13,26 +12,15 @@ public class Reparar extends Object {
 	private String Comentario;
 	
 	
-	public Reparar(String matricula, LocalDate fecha_Entrada, LocalDate fecha_Salida, float precio, Usuario mecanico,
+	public Reparar(LocalDate fecha_Entrada, LocalDate fecha_Salida, float precio, Usuario mecanico,
 			String estado, String comentario) {
 		super();
-		this.Matricula = matricula;
 		this.Fecha_Entrada = fecha_Entrada;
 		this.Fecha_Salida = fecha_Salida;
 		this.Precio = precio;
 		this.Mecanico = mecanico;
 		this.Estado = estado;
 		this.Comentario = comentario;
-	}
-
-
-	public String getMatricula() {
-		return Matricula;
-	}
-
-
-	public void setMatricula(String matricula) {
-		this.Matricula = matricula;
 	}
 
 
@@ -98,7 +86,7 @@ public class Reparar extends Object {
 
 	@Override
 	public String toString() {
-		return "Reparar [Matricula=" + Matricula + ", Fecha_Entrada=" + Fecha_Entrada + ", Fecha_Salida=" + Fecha_Salida
+		return "Reparar [Fecha_Entrada=" + Fecha_Entrada + ", Fecha_Salida=" + Fecha_Salida
 				+ ", Precio=" + Precio + ", Mecanico=" + Mecanico + ", Estado=" + Estado + ", Comentario=" + Comentario
 				+ "]";
 	}
