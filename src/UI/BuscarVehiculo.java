@@ -22,6 +22,7 @@ public class BuscarVehiculo {
 	private JTextField txtMatricula;
 	private JLabel lblBuscar, lblMatricula;
 	JButton btnBuscar;
+	private JButton buttonVolver;
 	private Collection<Vehiculo> listaActual;
 
 
@@ -48,6 +49,7 @@ public class BuscarVehiculo {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setLayout(null);
+		
 
 		lblBuscar = new JLabel("Buscar Vehiculo");
 
@@ -56,6 +58,8 @@ public class BuscarVehiculo {
 		txtMatricula = new JTextField();
 
 		btnBuscar = new JButton("Buscar");
+		
+		buttonVolver = new JButton("Volver");
 
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
@@ -77,15 +81,18 @@ public class BuscarVehiculo {
 		lblBuscar.setBounds(23, 23, 120, 30);
 		frame.getContentPane().add(lblBuscar);
 
-		lblMatricula.setBounds(23, 110, 66, 16);
+		lblMatricula.setBounds(23, 89, 66, 16);
 		frame.getContentPane().add(lblMatricula);
 
-		txtMatricula.setBounds(101, 107, 116, 22);
+		txtMatricula.setBounds(101, 82, 130, 30);
 		frame.getContentPane().add(txtMatricula);
 		txtMatricula.setColumns(10);
 
-		btnBuscar.setBounds(101, 156, 116, 48);
+		btnBuscar.setBounds(23, 156, 116, 48);
 		frame.getContentPane().add(btnBuscar);
+		
+		buttonVolver.setBounds(154, 156, 116, 48);
+		frame.getContentPane().add(buttonVolver);
 	}
 
 	private void setComponentAdapters() {
@@ -125,6 +132,15 @@ public class BuscarVehiculo {
 							"El formato de la matricula no es correcto\nIntroducir sin guiones ni espacios en blanco.");
 				}
 
+			}
+		});
+		
+		buttonVolver.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PantallaPrincipal Ventana = new PantallaPrincipal();
+				Ventana.getFrame().setVisible(true);
+				frame.dispose();
 			}
 		});
 	}
