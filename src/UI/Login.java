@@ -33,7 +33,7 @@ public class Login {
 	
 	private JLabel lblUsuario;
 	
-	private JLabel lblContraseña;
+	private JLabel lblContrasenia;
 
 	private Collection<Usuario> listaMecanicos;
 	
@@ -76,7 +76,7 @@ public class Login {
 		txtUsuario = new JTextField();
 		txtContrasenia = new JPasswordField();
 		btnLogin = new JButton(Constants.go);
-		lblContraseña = new JLabel("Contraseña:");
+		lblContrasenia = new JLabel("Contraseña:");
 		lblUsuario = new JLabel("Usuario:");
 		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/tech_icon.png")));
 		setComponetProperties();
@@ -118,9 +118,9 @@ public class Login {
 		frame.getContentPane().add(lblUsuario);
 		
 		
-		lblContraseña.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		lblContraseña.setBounds(220, 179, 121, 30);
-		frame.getContentPane().add(lblContraseña);
+		lblContrasenia.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		lblContrasenia.setBounds(220, 179, 121, 30);
+		frame.getContentPane().add(lblContrasenia);
 	}
 
 	private void setComponentAdapters() {

@@ -280,8 +280,8 @@ public class Reparar {
 		progressBar.setEnabled(false);
 	}
 
-	public void imprimirLista(int vehiculoDueño) {
-		LinkedList<Models.Reparar> listaReparaciones = Container.listaVehiculos.get(vehiculoDueño)
+	public void imprimirLista(int vehiculoDueÃ±o) {
+		LinkedList<Models.Reparar> listaReparaciones = Container.listaVehiculos.get(vehiculoDueÃ±o)
 				.getListaREparaciones();
 		imprimirReparacion(listaReparaciones.get(0));
 		progressBar.setMaximum(listaReparaciones.size());

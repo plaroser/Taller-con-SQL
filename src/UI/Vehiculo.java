@@ -145,11 +145,8 @@ public class Vehiculo {
 				frame.dispose();
 			}
 		});
-<<<<<<< HEAD
 
-=======
 		
->>>>>>> branch 'master' of https://plaroser@bitbucket.org/grupoprogramaciondam/taller.git
 		buttonLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -250,13 +247,12 @@ public class Vehiculo {
 
 		lblTipo.setBounds(463, 61, 30, 16);
 		frame.getContentPane().add(lblTipo);
-<<<<<<< HEAD
+
 
 		listaTipoVehiculo.setBounds(411, 42, 79, 78);
-=======
+
 		
 		listaTipoVehiculo.setBounds(516, 28, 104, 78);
->>>>>>> branch 'master' of https://plaroser@bitbucket.org/grupoprogramaciondam/taller.git
 		frame.getContentPane().add(listaTipoVehiculo);
 
 		lblAoMatriculacion.setBounds(23, 303, 118, 16);
@@ -291,16 +287,14 @@ public class Vehiculo {
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonLimpiar.setBounds(471, 370, 158, 71);
 		frame.getContentPane().add(buttonLimpiar);
-<<<<<<< HEAD
 
-=======
 		
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnNewButton.setBounds(233, 464, 223, 73);
 		frame.getContentPane().add(btnNewButton);
 		
 		
->>>>>>> branch 'master' of https://plaroser@bitbucket.org/grupoprogramaciondam/taller.git
+
 		listaTipoVehiculo.setModel(new AbstractListModel() {
 			String[] values = new String[] { "Coche", "Moto", "Cami\u00C3\u00B3n", "Bicicleta" };
 
