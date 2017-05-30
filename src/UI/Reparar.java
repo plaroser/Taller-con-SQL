@@ -242,6 +242,7 @@ public class Reparar {
 		textPane.setEnabled(false);
 		btnLimpiar.setEnabled(false);
 		btnVolver.setEnabled(false);
+		btnGuardar.setEnabled(false);
 	}
 	
 	/**
@@ -258,6 +259,9 @@ public class Reparar {
 		btnGuardar.setEnabled(true);
 		btnLimpiar.setEnabled(true);
 		btnVolver.setEnabled(true);
+		btnAnterior.setEnabled(false);
+		btnSiguiente.setEnabled(false);
+		progressBar.setEnabled(false);
 	}
 
 	public JFrame getFrame() {
