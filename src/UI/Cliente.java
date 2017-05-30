@@ -36,6 +36,8 @@ public class Cliente {
 	private JLabel lblEmail;
 	private JButton buttonVolver;
 	private Collection <ClienteModels> listaClientes;
+	private ClienteModels cliente1;
+	private ClienteModels cliente2;
 
 	
 	public JFrame getFrame() {
@@ -177,17 +179,11 @@ public class Cliente {
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-					 ClienteModels cliente1 = new ClienteModels(textNombre.getText(),textDni.getText(),textApellido.getText(),textDireccion.getText(),textTelf.getText(),textEmail.getText());
-					 listaClientes.add(cliente1);
-					 if (listaClientes.add(cliente1)){
-						 JOptionPane.showMessageDialog(null, "Ha sido añadido correctamente");
-					 }
-					 else if(listaClientes.contains(cliente1)){
-						 JOptionPane.showMessageDialog(null, "Este cliente ya ha sido registrado anteriormente");
-					 }
-					 else{
-						 JOptionPane.showMessageDialog(null, "No ha sido añadido correctamente");
-					 }
+				LeerCliente();	
+				listaClientes.add(cliente1);
+				if(cliente1.getDni().equals(cliente2.getDni())){ 
+	                System.out.printf("Repetido"); 
+	            } 
 			}
 		});
 		
@@ -220,5 +216,14 @@ public class Cliente {
 		textDireccion.setText("");
 		textTelf.setText("");
 		textEmail.setText("");		
+	}
+	
+	/**
+	 * Leer Cliente
+	 */
+	private void LeerCliente(){
+		 cliente1 = new ClienteModels(textNombre.getText(),textDni.getText(),textApellido.getText(),textDireccion.getText(),textTelf.getText(),textEmail.getText());
+		 cliente2 = new ClienteModels(textNombre.getText(),textDni.getText(),textApellido.getText(),textDireccion.getText(),textTelf.getText(),textEmail.getText());
+				
 	}
 }
