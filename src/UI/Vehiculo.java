@@ -140,6 +140,8 @@ public class Vehiculo {
 			}
 		});
 
+
+		
 		buttonLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

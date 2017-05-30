@@ -60,7 +60,12 @@ public class Reparar {
 	private JLabel lblTiempoInvertido;
 	private JButton btnIniciarContador;
 	private JButton btnDetenerContador;
+	
+	
+	
 	private ListIterator<Models.Reparar> iterador;
+	private ImageIcon imagen;
+	private ImageIcon imagen1;
 
 	/**
 	 * Create the application.
