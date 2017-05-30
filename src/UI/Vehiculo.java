@@ -296,7 +296,7 @@ public class Vehiculo {
 	}
 
 	/**
-	 * Algo
+	 * Seleccion del tipo de vehiculo
 	 */
 	public void selecciontipo(){
 		int index =0;
@@ -312,6 +312,10 @@ public class Vehiculo {
 		listaTipoVehiculo.setSelectedIndex(index);
 		listaTipoVehiculo.setEnabled(false);
 	}
+	
+	/**
+	 * Metodo para limpiar las celdas de datos
+	 */
 	public void clearTxtField() {
 		txtMatricula.setText("");
 		textMarca.setText("");
@@ -323,6 +327,9 @@ public class Vehiculo {
 		spinnerAnioMatricula.setValue(1950);
 	}
 
+	/**
+	 * Metodo para evitar la modficacion de los datos. Modo lectura
+	 */
 	public void ModoLeer() {
 		txtMatricula.setEnabled(false);
 		textMarca.setEnabled(false);
@@ -337,6 +344,9 @@ public class Vehiculo {
 		listaTipoVehiculo.setEnabled(false);
 	}
 
+	/**
+	 * Metodo para modificar los datos. Modo Escritura
+	 */
 	public void ModoEditar() {
 		txtMatricula.setEnabled(true);
 		textMarca.setEnabled(true);
@@ -351,6 +361,10 @@ public class Vehiculo {
 		listaTipoVehiculo.setEnabled(true);
 	}
 
+	/**
+	 * Metodo para imprimir el vehiculo
+	 * @param v
+	 */
 	public void imprimirVehiculo(Models.Vehiculo v) {
 		txtMatricula.setText(v.getMatricula());
 		textMarca.setText(v.getMarca());
@@ -362,6 +376,7 @@ public class Vehiculo {
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
 	}
 
+	
 	public void imprimirVehiculoPorIndice(int Indice) {
 		if (Indice != -1)
 			imprimirVehiculo(Container.listaVehiculos.get(Indice));
@@ -369,6 +384,10 @@ public class Vehiculo {
 			clearTxtField();
 	}
 	
+	/**
+	 * Metodo para leer y guardar los datos 
+	 * @return
+	 */
 	public Models.Vehiculo leerVehiculo() {
 		String Matricula = txtMatricula.getText().toUpperCase();
 		String Marca = textMarca.getText().toUpperCase();
