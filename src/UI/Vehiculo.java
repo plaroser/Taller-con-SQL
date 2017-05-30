@@ -75,22 +75,6 @@ public class Vehiculo {
 	}
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vehiculo window = new Vehiculo();
-					window.frame.setVisible(true);
-				} catch (Exception a) {
-					a.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public Vehiculo() {
@@ -308,19 +292,19 @@ public class Vehiculo {
 	}
 
 	public void imprimirVehiculoPorIndice(int Indice) {
-		if(Indice!=-1)
-		imprimirVehiculo(Container.listaVehiculos.get(Indice));
+		if (Indice != -1)
+			imprimirVehiculo(Container.listaVehiculos.get(Indice));
 		else
 			clearTxtField();
 	}
 
 	public Models.Vehiculo leerVehiculo() {
-		String Matricula = txtMatricula.getText();
-		String Marca = textMarca.getText();
-		String Modelo = textModelo.getText();
+		String Matricula = txtMatricula.getText().toUpperCase();
+		String Marca = textMarca.getText().toUpperCase();
+		String Modelo = textModelo.getText().toUpperCase();
 		int CV = (int) SpinnerCV.getValue();
 		int Puertas = (int) spinnerPuertas.getValue();
-		String Color = textColor.getText();
+		String Color = textColor.getText().toUpperCase();
 		String Combustible = (String) comboBoxCombustible.getSelectedItem();
 		int AnioMatricula = (int) spinnerAnioMatricula.getValue();
 		return new Models.Vehiculo(Matricula, Marca, Modelo, Puertas, Color, LocalDate.of(AnioMatricula, 1, 1), CV,
