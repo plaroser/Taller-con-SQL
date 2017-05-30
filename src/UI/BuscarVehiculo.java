@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Containers.Container;
+import Models.Reparar;
 import Models.Vehiculo;
 import res.Constants;
 
@@ -65,6 +66,7 @@ public class BuscarVehiculo {
 		// Vehiculos de demo
 		Container.listaVehiculos.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde",
 				LocalDate.of(2015, 3, 2), 120, "Diesel"));
+		Container.listaVehiculos.get(0).getListaREparaciones().add(new Reparar(LocalDate.now(), null, 0.0f, Container.usuarioActivo, "Roto", null));
 		Container.listaVehiculos.add(
 				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel"));
 		Container.listaVehiculos
