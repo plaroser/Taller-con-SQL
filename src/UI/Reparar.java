@@ -61,9 +61,7 @@ public class Reparar {
 	private JLabel lblTiempoInvertido;
 	private JButton btnIniciarContador;
 	private JButton btnDetenerContador;
-	
-	
-	
+
 	private ListIterator<Models.Reparar> iterador;
 	private ImageIcon imagen;
 	private ImageIcon imagen1;
@@ -150,19 +148,22 @@ public class Reparar {
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-					int SiguienteIndice=Container.reparacionActiva+1;
-					if (SiguienteIndice<Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().size())
-					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(SiguienteIndice));
+
+				int SiguienteIndice = Container.reparacionActiva + 1;
+				if (SiguienteIndice < Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+						.size())
+					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+							.get(SiguienteIndice));
 			}
 		});
 
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int AnteriorIndice=Container.reparacionActiva-1;
-				if (AnteriorIndice>=0)
-				imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(AnteriorIndice));
+				int AnteriorIndice = Container.reparacionActiva - 1;
+				if (AnteriorIndice >= 0)
+					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+							.get(AnteriorIndice));
 			}
 		});
 	}
