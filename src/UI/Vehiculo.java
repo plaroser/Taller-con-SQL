@@ -326,7 +326,7 @@ public class Vehiculo {
 			index = 0;
 		} else if (Container.tipoVehiculo == "Moto") {
 			index = 1;
-		} else if (Container.tipoVehiculo == "Cami\u00C3\u00B3n") {
+		} else if (Container.tipoVehiculo == "Camion") {
 			index = 2;
 		} else if (Container.tipoVehiculo == "Bicicleta") {
 			index = 3;

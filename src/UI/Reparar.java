@@ -1,5 +1,6 @@
 package UI;
 
+import java.awt.Button;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,12 +12,14 @@ import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JSpinner;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Calendar;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -58,6 +61,8 @@ public class Reparar {
 	private JLabel lblTiempoInvertido;
 	private JButton btnIniciarContador;
 	private JButton btnDetenerContador;
+	private ImageIcon imagen;
+	private ImageIcon imagen1;
 
 	/**
 	 * Create the application.
@@ -91,10 +96,12 @@ public class Reparar {
 		btnLimpiar = new JButton("Limpiar");
 		btnVolver = new JButton("Volver");
 		textComentarios = new JTextPane();
-		btnAnterior = new JButton("Anterior");
+		imagen = new ImageIcon (this.getClass().getResource("/image/left.png"));
+		btnAnterior = new JButton(imagen);
 		btnEditar = new JButton("Editar");
 		progressBar = new JProgressBar();
-		btnSiguiente = new JButton("Siguiente");
+		imagen1 = new ImageIcon (this.getClass().getResource("/image/right.png"));
+		btnSiguiente = new JButton(imagen1);
 		textTInvertido = new JTextField();
 		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
@@ -200,13 +207,13 @@ public class Reparar {
 		textComentarios.setBounds(150, 429, 153, 86);
 		frame.getContentPane().add(textComentarios);
 
-		btnAnterior.setBounds(55, 13, 97, 25);
+		btnAnterior.setBounds(40, 6, 112, 40);
 		frame.getContentPane().add(btnAnterior);
 
-		progressBar.setBounds(154, 13, 146, 25);
+		progressBar.setBounds(154, 6, 146, 40);
 		frame.getContentPane().add(progressBar);
 
-		btnSiguiente.setBounds(305, 13, 97, 25);
+		btnSiguiente.setBounds(305, 6, 112, 40);
 		frame.getContentPane().add(btnSiguiente);
 
 		textTInvertido.setBounds(150, 114, 86, 20);
