@@ -212,6 +212,7 @@ public class Login {
 			JOptionPane.showMessageDialog(null, "El usuario o la contrase�a no pueden estar vacios.");
 			return false;
 		}
+		
 		if (!Constants.CONSTRAINT_CONTRASENIA.matcher(new String(txtContrasenia.getPassword())).matches()) {
 			JOptionPane.showMessageDialog(null, "La contrase�a no coincide con el patron necesario");
 			return false;
