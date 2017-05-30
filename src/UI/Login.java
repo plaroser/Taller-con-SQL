@@ -17,6 +17,10 @@ import Models.Usuario;
 import res.Constants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Matcher;
@@ -32,14 +36,23 @@ public class Login {
 	private JLabel lblLogin;
 
 	private JButton btnLogin;
-	
+
 	private JLabel lblUsuario;
-	
+
 	private JLabel lblContrasenia;
 
-	private Collection<Usuario> listaMecanicos;
-	
+	private static ArrayList<Usuario> listaMecanicos;
+
 	private JLabel Imagen;
+
+	// Create a variable for the connection string.
+	private static String connectionUrl = "jdbc:sqlserver://DESKTOP-1F9U0B1\\ALBERTO:1433;"
+			+ "databaseName=Taller;user=Alberto;password=alberto";
+
+	// Declare the JDBC objects.
+	private static Connection con = null;
+	private static Statement stmt = null;
+	private static ResultSet rs = null;
 
 	/**
 	 * GET JFRAME
@@ -52,6 +65,48 @@ public class Login {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		listaMecanicos = new ArrayList<>();
+		try {
+			// Establish the connection.
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(connectionUrl);
+
+			// Create and execute an SQL statement that returns some data.
+			String SQL = "SELECT * FROM Mecanico";
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(SQL);
+
+			// Iterate through the data in the result set and display it.
+			while (rs.next()) {
+				listaMecanicos.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getFloat(6), rs.getInt(5), rs.getDate(7).toLocalDate()));
+			}
+		}
+
+		// Handle any errors that may have occurred.
+		catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "No se puede conectar con la base de datos, se cargara un usuario por defecto.");
+
+			listaMecanicos.add(new Usuario("usuario", "1234"));
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+			if (stmt != null)
+				try {
+					stmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -62,6 +117,7 @@ public class Login {
 				}
 			}
 		});
+		System.out.println(listaMecanicos.size());
 	}
 
 	/**
@@ -76,7 +132,6 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		listaMecanicos = new ArrayList();
 		lblLogin = new JLabel("Login");
 		txtUsuario = new JTextField();
 		txtContrasenia = new JPasswordField();
@@ -94,7 +149,7 @@ public class Login {
 	 */
 	private void setComponetProperties() {
 
-		listaMecanicos.add(new Usuario("usuario", "1234"));
+		// listaMecanicos.add(new Usuario("usuario", "1234"));
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 601, 375);
@@ -116,21 +171,19 @@ public class Login {
 
 		btnLogin.setBounds(98, 255, 343, 80);
 		frame.getContentPane().add(btnLogin);
-		
+
 		Imagen.setBounds(6, 54, 192, 212);
 		frame.getContentPane().add(Imagen);
-		
-		
+
 		lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		lblUsuario.setBounds(236, 105, 81, 26);
 		frame.getContentPane().add(lblUsuario);
-		
-		
+
 		lblContrasenia.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		lblContrasenia.setBounds(220, 179, 121, 30);
 		frame.getContentPane().add(lblContrasenia);
 	}
-	
+
 	/**
 	 * ADAPTADORES
 	 */
@@ -146,9 +199,10 @@ public class Login {
 			}
 		});
 	}
-	
+
 	/**
-	 * VALIDA QUE EL USUARIO Y LA CONTRASEÑA YA ESTEN REGISTRADOS 
+	 * VALIDA QUE EL USUARIO Y LA CONTRASEÑA YA ESTEN REGISTRADOS
+	 * 
 	 * @return DEVUELVE TRUE SI ES CORRECTO Y FALSE SI NO
 	 */
 	private boolean validarLogin() {
@@ -163,6 +217,7 @@ public class Login {
 			return false;
 		}
 		Usuario aux = new Usuario(usuario, new String(txtContrasenia.getPassword()));
+		System.out.println(listaMecanicos.get(0));
 		if (listaMecanicos.contains(aux)) {
 			Container.usuarioActivo = aux;
 			return true;
