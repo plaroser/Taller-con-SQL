@@ -117,7 +117,7 @@ public class Login {
 				}
 			}
 		});
-		System.out.println(listaMecanicos.size());
+		//System.out.println(listaMecanicos.size());
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class Login {
 			return false;
 		}
 		Usuario aux = new Usuario(usuario, new String(txtContrasenia.getPassword()));
-		System.out.println(listaMecanicos.get(0));
+		//System.out.println(listaMecanicos.get(0));
 		if (listaMecanicos.contains(aux)) {
 			Container.usuarioActivo = aux;
 			return true;
