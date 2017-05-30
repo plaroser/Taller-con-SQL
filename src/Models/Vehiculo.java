@@ -15,31 +15,22 @@ public class Vehiculo extends Object {
 	private int CV;
 	private String combustible;
 	private LinkedList<Reparar> listaREparaciones;
+	private String tipovheiculo;
 
-	public Vehiculo(String matricula, String marca, String modelo, int puertas2, String color,
-			LocalDate anioMatriculacion, int cV, String combustible) {
+	
+	public Vehiculo(String matricula, String marca, String modelo, int puertas, String color,
+			LocalDate anioMatriculacion, int cV, String combustible, String tipovheiculo) {
 		super();
 		Matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.puertas = puertas2;
+		this.puertas = puertas;
 		this.color = color;
 		this.anioMatriculacion = anioMatriculacion;
 		CV = cV;
 		this.combustible = combustible;
 		this.listaREparaciones = new LinkedList<>();
-	}
-
-	public LinkedList<Reparar> getListaREparaciones() {
-		return listaREparaciones;
-	}
-
-	public void setListaREparaciones(LinkedList<Reparar> listaREparaciones) {
-		this.listaREparaciones = listaREparaciones;
-	}
-
-	public void setPuertas(int puertas) {
-		this.puertas = puertas;
+		this.tipovheiculo = tipovheiculo;
 	}
 
 	public String getMatricula() {
@@ -70,7 +61,7 @@ public class Vehiculo extends Object {
 		return puertas;
 	}
 
-	public void setPuertas(byte puertas) {
+	public void setPuertas(int puertas) {
 		this.puertas = puertas;
 	}
 
@@ -104,6 +95,22 @@ public class Vehiculo extends Object {
 
 	public void setCombustible(String combustible) {
 		this.combustible = combustible;
+	}
+
+	public LinkedList<Reparar> getListaREparaciones() {
+		return listaREparaciones;
+	}
+
+	public void setListaREparaciones(LinkedList<Reparar> listaREparaciones) {
+		this.listaREparaciones = listaREparaciones;
+	}
+
+	public String getTipovheiculo() {
+		return tipovheiculo;
+	}
+
+	public void setTipovheiculo(String tipovheiculo) {
+		this.tipovheiculo = tipovheiculo;
 	}
 
 	@Override

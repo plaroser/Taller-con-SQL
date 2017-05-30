@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JProgressBar;
+import javax.swing.JTable;
 
 public class Reparar {
 
@@ -49,6 +50,7 @@ public class Reparar {
 	private JButton btnAnterior;
 	private JProgressBar progressBar;
 	private JButton btnSiguiente;
+	private JTextField textTInvertido;
 
 	/**
 	 * Launch the application.
@@ -142,7 +144,7 @@ public class Reparar {
 
 	private void setComponentPropierties() {
 
-		frame.setBounds(100, 100, 680, 501);
+		frame.setBounds(100, 100, 732, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -153,25 +155,25 @@ public class Reparar {
 		frame.getContentPane().add(textMatricula);
 		textMatricula.setColumns(10);
 
-		lblFechaEntrada.setBounds(55, 115, 86, 14);
+		lblFechaEntrada.setBounds(55, 164, 86, 14);
 		frame.getContentPane().add(lblFechaEntrada);
 
-		lblFechaSalida.setBounds(55, 164, 86, 14);
+		lblFechaSalida.setBounds(55, 211, 86, 14);
 		frame.getContentPane().add(lblFechaSalida);
 
-		lblPrecio.setBounds(55, 211, 63, 14);
+		lblPrecio.setBounds(55, 315, 63, 14);
 		frame.getContentPane().add(lblPrecio);
 
 		lblMecnico.setBounds(55, 260, 63, 14);
 		frame.getContentPane().add(lblMecnico);
 
-		lblEstadoDeLa.setBounds(55, 308, 123, 14);
+		lblEstadoDeLa.setBounds(55, 375, 123, 14);
 		frame.getContentPane().add(lblEstadoDeLa);
 
-		lblNewLabel.setBounds(55, 371, 86, 14);
+		lblNewLabel.setBounds(55, 429, 86, 14);
 		frame.getContentPane().add(lblNewLabel);
 
-		textPrecio.setBounds(150, 208, 86, 20);
+		textPrecio.setBounds(150, 309, 86, 20);
 		frame.getContentPane().add(textPrecio);
 		textPrecio.setColumns(10);
 
@@ -179,35 +181,35 @@ public class Reparar {
 		frame.getContentPane().add(textMecanico);
 		textMecanico.setColumns(10);
 
-		comboBox.setBounds(188, 303, 112, 25);
+		comboBox.setBounds(191, 370, 112, 25);
 		frame.getContentPane().add(comboBox);
 
-		spinnerFEntrada.setBounds(150, 112, 86, 20);
+		spinnerFEntrada.setBounds(150, 161, 86, 20);
 		frame.getContentPane().add(spinnerFEntrada);
 		spinnerFEntrada.setEditor(new JSpinner.DateEditor(spinnerFEntrada, "dd-mm-yyyy"));
 
-		spinnerFsalida.setBounds(150, 161, 86, 20);
+		spinnerFsalida.setBounds(150, 208, 86, 20);
 		frame.getContentPane().add(spinnerFsalida);
 		spinnerFsalida.setEditor(new JSpinner.DateEditor(spinnerFsalida, "dd-mm-yyyy"));
 
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnGuardar.setBounds(470, 35, 141, 69);
+		btnGuardar.setBounds(519, 35, 141, 69);
 		frame.getContentPane().add(btnGuardar);
 
 		btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		btnLimpiar.setBounds(470, 143, 141, 69);
+		btnLimpiar.setBounds(519, 144, 141, 69);
 		frame.getContentPane().add(btnLimpiar);
 
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnEditar.setBounds(470, 260, 141, 69);
+		btnEditar.setBounds(519, 260, 141, 69);
 		frame.getContentPane().add(btnEditar);
 
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnVolver.setBounds(470, 370, 141, 69);
+		btnVolver.setBounds(519, 371, 141, 69);
 		frame.getContentPane().add(btnVolver);
 
-		textPane.setBounds(150, 365, 153, 86);
+		textPane.setBounds(150, 429, 153, 86);
 		frame.getContentPane().add(textPane);
 
 		btnAnterior.setBounds(55, 13, 97, 25);
@@ -218,6 +220,25 @@ public class Reparar {
 
 		btnSiguiente.setBounds(305, 13, 97, 25);
 		frame.getContentPane().add(btnSiguiente);
+		
+		textTInvertido = new JTextField();
+		textTInvertido.setBounds(150, 114, 86, 20);
+		frame.getContentPane().add(textTInvertido);
+		textTInvertido.setColumns(10);
+		
+		JLabel lblTiempoInvertido = new JLabel("Tiempo Invertido:");
+		lblTiempoInvertido.setBounds(55, 117, 86, 14);
+		frame.getContentPane().add(lblTiempoInvertido);
+		
+		JButton btnIniciarContador = new JButton("Iniciar Contador");
+		btnIniciarContador.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnIniciarContador.setBounds(281, 78, 186, 62);
+		frame.getContentPane().add(btnIniciarContador);
+		
+		JButton btnDetenerContador = new JButton("Detener contador");
+		btnDetenerContador.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnDetenerContador.setBounds(281, 190, 186, 84);
+		frame.getContentPane().add(btnDetenerContador);
 	}
 
 	public void clearText() {
