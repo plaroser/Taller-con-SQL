@@ -27,6 +27,8 @@ import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 
 public class Vehiculo {
 
@@ -101,6 +103,7 @@ public class Vehiculo {
 		SpinnerCV = new JSpinner();
 		spinnerPuertas = new JSpinner();
 		comboBoxCombustible = new JComboBox();
+		comboBoxCombustible.setModel(new DefaultComboBoxModel(new String[] {"Ninguno", "Diesel", "Gasolina", "Electrico"}));
 		lblColor = new JLabel("Color");
 		setComponetProperties();
 		setComponentAdapters();
@@ -115,6 +118,18 @@ public class Vehiculo {
 				frame.dispose();
 			}
 		});
+		btnReparacion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Reparar Ventana = new Reparar();
+				Ventana.getFrame().setVisible(true);
+				frame.dispose();
+			}
+		});
+		
+		
+		
+		
 
 		buttonLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -221,11 +236,11 @@ public class Vehiculo {
 		spinnerAnioMatricula.setModel(model1);
 
 		btnCliente.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnCliente.setBounds(398, 66, 135, 78);
+		btnCliente.setBounds(398, 163, 135, 78);
 		frame.getContentPane().add(btnCliente);
 
 		btnReparacion.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnReparacion.setBounds(398, 196, 135, 78);
+		btnReparacion.setBounds(398, 269, 135, 78);
 		frame.getContentPane().add(btnReparacion);
 
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
@@ -239,6 +254,19 @@ public class Vehiculo {
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonLimpiar.setBounds(398, 396, 135, 53);
 		frame.getContentPane().add(buttonLimpiar);
+		
+		JList listaTipoVehiculo = new JList();
+		listaTipoVehiculo.setModel(new AbstractListModel() {
+			String[] values = new String[] {"Coche", "Motocicleta", "Cami\u00F3n", "Bicicleta"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		listaTipoVehiculo.setBounds(407, 28, 79, 78);
+		frame.getContentPane().add(listaTipoVehiculo);
 
 	}
 
@@ -312,5 +340,4 @@ public class Vehiculo {
 		return new Models.Vehiculo(Matricula, Marca, Modelo, Puertas, Color, LocalDate.of(AnioMatricula, 1, 1), CV,
 				Combustible);
 	}
-
 }
