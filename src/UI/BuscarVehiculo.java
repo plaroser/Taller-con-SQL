@@ -1,6 +1,5 @@
 package UI;
 
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,7 +12,6 @@ import res.Constants;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
 
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -33,9 +31,6 @@ public class BuscarVehiculo {
 	private JButton buttonVolver;
 	private JLabel Imagen;
 	private Collection<Vehiculo> listaActual;
-
-	
-
 
 	/**
 	 * Create the application.
@@ -60,7 +55,6 @@ public class BuscarVehiculo {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setLayout(null);
-		
 
 		lblBuscar = new JLabel("Buscar Vehiculo");
 
@@ -69,23 +63,26 @@ public class BuscarVehiculo {
 		txtMatricula = new JTextField();
 
 		btnBuscar = new JButton("Buscar");
-		
-		buttonVolver = new JButton("Volver");
-		
-		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/images-2.jpg")));
 
+		buttonVolver = new JButton("Volver");
+
+		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/images-2.jpg")));
 
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
 		Container.listaVehiculos.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde",
-				LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
-		Container.listaVehiculos.get(0).getListaREparaciones().add(new Reparar(LocalDate.now(), null, 0.0f, Container.usuarioActivo, "Roto", null));
-		Container.listaVehiculos.add(
-				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel","Moto"));
-		Container.listaVehiculos
-				.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
-		Container.listaVehiculos.add(
-				new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
+				LocalDate.of(2015, 3, 2), 120, "Diesel", "Coche"));
+		Container.listaVehiculos.get(0).getListaREparaciones()
+				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Pendiente", ""));
+		Container.listaVehiculos.get(0).getListaREparaciones()
+				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
+
+		Container.listaVehiculos.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2),
+				140, "Diesel", "Moto"));
+		Container.listaVehiculos.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2),
+				120, "Diesel", "Coche"));
+		Container.listaVehiculos.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro",
+				LocalDate.of(2015, 3, 2), 120, "Diesel", "Coche"));
 		listaActual = Container.listaVehiculos;
 	}
 
@@ -95,8 +92,6 @@ public class BuscarVehiculo {
 
 		lblBuscar.setBounds(23, 23, 120, 30);
 		frame.getContentPane().add(lblBuscar);
-		
-		
 
 		lblMatricula.setBounds(23, 89, 66, 16);
 		frame.getContentPane().add(lblMatricula);
@@ -107,14 +102,13 @@ public class BuscarVehiculo {
 
 		btnBuscar.setBounds(23, 156, 116, 48);
 		frame.getContentPane().add(btnBuscar);
-		
+
 		buttonVolver.setBounds(154, 156, 116, 48);
 		frame.getContentPane().add(buttonVolver);
-		
-		
+
 		Imagen.setBounds(299, 23, 192, 212);
 		frame.getContentPane().add(Imagen);
-		
+
 	}
 
 	private void setComponentAdapters() {
@@ -127,7 +121,7 @@ public class BuscarVehiculo {
 				// Comprobar que la matricula cumple los requisitos de una
 				// matricula
 				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
-					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null,null);
+					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null, null);
 					// Comprobar que la matricula esta dentro del sistema
 					if (listaActual.contains(vehiculoAux)) {
 						// Una vez que sabemos que esta en el sistema recorremos
@@ -156,8 +150,8 @@ public class BuscarVehiculo {
 
 			}
 		});
-		
-		buttonVolver.addMouseListener(new MouseAdapter(){
+
+		buttonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PantallaPrincipal Ventana = new PantallaPrincipal();
