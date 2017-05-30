@@ -95,7 +95,7 @@ public class Vehiculo extends Object {
 	public boolean equals(Object obj) {
 		if (obj instanceof Vehiculo) {
 			Vehiculo aux = (Vehiculo) obj;
-			return this.getMatricula() == aux.getMatricula();
+			return this.getMatricula().equals(aux.getMatricula());
 		}
 		return false;
 	}
