@@ -12,5 +12,6 @@ public class Container {
 	public static ArrayList<Models.Reparar> listaReparaciones;
 	public static int vehiculoActivo;
 	public static String tipoVehiculo;
+	public static int reparacionActiva;
 
 }
