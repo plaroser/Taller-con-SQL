@@ -125,6 +125,19 @@ public class Reparar {
 				frame.setVisible(false);
 			}
 		});
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModoLectura();
+			}
+		});
+		
+		btnEditar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModoEscritura();
+			}
+		});
 	}
 
 	private void setComponentPropierties() {
@@ -214,6 +227,37 @@ public class Reparar {
 		textPrecio.setText("");
 		textMecanico.setText("");
 		textPane.setText("");
+	}
+	
+	/**
+	 * Metodo para bloquear los datos para editar modificarlos.
+	 */
+	public void ModoLectura(){
+		textMatricula.setEnabled(false);
+		spinnerFEntrada.setEnabled(false);
+		spinnerFsalida.setEnabled(false);
+		textPrecio.setEnabled(false);
+		textMecanico.setEnabled(false);
+		comboBox.setEnabled(false);
+		textPane.setEnabled(false);
+		btnLimpiar.setEnabled(false);
+		btnVolver.setEnabled(false);
+	}
+	
+	/**
+	 * Metodo para poder realizar cambios y modificar datos si se desea
+	 */
+	public void ModoEscritura(){
+		textMatricula.setEnabled(true);
+		spinnerFEntrada.setEnabled(true);
+		spinnerFsalida.setEnabled(true);
+		textPrecio.setEnabled(true);
+		textMecanico.setEnabled(true);
+		comboBox.setEnabled(true);
+		textPane.setEnabled(true);
+		btnGuardar.setEnabled(true);
+		btnLimpiar.setEnabled(true);
+		btnVolver.setEnabled(true);
 	}
 
 	public JFrame getFrame() {
