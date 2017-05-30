@@ -62,6 +62,7 @@ public class Vehiculo {
 	private Models.Vehiculo vehiculoSeleccionado;
 	private JLabel lblTipo;
 	private JList listaTipoVehiculo;
+	private JButton btnNewButton ;
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -94,7 +95,11 @@ public class Vehiculo {
 
 		txtMatricula = new JTextField();
 		buttonLimpiar = new JButton("Limpiar");
-
+		buttonLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton = new JButton("Volver a Principal");
 		btnEditar = new JButton("Editar");
 		textColor = new JTextField();
 		lblMatricula_1 = new JLabel("Matricula:");
@@ -116,6 +121,7 @@ public class Vehiculo {
 		lblAoMatriculacion = new JLabel("Año Matriculacion:");
 		lblPuertas = new JLabel("Puertas:");
 		spinnerAnioMatricula = new JSpinner();
+		
 		setComponetProperties();
 		setComponentAdapters();
 	}
@@ -139,7 +145,11 @@ public class Vehiculo {
 				frame.dispose();
 			}
 		});
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> branch 'master' of https://plaroser@bitbucket.org/grupoprogramaciondam/taller.git
 		buttonLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -160,14 +170,25 @@ public class Vehiculo {
 					Container.listaVehiculos.add(aux);
 					ModoLeer();
 					Container.vehiculoActivo = Container.listaVehiculos.size() - 1;
-				}
+				} 
+			}
+		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				
+					PantallaPrincipal Ventana = new PantallaPrincipal();
+					
+					Ventana.getFrame().setVisible(true);		
+					
+					frame.dispose();
 			}
 		});
 
 	}
 
 	private void setComponetProperties() {
-		frame.setBounds(100, 100, 555, 493);
+		frame.setBounds(100, 100, 706, 597);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Vehiculo");
 		frame.getContentPane().setLayout(null);
@@ -227,10 +248,15 @@ public class Vehiculo {
 		comboBoxCombustible.addItem("Gasolina");
 		comboBoxCombustible.addItem("Electrico");
 
-		lblTipo.setBounds(369, 66, 30, 16);
+		lblTipo.setBounds(463, 61, 30, 16);
 		frame.getContentPane().add(lblTipo);
+<<<<<<< HEAD
 
 		listaTipoVehiculo.setBounds(411, 42, 79, 78);
+=======
+		
+		listaTipoVehiculo.setBounds(516, 28, 104, 78);
+>>>>>>> branch 'master' of https://plaroser@bitbucket.org/grupoprogramaciondam/taller.git
 		frame.getContentPane().add(listaTipoVehiculo);
 
 		lblAoMatriculacion.setBounds(23, 303, 118, 16);
@@ -247,25 +273,34 @@ public class Vehiculo {
 		spinnerAnioMatricula.setModel(model1);
 
 		btnCliente.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnCliente.setBounds(398, 163, 135, 78);
+		btnCliente.setBounds(516, 136, 155, 78);
 		frame.getContentPane().add(btnCliente);
 
 		btnReparacion.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnReparacion.setBounds(398, 269, 135, 78);
+		btnReparacion.setBounds(516, 241, 155, 78);
 		frame.getContentPane().add(btnReparacion);
 
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnGuardar.setBounds(31, 396, 135, 53);
+		btnGuardar.setBounds(31, 369, 171, 73);
 		frame.getContentPane().add(btnGuardar);
 
 		btnEditar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnEditar.setBounds(214, 396, 135, 53);
+		btnEditar.setBounds(262, 369, 151, 73);
 		frame.getContentPane().add(btnEditar);
 
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		buttonLimpiar.setBounds(398, 396, 135, 53);
+		buttonLimpiar.setBounds(471, 370, 158, 71);
 		frame.getContentPane().add(buttonLimpiar);
+<<<<<<< HEAD
 
+=======
+		
+		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+		btnNewButton.setBounds(233, 464, 223, 73);
+		frame.getContentPane().add(btnNewButton);
+		
+		
+>>>>>>> branch 'master' of https://plaroser@bitbucket.org/grupoprogramaciondam/taller.git
 		listaTipoVehiculo.setModel(new AbstractListModel() {
 			String[] values = new String[] { "Coche", "Moto", "Cami\u00C3\u00B3n", "Bicicleta" };
 
@@ -279,6 +314,10 @@ public class Vehiculo {
 			}
 
 		});
+		
+		
+		
+		
 
 		selecciontipo();
 
@@ -364,6 +403,7 @@ public class Vehiculo {
 		textColor.setText(v.getColor());
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
+		
 	}
 
 	public void imprimirVehiculoPorIndice(int Indice) {
