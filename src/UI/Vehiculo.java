@@ -163,14 +163,17 @@ public class Vehiculo {
 					Container.listaVehiculos.add(aux);
 					ModoLeer();
 					Container.vehiculoActivo = Container.listaVehiculos.size() - 1;
-				}
+				} 
 			}
 		});
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
+				
 					PantallaPrincipal Ventana = new PantallaPrincipal();
-					Ventana.getFrame().setVisible(true);					
+					
+					Ventana.getFrame().setVisible(true);		
+					
 					frame.dispose();
 			}
 		});
