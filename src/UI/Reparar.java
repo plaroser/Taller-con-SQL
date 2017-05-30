@@ -100,12 +100,12 @@ public class Reparar {
 		btnLimpiar = new JButton("Limpiar");
 		btnVolver = new JButton("Volver");
 		textComentarios = new JTextPane();
-		btnAnterior = new JButton("Anterior");
-
+		imagen = new ImageIcon(this.getClass().getResource("/image/left.png"));
+		btnAnterior = new JButton(imagen);
 		btnEditar = new JButton("Editar");
 		progressBar = new JProgressBar();
-		btnSiguiente = new JButton("Siguiente");
-
+		imagen1 = new ImageIcon(this.getClass().getResource("/image/right.png"));
+		btnSiguiente = new JButton(imagen1);
 		textTInvertido = new JTextField();
 		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
@@ -227,13 +227,13 @@ public class Reparar {
 		textComentarios.setBounds(150, 429, 153, 86);
 		frame.getContentPane().add(textComentarios);
 
-		btnAnterior.setBounds(55, 13, 97, 25);
+		btnAnterior.setBounds(55, 6, 97, 40);
 		frame.getContentPane().add(btnAnterior);
 
-		progressBar.setBounds(154, 13, 146, 25);
+		progressBar.setBounds(154, 6, 146, 40);
 		frame.getContentPane().add(progressBar);
 
-		btnSiguiente.setBounds(305, 13, 97, 25);
+		btnSiguiente.setBounds(305, 6, 97, 40);
 		frame.getContentPane().add(btnSiguiente);
 
 		textTInvertido.setBounds(150, 114, 86, 20);
@@ -307,8 +307,8 @@ public class Reparar {
 		progressBar.setEnabled(false);
 	}
 
-	public void imprimirLista(int vehiculoDueño) {
-		LinkedList<Models.Reparar> listaReparaciones = Container.listaVehiculos.get(vehiculoDueño)
+	public void imprimirLista(int vehiculoDueÃ±o) {
+		LinkedList<Models.Reparar> listaReparaciones = Container.listaVehiculos.get(vehiculoDueÃ±o)
 				.getListaREparaciones();
 		imprimirReparacion(listaReparaciones.get(0));
 		progressBar.setMaximum(listaReparaciones.size());
