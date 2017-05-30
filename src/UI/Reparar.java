@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 import Containers.Container;
+import Models.Usuario;
 
 import javax.swing.JTextPane;
 import javax.swing.JProgressBar;
@@ -137,6 +138,16 @@ public class Reparar {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ModoLectura();
+				if (Container.reparacionActiva == -1) {
+					Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().add(leerReparacion());
+					Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
+							.getListaREparaciones().indexOf(leerReparacion());
+				} else {
+					Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+							.add(Container.reparacionActiva, leerReparacion());
+					Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
+							.getListaREparaciones().indexOf(leerReparacion());
+				}
 			}
 		});
 
@@ -166,6 +177,15 @@ public class Reparar {
 				if (AnteriorIndice >= 0)
 					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
 							.get(AnteriorIndice));
+			}
+		});
+
+		btnNuevaReparacion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				clearText();
+				Container.reparacionActiva = -1;
+				ModoEscritura();
 			}
 		});
 	}
@@ -267,6 +287,7 @@ public class Reparar {
 		textTotal.setColumns(10);
 
 		btnNuevaReparacion = new JButton("Nueva Reparacion");
+
 		btnNuevaReparacion.setBounds(370, 260, 97, 25);
 		frame.getContentPane().add(btnNuevaReparacion);
 	}
@@ -346,6 +367,19 @@ public class Reparar {
 		iterador = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().listIterator();
 		progressBar
 				.setValue(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().indexOf(r) + 1);
+		//lblTiempoInvertido
+		//		.setText(String.valueOf(r.getFecha_Entrada().getDayOfMonth() - r.getFecha_Salida().getDayOfMonth()));
+	}
+
+	public Models.Reparar leerReparacion() {
+
+		// spinnerFEntrada.setValue(r.getFecha_Entrada().toString());
+		// spinnerFsalida.setValue(r.getFecha_Salida().toString());
+		float precio = Float.parseFloat(textPrecio.getText());
+		Usuario mecanico = Container.usuarioActivo;
+		String estado = (String) comboBox.getSelectedItem();
+		String comentarios = textComentarios.getText();
+		return new Models.Reparar(precio, mecanico, estado, comentarios);
 	}
 
 	public JFrame getFrame() {
