@@ -150,16 +150,19 @@ public class Reparar {
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (iterador.hasNext())
-					imprimirReparacion(iterador.next());
+				
+					int SiguienteIndice=Container.reparacionActiva+1;
+					if (SiguienteIndice<Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().size())
+					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(SiguienteIndice));
 			}
 		});
 
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (iterador.hasPrevious())
-					imprimirReparacion(iterador.previous());
+				int AnteriorIndice=Container.reparacionActiva-1;
+				if (AnteriorIndice>=0)
+				imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(AnteriorIndice));
 			}
 		});
 	}
@@ -280,7 +283,6 @@ public class Reparar {
 		comboBox.setEnabled(false);
 		textComentarios.setEnabled(false);
 		btnLimpiar.setEnabled(false);
-		btnVolver.setEnabled(false);
 		btnGuardar.setEnabled(false);
 		btnAnterior.setEnabled(true);
 		btnSiguiente.setEnabled(true);
