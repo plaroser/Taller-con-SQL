@@ -1,5 +1,6 @@
 package Containers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,6 +14,6 @@ public class Container {
 	public static int vehiculoActivo;
 	public static String tipoVehiculo;
 	public static int reparacionActiva;
-	public static Usuario usuarioActivo;
+	public static Usuario usuarioActivo = new Usuario("usuario", "", "Rodolfo", "", 25.0F, 20, LocalDate.now());
 
 }
