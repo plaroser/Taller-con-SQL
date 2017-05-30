@@ -86,6 +86,21 @@ public class ClienteModels {
 		return "Client [Nombre: "+Nombre+", Apellidos: "+Apellidos+", DNI: "+Dni+
 				", Telefono: "+Telefono+", Direccion: "+Direccion+", Email: "+Email+"]" ;
 	}
+	@Override
+	 public boolean equals (Object obj) {
+        if (obj instanceof ClienteModels) {
+        ClienteModels tmpPersona = (ClienteModels) obj;
+            if (this.Dni.equals(tmpPersona.Dni)) { 
+            	return true;
+            	} 
+            else { 
+            	return false; 
+            	}
+        } 
+        else {
+        	return false; 
+        	}
+	} //Cierre del método equ
 	
 	
 }
