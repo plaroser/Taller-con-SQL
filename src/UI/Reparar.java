@@ -14,6 +14,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JSpinner;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Calendar;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -22,6 +25,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+
+import Containers.Container;
+
 import javax.swing.JTextPane;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
@@ -29,7 +35,6 @@ import javax.swing.JTable;
 public class Reparar {
 
 	private JFrame frame;
-	private JTextField textMatricula;
 	private JLabel lblFechaEntrada;
 	private JLabel lblFechaSalida;
 	private JLabel lblPrecio;
@@ -43,8 +48,7 @@ public class Reparar {
 	private JButton btnVolver;
 	private JSpinner spinnerFsalida;
 	private JSpinner spinnerFEntrada;
-	private JTextPane textPane;
-	private JLabel lblMatricula;
+	private JTextPane textComentarios;
 	private JComboBox comboBox;
 	private SpinnerDateModel model;
 	private JButton btnGuardar;
@@ -58,21 +62,9 @@ public class Reparar {
 	private JButton btnIniciarContador;
 	private JButton btnDetenerContador;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Reparar window = new Reparar();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private ListIterator<Models.Reparar> iterador;
+	private ImageIcon imagen;
+	private ImageIcon imagen1;
 
 	/**
 	 * Create the application.
@@ -86,8 +78,6 @@ public class Reparar {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		lblMatricula = new JLabel("Matr\u00EDcula:");
-		textMatricula = new JTextField();
 		lblFechaEntrada = new JLabel("Fecha Entrada:");
 		spinnerFEntrada = new JSpinner(
 				new SpinnerDateModel(new Date(1483225200872L), null, null, Calendar.DAY_OF_MONTH));
@@ -107,22 +97,18 @@ public class Reparar {
 		btnGuardar = new JButton("Guardar");
 		btnLimpiar = new JButton("Limpiar");
 		btnVolver = new JButton("Volver");
-		textPane = new JTextPane();
+		textComentarios = new JTextPane();
 		btnAnterior = new JButton("Anterior");
+
 		btnEditar = new JButton("Editar");
 		progressBar = new JProgressBar();
 		btnSiguiente = new JButton("Siguiente");
+
 		textTInvertido = new JTextField();
-		JLabel lblTiempoInvertido = new JLabel("Tiempo Invertido:");
+		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
-<<<<<<< Upstream, based on origin/master
-		JButton btnIniciarContador = new JButton("Iniciar Reparacion");
-		JButton btnDetenerContador = new JButton("Detener Reparacion");
-=======
 		btnIniciarContador = new JButton("Iniciar Reparacion");
-		
 		btnDetenerContador = new JButton("Detener Reparacion");
->>>>>>> 1a8ab83 Reparar v2
 		lblTotal = new JLabel("TOTAL:");
 
 		setComponentPropierties();
@@ -151,39 +137,33 @@ public class Reparar {
 				ModoLectura();
 			}
 		});
-		
+
 		btnEditar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ModoEscritura();
-<<<<<<< Upstream, based on origin/master
 			}
 		});
 
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-					int SiguienteIndice=Container.reparacionActiva+1;
-					if (SiguienteIndice<Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().size())
-					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(SiguienteIndice));
+
+				int SiguienteIndice = Container.reparacionActiva + 1;
+				if (SiguienteIndice < Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+						.size())
+					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+							.get(SiguienteIndice));
 			}
 		});
 
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int AnteriorIndice=Container.reparacionActiva-1;
-				if (AnteriorIndice>=0)
-				imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().get(AnteriorIndice));
-=======
->>>>>>> b031f90 Error reparado
-			}
-		});
-		
-		btnIniciarContador.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+				int AnteriorIndice = Container.reparacionActiva - 1;
+				if (AnteriorIndice >= 0)
+					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+							.get(AnteriorIndice));
 			}
 		});
 	}
@@ -193,13 +173,6 @@ public class Reparar {
 		frame.setBounds(100, 100, 732, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		lblMatricula.setBounds(55, 66, 63, 14);
-		frame.getContentPane().add(lblMatricula);
-
-		textMatricula.setBounds(150, 63, 86, 20);
-		frame.getContentPane().add(textMatricula);
-		textMatricula.setColumns(10);
 
 		lblFechaEntrada.setBounds(55, 164, 86, 14);
 		frame.getContentPane().add(lblFechaEntrada);
@@ -255,8 +228,8 @@ public class Reparar {
 		btnVolver.setBounds(519, 371, 141, 69);
 		frame.getContentPane().add(btnVolver);
 
-		textPane.setBounds(150, 429, 153, 86);
-		frame.getContentPane().add(textPane);
+		textComentarios.setBounds(150, 429, 153, 86);
+		frame.getContentPane().add(textComentarios);
 
 		btnAnterior.setBounds(55, 13, 97, 25);
 		frame.getContentPane().add(btnAnterior);
@@ -266,58 +239,50 @@ public class Reparar {
 
 		btnSiguiente.setBounds(305, 13, 97, 25);
 		frame.getContentPane().add(btnSiguiente);
-		
-		
+
 		textTInvertido.setBounds(150, 114, 86, 20);
 		frame.getContentPane().add(textTInvertido);
 		textTInvertido.setColumns(10);
-		
-		
+
 		lblTiempoInvertido.setBounds(55, 117, 86, 14);
 		frame.getContentPane().add(lblTiempoInvertido);
-		
-		
+
 		btnIniciarContador.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnIniciarContador.setBounds(281, 78, 186, 62);
 		frame.getContentPane().add(btnIniciarContador);
-		
-		
+
 		btnDetenerContador.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnDetenerContador.setBounds(281, 190, 186, 62);
 		frame.getContentPane().add(btnDetenerContador);
-		
-		
+
 		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotal.setBounds(390, 493, 141, 40);
 		frame.getContentPane().add(lblTotal);
-		
-		
+
 		textTotal.setBounds(519, 503, 135, 25);
 		frame.getContentPane().add(textTotal);
 		textTotal.setColumns(10);
 	}
 
 	public void clearText() {
-		textMatricula.setText("");
 		spinnerFEntrada.setValue(01 / 01 / 2017);
 		spinnerFsalida.setValue(01 / 01 / 2017);
 		textPrecio.setText("");
 		textMecanico.setText("");
-		textPane.setText("");
+		textComentarios.setText("");
 	}
-	
+
 	/**
 	 * Metodo para bloquear los datos para editar modificarlos.
 	 */
-	public void ModoLectura(){
-		textMatricula.setEnabled(false);
+	public void ModoLectura() {
 		spinnerFEntrada.setEnabled(false);
 		spinnerFsalida.setEnabled(false);
 		textPrecio.setEnabled(false);
 		textMecanico.setEnabled(false);
 		comboBox.setEnabled(false);
-		textPane.setEnabled(false);
+		textComentarios.setEnabled(false);
 		btnLimpiar.setEnabled(false);
 		btnGuardar.setEnabled(false);
 		btnAnterior.setEnabled(true);
@@ -325,18 +290,17 @@ public class Reparar {
 		progressBar.setEnabled(true);
 		btnEditar.setEnabled(true);
 	}
-	
+
 	/**
 	 * Metodo para poder realizar cambios y modificar datos si se desea
 	 */
-	public void ModoEscritura(){
-		textMatricula.setEnabled(true);
+	public void ModoEscritura() {
 		spinnerFEntrada.setEnabled(true);
 		spinnerFsalida.setEnabled(true);
 		textPrecio.setEnabled(true);
 		textMecanico.setEnabled(true);
 		comboBox.setEnabled(true);
-		textPane.setEnabled(true);
+		textComentarios.setEnabled(true);
 		btnGuardar.setEnabled(true);
 		btnLimpiar.setEnabled(true);
 		btnVolver.setEnabled(true);
@@ -344,6 +308,35 @@ public class Reparar {
 		btnAnterior.setEnabled(false);
 		btnSiguiente.setEnabled(false);
 		progressBar.setEnabled(false);
+	}
+
+	public void imprimirLista(int vehiculoDueño) {
+		LinkedList<Models.Reparar> listaReparaciones = Container.listaVehiculos.get(vehiculoDueño)
+				.getListaREparaciones();
+		imprimirReparacion(listaReparaciones.get(0));
+		progressBar.setMaximum(listaReparaciones.size());
+		progressBar.setValue(1);
+		Container.reparacionActiva = 0;
+	}
+
+	public void imprimirReparacion(Models.Reparar r, int indice) {
+		imprimirReparacion(r);
+		progressBar.setValue(indice + 1);
+	}
+
+	public void imprimirReparacion(Models.Reparar r) {
+
+		// spinnerFEntrada.setValue(r.getFecha_Entrada().toString());
+		// spinnerFsalida.setValue(r.getFecha_Salida().toString());
+		textPrecio.setText(String.valueOf(r.getPrecio()));
+		textMecanico.setText(r.getMecanico().getNombre());
+		comboBox.setSelectedItem(r.getEstado());
+		textComentarios.setText(r.getComentario());
+		Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+				.indexOf(r);
+		iterador = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().listIterator();
+		progressBar
+				.setValue(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().indexOf(r) + 1);
 	}
 
 	public JFrame getFrame() {
