@@ -51,6 +51,11 @@ public class Reparar {
 	private JProgressBar progressBar;
 	private JButton btnSiguiente;
 	private JTextField textTInvertido;
+	private JLabel lblTotal;
+	private JTextField textTotal;
+	private JLabel lblTiempoInvertido;
+	private JButton btnIniciarContador;
+	private JButton btnDetenerContador;
 
 	/**
 	 * Launch the application.
@@ -88,7 +93,7 @@ public class Reparar {
 		lblFechaSalida = new JLabel("Fecha Salida:");
 		spinnerFsalida = new JSpinner(
 				new SpinnerDateModel(new Date(1483225200378L), null, null, Calendar.DAY_OF_MONTH));
-		lblPrecio = new JLabel("Precio:");
+		lblPrecio = new JLabel("Coste piezas:");
 		textPrecio = new JTextField();
 		lblMecnico = new JLabel("Mec\u00E1nico:");
 		textMecanico = new JTextField();
@@ -106,6 +111,12 @@ public class Reparar {
 		btnEditar = new JButton("Editar");
 		progressBar = new JProgressBar();
 		btnSiguiente = new JButton("Siguiente");
+		textTInvertido = new JTextField();
+		JLabel lblTiempoInvertido = new JLabel("Tiempo Invertido:");
+		textTotal = new JTextField();
+		JButton btnIniciarContador = new JButton("Iniciar Reparacion");
+		JButton btnDetenerContador = new JButton("Detener Reparacion");
+		lblTotal = new JLabel("TOTAL:");
 
 		setComponentPropierties();
 		setComponentAdapters();
@@ -161,7 +172,7 @@ public class Reparar {
 		lblFechaSalida.setBounds(55, 211, 86, 14);
 		frame.getContentPane().add(lblFechaSalida);
 
-		lblPrecio.setBounds(55, 315, 63, 14);
+		lblPrecio.setBounds(55, 315, 72, 14);
 		frame.getContentPane().add(lblPrecio);
 
 		lblMecnico.setBounds(55, 260, 63, 14);
@@ -221,24 +232,35 @@ public class Reparar {
 		btnSiguiente.setBounds(305, 13, 97, 25);
 		frame.getContentPane().add(btnSiguiente);
 		
-		textTInvertido = new JTextField();
+		
 		textTInvertido.setBounds(150, 114, 86, 20);
 		frame.getContentPane().add(textTInvertido);
 		textTInvertido.setColumns(10);
 		
-		JLabel lblTiempoInvertido = new JLabel("Tiempo Invertido:");
+		
 		lblTiempoInvertido.setBounds(55, 117, 86, 14);
 		frame.getContentPane().add(lblTiempoInvertido);
 		
-		JButton btnIniciarContador = new JButton("Iniciar Contador");
+		
 		btnIniciarContador.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnIniciarContador.setBounds(281, 78, 186, 62);
 		frame.getContentPane().add(btnIniciarContador);
 		
-		JButton btnDetenerContador = new JButton("Detener contador");
+		
 		btnDetenerContador.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnDetenerContador.setBounds(281, 190, 186, 84);
+		btnDetenerContador.setBounds(281, 190, 186, 62);
 		frame.getContentPane().add(btnDetenerContador);
+		
+		
+		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotal.setBounds(390, 493, 141, 40);
+		frame.getContentPane().add(lblTotal);
+		
+		
+		textTotal.setBounds(519, 503, 135, 25);
+		frame.getContentPane().add(textTotal);
+		textTotal.setColumns(10);
 	}
 
 	public void clearText() {
