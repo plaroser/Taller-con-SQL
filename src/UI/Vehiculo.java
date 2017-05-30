@@ -131,10 +131,12 @@ public class Vehiculo {
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Models.Vehiculo aux = leerVehiculo();
-				Container.listaVehiculos.add(aux);
-				ModoLeer();
-				Container.vehiculoActivo = Container.listaVehiculos.size() - 1;
+				if (btnGuardar.isEnabled()) {
+					Models.Vehiculo aux = leerVehiculo();
+					Container.listaVehiculos.add(aux);
+					ModoLeer();
+					Container.vehiculoActivo = Container.listaVehiculos.size() - 1;
+				}
 			}
 		});
 

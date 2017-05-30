@@ -3,6 +3,7 @@ package Models;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Vehiculo extends Object {
 	private String Matricula;
@@ -13,6 +14,7 @@ public class Vehiculo extends Object {
 	private LocalDate anioMatriculacion;
 	private int CV;
 	private String combustible;
+	private LinkedList<Reparar> listaREparaciones;
 
 	public Vehiculo(String matricula, String marca, String modelo, int puertas2, String color,
 			LocalDate anioMatriculacion, int cV, String combustible) {
@@ -25,6 +27,19 @@ public class Vehiculo extends Object {
 		this.anioMatriculacion = anioMatriculacion;
 		CV = cV;
 		this.combustible = combustible;
+		this.listaREparaciones = new LinkedList<>();
+	}
+
+	public LinkedList<Reparar> getListaREparaciones() {
+		return listaREparaciones;
+	}
+
+	public void setListaREparaciones(LinkedList<Reparar> listaREparaciones) {
+		this.listaREparaciones = listaREparaciones;
+	}
+
+	public void setPuertas(int puertas) {
+		this.puertas = puertas;
 	}
 
 	public String getMatricula() {

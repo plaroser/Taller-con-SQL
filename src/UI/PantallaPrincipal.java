@@ -64,7 +64,7 @@ public class PantallaPrincipal {
 		btnNV.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Container.vehiculoActivo=-1;
+				Container.vehiculoActivo = -1;
 				UI.Vehiculo Ventana = new UI.Vehiculo();
 				Ventana.getFrame().setVisible(true);
 				frame.setVisible(false);
@@ -109,13 +109,13 @@ public class PantallaPrincipal {
 		btnCS.setBounds(149, 147, 194, 76);
 		frame.getContentPane().add(btnCS);
 
-		}
+	}
 
 	/**
 	 * Componentes principales
 	 */
 	private void initialize() {
-		Container.listaVehiculos=new ArrayList<>();
+		Container.listaVehiculos = new ArrayList<>();
 		listaVehiculo = Container.listaVehiculos;
 		frame = new JFrame();
 		btnBV = new JButton("Buscar Vehiculo");
