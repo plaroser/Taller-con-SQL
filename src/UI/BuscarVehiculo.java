@@ -65,14 +65,14 @@ public class BuscarVehiculo {
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
 		Container.listaVehiculos.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde",
-				LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
 		Container.listaVehiculos.get(0).getListaREparaciones().add(new Reparar(LocalDate.now(), null, 0.0f, Container.usuarioActivo, "Roto", null));
 		Container.listaVehiculos.add(
-				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel"));
+				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel","Moto"));
 		Container.listaVehiculos
-				.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
 		Container.listaVehiculos.add(
-				new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
 		listaActual = Container.listaVehiculos;
 	}
 
@@ -107,7 +107,7 @@ public class BuscarVehiculo {
 				// Comprobar que la matricula cumple los requisitos de una
 				// matricula
 				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
-					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null);
+					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null,null);
 					// Comprobar que la matricula esta dentro del sistema
 					if (listaActual.contains(vehiculoAux)) {
 						// Una vez que sabemos que esta en el sistema recorremos

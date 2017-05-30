@@ -378,8 +378,8 @@ public class Vehiculo {
 		String Color = textColor.getText().toUpperCase();
 		String Combustible = (String) comboBoxCombustible.getSelectedItem();
 		int AnioMatricula = (int) spinnerAnioMatricula.getValue();
-		
+		String tipoVhe=(String) listaTipoVehiculo.getSelectedValue();
 		return new Models.Vehiculo(Matricula, Marca, Modelo, Puertas, Color, LocalDate.of(AnioMatricula, 1, 1), CV,
-				Combustible);
+				Combustible,tipoVhe);
 	}
 }
