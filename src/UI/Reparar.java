@@ -270,6 +270,7 @@ public class Reparar {
 		textPrecio.setText("");
 		textMecanico.setText("");
 		textComentarios.setText("");
+		
 	}
 
 	/**
