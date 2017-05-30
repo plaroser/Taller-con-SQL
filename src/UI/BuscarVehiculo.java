@@ -76,6 +76,10 @@ public class BuscarVehiculo {
 				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Pendiente", ""));
 		Container.listaVehiculos.get(0).getListaREparaciones()
 				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
+		Container.listaVehiculos.get(0).getListaREparaciones()
+				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
+		Container.listaVehiculos.get(0).getListaREparaciones()
+				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
 
 		Container.listaVehiculos.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2),
 				140, "Diesel", "Moto"));

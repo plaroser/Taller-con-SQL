@@ -13,7 +13,9 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Calendar;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -58,6 +60,7 @@ public class Reparar {
 	private JLabel lblTiempoInvertido;
 	private JButton btnIniciarContador;
 	private JButton btnDetenerContador;
+	private ListIterator<Models.Reparar> iterador;
 
 	/**
 	 * Create the application.
@@ -92,9 +95,11 @@ public class Reparar {
 		btnVolver = new JButton("Volver");
 		textComentarios = new JTextPane();
 		btnAnterior = new JButton("Anterior");
+
 		btnEditar = new JButton("Editar");
 		progressBar = new JProgressBar();
 		btnSiguiente = new JButton("Siguiente");
+
 		textTInvertido = new JTextField();
 		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
@@ -133,6 +138,22 @@ public class Reparar {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ModoEscritura();
+			}
+		});
+
+		btnSiguiente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (iterador.hasNext())
+					imprimirReparacion(iterador.next());
+			}
+		});
+
+		btnAnterior.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (iterador.hasPrevious())
+					imprimirReparacion(iterador.previous());
 			}
 		});
 	}
@@ -295,6 +316,7 @@ public class Reparar {
 	}
 
 	public void imprimirReparacion(Models.Reparar r) {
+
 		// spinnerFEntrada.setValue(r.getFecha_Entrada().toString());
 		// spinnerFsalida.setValue(r.getFecha_Salida().toString());
 		textPrecio.setText(String.valueOf(r.getPrecio()));
@@ -303,6 +325,9 @@ public class Reparar {
 		textComentarios.setText(r.getComentario());
 		Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
 				.indexOf(r);
+		iterador = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().listIterator();
+		progressBar
+				.setValue(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().indexOf(r) + 1);
 	}
 
 	public JFrame getFrame() {
