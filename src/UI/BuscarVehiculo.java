@@ -11,11 +11,17 @@ import Models.Reparar;
 import Models.Vehiculo;
 import res.Constants;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.Collection;
+import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class BuscarVehiculo {
 
@@ -24,7 +30,10 @@ public class BuscarVehiculo {
 	private JLabel lblBuscar, lblMatricula;
 	JButton btnBuscar;
 	private JButton buttonVolver;
+	private JLabel Imagen;
 	private Collection<Vehiculo> listaActual;
+	private JPanel panel;
+	
 
 
 	/**
@@ -61,6 +70,9 @@ public class BuscarVehiculo {
 		btnBuscar = new JButton("Buscar");
 		
 		buttonVolver = new JButton("Volver");
+		
+		Imagen = new JLabel(new ImageIcon("/Users/Alfonso/Downloads/images-2.jpg"));
+
 
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
@@ -77,11 +89,13 @@ public class BuscarVehiculo {
 	}
 
 	private void setComponetProperties() {
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 503, 285);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		lblBuscar.setBounds(23, 23, 120, 30);
 		frame.getContentPane().add(lblBuscar);
+		
+		
 
 		lblMatricula.setBounds(23, 89, 66, 16);
 		frame.getContentPane().add(lblMatricula);
@@ -95,6 +109,11 @@ public class BuscarVehiculo {
 		
 		buttonVolver.setBounds(154, 156, 116, 48);
 		frame.getContentPane().add(buttonVolver);
+		
+		
+		Imagen.setBounds(299, 23, 192, 212);
+		frame.getContentPane().add(Imagen);
+		
 	}
 
 	private void setComponentAdapters() {
