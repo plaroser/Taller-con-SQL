@@ -95,10 +95,6 @@ public class Cliente {
 		btnGuardar = new JButton("Guardar");
 		btnLimpiar = new JButton("Limpiar");
 		buttonVolver = new JButton("Volver");
-
-
-		
-		
 		setComponentProperties();
 		setComponentAdapters();
 		
@@ -213,7 +209,10 @@ public class Cliente {
 			}
 		});
 	}
-	
+
+	/**
+	 * Metodo para limpiar
+	 */
 	private void clearTxtField(){
 		textNombre.setText("");
 		textDni.setText("");
