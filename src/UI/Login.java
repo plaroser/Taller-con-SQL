@@ -22,7 +22,9 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 
 public class Login {
-
+	/**
+	 * ATRIBUTOS
+	 */
 	private JFrame frame;
 	private JTextField txtUsuario;
 	private JPasswordField txtContrasenia;
@@ -39,6 +41,9 @@ public class Login {
 	
 	private JLabel Imagen;
 
+	/**
+	 * GET JFRAME
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -84,6 +89,9 @@ public class Login {
 
 	}
 
+	/**
+	 * PROPIEDADES DE LOS COMPONENTES
+	 */
 	private void setComponetProperties() {
 
 		listaMecanicos.add(new Usuario("usuario", "1234"));
@@ -122,7 +130,10 @@ public class Login {
 		lblContrasenia.setBounds(220, 179, 121, 30);
 		frame.getContentPane().add(lblContrasenia);
 	}
-
+	
+	/**
+	 * ADAPTADORES
+	 */
 	private void setComponentAdapters() {
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
@@ -135,7 +146,11 @@ public class Login {
 			}
 		});
 	}
-
+	
+	/**
+	 * VALIDA QUE EL USUARIO Y LA CONTRASEÑA YA ESTEN REGISTRADOS 
+	 * @return DEVUELVE TRUE SI ES CORRECTO Y FALSE SI NO
+	 */
 	private boolean validarLogin() {
 		String usuario = txtUsuario.getText();
 

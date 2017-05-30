@@ -14,13 +14,20 @@ import java.awt.event.MouseEvent;
 import java.util.spi.TimeZoneNameProvider;
 
 public class SeleccionVehiculo {
-
+	
+	/**
+	 *  ATRIBUTOS
+	 */
 	private JFrame frame;
 	private JButton btnCoche;
 	private JButton buttonCamion;
 	private JButton buttonBicicleta;
 	private JButton buttonMoto;
-
+	
+	/**
+	 * SET AND GET FRAME
+	 * @return
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -72,7 +79,10 @@ public class SeleccionVehiculo {
 		buttonMoto = new JButton("Moto");
 		
 	}
-
+	
+	/**
+	 * PROPIEDADES DE LOS COMPONENTES
+	 */
 	private void setComponentProperties(){
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,6 +105,10 @@ public class SeleccionVehiculo {
 		frame.getContentPane().add(buttonMoto);
 		
 	}
+	
+	/**
+	 * ADAPTADORES
+	 */
 	private void setComponentAdapters() {
 		btnCoche.addMouseListener(new MouseAdapter (){
 			@Override
@@ -126,6 +140,10 @@ public class SeleccionVehiculo {
 		
 	}
 	
+	/**
+	 * SELECCIONA EL TIPO DE VEHICULO
+	 * @param tipo RECOGE EL STRING DE TIPO DE VEHICULO
+	 */
 	private void lanzarVehiculo(String tipo){
 		Container.tipoVehiculo = tipo;
 		Vehiculo Ventana = new Vehiculo();
