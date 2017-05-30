@@ -14,6 +14,7 @@ import res.Constants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,7 +33,7 @@ public class BuscarVehiculo {
 	private JButton buttonVolver;
 	private JLabel Imagen;
 	private Collection<Vehiculo> listaActual;
-	private JPanel panel;
+
 	
 
 
