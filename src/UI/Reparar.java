@@ -246,6 +246,7 @@ public class Reparar {
 		btnAnterior.setEnabled(true);
 		btnSiguiente.setEnabled(true);
 		progressBar.setEnabled(true);
+		btnEditar.setEnabled(true);
 	}
 	
 	/**
