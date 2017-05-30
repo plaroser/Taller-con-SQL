@@ -114,7 +114,7 @@ public class Login {
 		
 		
 		lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		lblUsuario.setBounds(235, 115, 81, 26);
+		lblUsuario.setBounds(236, 105, 81, 26);
 		frame.getContentPane().add(lblUsuario);
 		
 		
