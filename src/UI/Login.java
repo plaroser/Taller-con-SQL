@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Containers.Container;
 import Models.Usuario;
 import res.Constants;
 import java.awt.event.MouseAdapter;
@@ -123,9 +124,9 @@ public class Login {
 			JOptionPane.showMessageDialog(null, "La contrase�a no coincide con el patron necesario");
 			return false;
 		}
-
-		if (listaMecanicos.contains(new Usuario(usuario, new String(txtContrasenia.getPassword())))) {
-
+		Usuario aux = new Usuario(usuario, new String(txtContrasenia.getPassword()));
+		if (listaMecanicos.contains(aux)) {
+			Container.usuarioActivo = aux;
 			return true;
 		} else {
 			JOptionPane.showMessageDialog(null, "El usuario o la contrase�a no son correctos.");

@@ -13,5 +13,6 @@ public class Container {
 	public static int vehiculoActivo;
 	public static String tipoVehiculo;
 	public static int reparacionActiva;
+	public static Usuario usuarioActivo;
 
 }
