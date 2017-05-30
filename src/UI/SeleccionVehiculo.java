@@ -3,8 +3,15 @@ package UI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
+import Containers.Container;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.spi.TimeZoneNameProvider;
 
 public class SeleccionVehiculo {
 
@@ -13,6 +20,14 @@ public class SeleccionVehiculo {
 	private JButton buttonCamion;
 	private JButton buttonBicicleta;
 	private JButton buttonMoto;
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
 
 	/**
 	 * Launch the application.
@@ -36,6 +51,7 @@ public class SeleccionVehiculo {
 	public SeleccionVehiculo() {
 		initialize();
 		setComponentProperties();
+		setComponentAdapters();
 	}
 
 	/**
@@ -79,5 +95,44 @@ public class SeleccionVehiculo {
 		frame.getContentPane().add(buttonMoto);
 		
 	}
+	private void setComponentAdapters() {
+		btnCoche.addMouseListener(new MouseAdapter (){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					lanzarVehiculo("Coche");	
+			}
+		});
+		
+		buttonMoto.addMouseListener(new MouseAdapter (){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					lanzarVehiculo("Moto");	
+			}
+		});
+		
+		buttonCamion.addMouseListener(new MouseAdapter (){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					lanzarVehiculo("Camión");	
+			}
+		});
+		
+		buttonBicicleta.addMouseListener(new MouseAdapter (){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+					lanzarVehiculo("Bicicleta");	
+			}
+		});
+		
+	}
+	
+	private void lanzarVehiculo(String tipo){
+		Container.tipoVehiculo = tipo;
+		Vehiculo Ventana = new Vehiculo();
+		Ventana.getFrame().setVisible(true);
+		frame.dispose();
+	}
+
+	
 }
 

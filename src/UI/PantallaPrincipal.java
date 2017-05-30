@@ -65,7 +65,7 @@ public class PantallaPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Container.vehiculoActivo = -1;
-				UI.Vehiculo Ventana = new UI.Vehiculo();
+				UI.SeleccionVehiculo Ventana = new UI.SeleccionVehiculo();
 				Ventana.getFrame().setVisible(true);
 				frame.setVisible(false);
 
