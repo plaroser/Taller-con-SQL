@@ -11,11 +11,17 @@ import Models.Reparar;
 import Models.Vehiculo;
 import res.Constants;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.Collection;
+import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class BuscarVehiculo {
 
@@ -24,7 +30,10 @@ public class BuscarVehiculo {
 	private JLabel lblBuscar, lblMatricula;
 	JButton btnBuscar;
 	private JButton buttonVolver;
+	private JLabel Imagen;
 	private Collection<Vehiculo> listaActual;
+	private JPanel panel;
+	
 
 
 	/**
@@ -61,27 +70,32 @@ public class BuscarVehiculo {
 		btnBuscar = new JButton("Buscar");
 		
 		buttonVolver = new JButton("Volver");
+		
+		Imagen = new JLabel(new ImageIcon("/Users/Alfonso/Downloads/images-2.jpg"));
+
 
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo
 		Container.listaVehiculos.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde",
-				LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
 		Container.listaVehiculos.get(0).getListaREparaciones().add(new Reparar(LocalDate.now(), null, 0.0f, Container.usuarioActivo, "Roto", null));
 		Container.listaVehiculos.add(
-				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel"));
+				new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2), 140, "Diesel","Moto"));
 		Container.listaVehiculos
-				.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
 		Container.listaVehiculos.add(
-				new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel"));
+				new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro", LocalDate.of(2015, 3, 2), 120, "Diesel","Coche"));
 		listaActual = Container.listaVehiculos;
 	}
 
 	private void setComponetProperties() {
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 503, 285);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		lblBuscar.setBounds(23, 23, 120, 30);
 		frame.getContentPane().add(lblBuscar);
+		
+		
 
 		lblMatricula.setBounds(23, 89, 66, 16);
 		frame.getContentPane().add(lblMatricula);
@@ -95,6 +109,11 @@ public class BuscarVehiculo {
 		
 		buttonVolver.setBounds(154, 156, 116, 48);
 		frame.getContentPane().add(buttonVolver);
+		
+		
+		Imagen.setBounds(299, 23, 192, 212);
+		frame.getContentPane().add(Imagen);
+		
 	}
 
 	private void setComponentAdapters() {
@@ -107,7 +126,7 @@ public class BuscarVehiculo {
 				// Comprobar que la matricula cumple los requisitos de una
 				// matricula
 				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
-					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null);
+					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null,null);
 					// Comprobar que la matricula esta dentro del sistema
 					if (listaActual.contains(vehiculoAux)) {
 						// Una vez que sabemos que esta en el sistema recorremos
