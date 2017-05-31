@@ -206,6 +206,12 @@ public class Vehiculo {
 
 		SpinnerCV.setBounds(154, 136, 171, 26);
 		frame.getContentPane().add(SpinnerCV);
+		model = new SpinnerNumberModel(new Integer(0), // Dato visualizado al
+				// inicio en el spinner
+				new Integer(0), // Límite inferior
+				new Integer(10), // Límite superior
+				new Integer(1)); // incremento-decremento
+		SpinnerCV.setModel(model);
 
 		lblPuertas.setBounds(31, 182, 61, 16);
 		frame.getContentPane().add(lblPuertas);
