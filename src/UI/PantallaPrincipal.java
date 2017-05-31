@@ -123,6 +123,7 @@ public class PantallaPrincipal {
 		btnNV = new JButton("Nuevo Vehiculo");
 		btnCS = new JButton("Cerrar Sesion");
 		Container.listaClientes = new ArrayList<>();
+		Container.clienteActivo = -1;
 
 	}
 
