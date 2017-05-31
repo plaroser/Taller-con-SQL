@@ -90,7 +90,7 @@ public class ClienteModels {
 	 public boolean equals (Object obj) {
         if (obj instanceof ClienteModels) {
         ClienteModels tmpPersona = (ClienteModels) obj;
-            if (this.Dni.equals(tmpPersona.Dni)) { 
+            if (this.getDni().equals(tmpPersona.getDni())) { 
             	return true;
             	} 
             else { 
