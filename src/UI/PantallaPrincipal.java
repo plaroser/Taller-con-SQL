@@ -122,6 +122,7 @@ public class PantallaPrincipal {
 		btnBV = new JButton("Buscar Vehiculo");
 		btnNV = new JButton("Nuevo Vehiculo");
 		btnCS = new JButton("Cerrar Sesion");
+		Container.listaClientes = new ArrayList<>();
 
 	}
 
