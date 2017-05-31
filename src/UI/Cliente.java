@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import Containers.Container;
 import Models.ClienteModels;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -38,6 +39,7 @@ public class Cliente {
 	private Collection<ClienteModels> listaClientes;
 	private ClienteModels cliente1;
 	private ClienteModels cliente2;
+	private JLabel imagen;
 
 	public JFrame getFrame() {
 		return frame;
@@ -76,7 +78,7 @@ public class Cliente {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 599, 293);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Cliente");
 		frame.getContentPane().setLayout(null);
@@ -96,6 +98,7 @@ public class Cliente {
 		btnGuardar = new JButton("Guardar");
 		btnLimpiar = new JButton("Limpiar");
 		buttonVolver = new JButton("Volver");
+		imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/new_add_user_16734.png")));
 		setComponentProperties();
 		setComponentAdapters();
 
@@ -106,59 +109,62 @@ public class Cliente {
 	 */
 	private void setComponentProperties() {
 
-		lblNombre.setBounds(35, 27, 61, 16);
+		lblNombre.setBounds(205, 27, 61, 16);
 		frame.getContentPane().add(lblNombre);
 
-		textNombre.setBounds(108, 22, 148, 26);
+		textNombre.setBounds(278, 22, 148, 26);
 		frame.getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 
-		lblDni.setBounds(35, 108, 61, 16);
+		lblDni.setBounds(205, 108, 61, 16);
 		frame.getContentPane().add(lblDni);
 
-		textDni.setBounds(108, 103, 148, 26);
+		textDni.setBounds(278, 103, 148, 26);
 		frame.getContentPane().add(textDni);
 		textDni.setColumns(10);
 
-		lblApellidos.setBounds(35, 65, 72, 16);
+		lblApellidos.setBounds(205, 65, 72, 16);
 		frame.getContentPane().add(lblApellidos);
 
-		textApellido.setBounds(108, 60, 148, 26);
+		textApellido.setBounds(278, 60, 148, 26);
 		frame.getContentPane().add(textApellido);
 		textApellido.setColumns(10);
 
-		lblDireccion.setBounds(35, 149, 72, 16);
+		lblDireccion.setBounds(205, 149, 72, 16);
 		frame.getContentPane().add(lblDireccion);
 
-		textDireccion.setBounds(108, 144, 148, 26);
+		textDireccion.setBounds(278, 144, 148, 26);
 		frame.getContentPane().add(textDireccion);
 		textDireccion.setColumns(10);
 
-		lblTelefono.setBounds(35, 189, 61, 16);
+		lblTelefono.setBounds(205, 189, 61, 16);
 		frame.getContentPane().add(lblTelefono);
 
-		textTelf.setBounds(108, 184, 148, 26);
+		textTelf.setBounds(278, 184, 148, 26);
 		frame.getContentPane().add(textTelf);
 		textTelf.setColumns(10);
 
-		lblEmail.setBounds(35, 232, 61, 16);
+		lblEmail.setBounds(205, 232, 61, 16);
 		frame.getContentPane().add(lblEmail);
 
-		textEmail.setBounds(108, 227, 148, 26);
+		textEmail.setBounds(278, 227, 148, 26);
 		frame.getContentPane().add(textEmail);
 		textEmail.setColumns(10);
 
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnGuardar.setBounds(305, 29, 117, 60);
+		btnGuardar.setBounds(456, 27, 117, 60);
 		frame.getContentPane().add(btnGuardar);
 
 		btnLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnLimpiar.setBounds(305, 108, 117, 60);
+		btnLimpiar.setBounds(456, 108, 117, 60);
 		frame.getContentPane().add(btnLimpiar);
 
 		buttonVolver.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		buttonVolver.setBounds(305, 184, 117, 60);
+		buttonVolver.setBounds(456, 184, 117, 60);
 		frame.getContentPane().add(buttonVolver);
+		
+		imagen.setBounds(0, 27, 204, 228);
+		frame.getContentPane().add(imagen);
 	}
 
 	/**
@@ -170,7 +176,7 @@ public class Cliente {
 			public void mouseClicked(MouseEvent e) {
 				if (Container.listaClientes.contains(LeerCliente())) {
 					JOptionPane.showMessageDialog(null,
-							"El cliente ya exixte en la base de datos, se le añadira el nuevo vehiculo");
+							"El cliente ya exixte en la base de datos, se le aï¿½adira el nuevo vehiculo");
 					Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
 					imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
 					Container.listaClientes.get(Container.clienteActivo).getListaCoches()
@@ -182,7 +188,7 @@ public class Cliente {
 							.contains(Container.listaVehiculos.get(Container.vehiculoActivo))) {
 						Container.listaClientes.get(Container.clienteActivo).getListaCoches()
 								.add(Container.listaVehiculos.get(Container.vehiculoActivo));
-						JOptionPane.showMessageDialog(null, "Vehiculo añadido correctamente");
+						JOptionPane.showMessageDialog(null, "Vehiculo aï¿½adido correctamente");
 
 					} else {
 						JOptionPane.showMessageDialog(null, "El cliente ya tiene este vehiculo guardado");
