@@ -66,7 +66,7 @@ public class BuscarVehiculo {
 
 		buttonVolver = new JButton("Volver");
 
-		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/images-2.jpg")));
+		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/Image/images-2.jpg")));
 
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
 		// Vehiculos de demo

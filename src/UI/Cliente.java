@@ -98,7 +98,7 @@ public class Cliente {
 		btnGuardar = new JButton("Guardar");
 		btnLimpiar = new JButton("Limpiar");
 		buttonVolver = new JButton("Volver");
-		imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/new_add_user_16734.png")));
+		imagen = new JLabel(new ImageIcon(this.getClass().getResource("/Image/new_add_user_16734.png")));
 		setComponentProperties();
 		setComponentAdapters();
 

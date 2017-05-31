@@ -102,11 +102,11 @@ public class Reparar {
 		btnLimpiar = new JButton("Limpiar");
 		btnVolver = new JButton("Volver");
 		textComentarios = new JTextPane();
-		imagen = new ImageIcon(this.getClass().getResource("/image/left.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/Image/left.png"));
 		btnAnterior = new JButton(imagen);
 		btnEditar = new JButton("Editar");
 		progressBar = new JProgressBar();
-		imagen1 = new ImageIcon(this.getClass().getResource("/image/right.png"));
+		imagen1 = new ImageIcon(this.getClass().getResource("/Image/right.png"));
 		btnSiguiente = new JButton(imagen1);
 		textTInvertido = new JTextField();
 		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
@@ -371,7 +371,11 @@ public class Reparar {
 		iterador = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().listIterator();
 		progressBar
 				.setValue(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().indexOf(r) + 1);
-		textTInvertido.setText(String.valueOf((Math.random() / 3)).substring(3, 5));
+		float tiempo = (float) (Math.random() / 3);
+		float total = (float) (Math.random() / 3);
+		textTInvertido.setText(String.valueOf(tiempo).substring(3, 5));
+		textPrecio.setText(String.valueOf(total).substring(3, 5));
+		textTotal.setText(String.valueOf(tiempo + total).substring(3, 5));
 	}
 
 	public Models.Reparar leerReparacion() {

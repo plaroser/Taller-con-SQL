@@ -180,7 +180,7 @@ public class Login {
 		btnLogin = new JButton(Constants.go);
 		lblContrasenia = new JLabel("Contraseña:");
 		lblUsuario = new JLabel("Usuario:");
-		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/image/tech_icon.png")));
+		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/Image/tech_icon.png")));
 		setComponetProperties();
 		setComponentAdapters();
 
