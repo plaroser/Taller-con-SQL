@@ -127,8 +127,13 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				Cliente Ventana = new Cliente();
 				Ventana.getFrame().setVisible(true);
-				if (Container.clienteActivo != -1)
+				if (Container.clienteActivo != -1) {
 					Ventana.imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
+					Ventana.modoEditable(false);
+				} else {
+					Ventana.modoEditable(true);
+					Ventana.clearTxtField();
+				}
 				frame.dispose();
 			}
 		});
@@ -282,6 +287,20 @@ public class Vehiculo {
 			}
 
 		});
+
+		JButton btnVolver = new JButton("volver");
+		btnVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PantallaPrincipal Ventana = new PantallaPrincipal();
+				Ventana.getFrame().setVisible(true);
+				Container.clienteActivo = -1;
+
+				frame.dispose();
+			}
+		});
+		btnVolver.setBounds(214, 358, 97, 25);
+		frame.getContentPane().add(btnVolver);
 
 		selecciontipo();
 

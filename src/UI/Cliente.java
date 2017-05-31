@@ -225,13 +225,24 @@ public class Cliente {
 	/**
 	 * Metodo para limpiar
 	 */
-	private void clearTxtField() {
+	public void clearTxtField() {
 		textNombre.setText("");
 		textDni.setText("");
 		textApellido.setText("");
 		textDireccion.setText("");
 		textTelf.setText("");
 		textEmail.setText("");
+	}
+
+	public void modoEditable(Boolean activo) {
+		textNombre.setEnabled(activo);
+		textDni.setEnabled(activo);
+		textApellido.setEnabled(activo);
+		textDireccion.setEnabled(activo);
+		textTelf.setEnabled(activo);
+		textEmail.setEnabled(activo);
+		btnGuardar.setEnabled(activo);
+		btnLimpiar.setEnabled(activo);
 	}
 
 	public void imprimirCliente(ClienteModels c) {

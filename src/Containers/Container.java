@@ -9,7 +9,7 @@ import Models.Usuario;
 import Models.Vehiculo;
 
 public class Container {
-	public static ArrayList<Models.Vehiculo> listaVehiculos;
+	public static ArrayList<Models.Vehiculo> listaVehiculos = new ArrayList<>();;
 	public static Usuario mecanicoActivo;
 	public static ArrayList<Models.Reparar> listaReparaciones;
 	public static int vehiculoActivo;

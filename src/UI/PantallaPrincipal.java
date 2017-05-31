@@ -117,7 +117,6 @@ public class PantallaPrincipal {
 	 * Componentes principales
 	 */
 	private void initialize() {
-		Container.listaVehiculos = new ArrayList<>();
 		listaVehiculo = Container.listaVehiculos;
 		frame = new JFrame();
 		btnBV = new JButton("Buscar Vehiculo");
