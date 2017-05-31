@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.renderable.ContextualRenderedImageFactory;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -126,6 +127,8 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				Cliente Ventana = new Cliente();
 				Ventana.getFrame().setVisible(true);
+				if (Container.clienteActivo != -1)
+					Ventana.imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
 				frame.dispose();
 			}
 		});
@@ -140,8 +143,6 @@ public class Vehiculo {
 			}
 		});
 
-
-		
 		buttonLimpiar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

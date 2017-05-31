@@ -69,6 +69,7 @@ public class PantallaPrincipal {
 				UI.SeleccionVehiculo Ventana = new UI.SeleccionVehiculo();
 				Ventana.getFrame().setVisible(true);
 				frame.setVisible(false);
+				Container.clienteActivo = -1;
 
 			}
 		});

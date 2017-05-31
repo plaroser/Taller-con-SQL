@@ -171,7 +171,6 @@ public class Cliente {
 				if (Container.listaClientes.contains(LeerCliente())) {
 					JOptionPane.showMessageDialog(null,
 							"El cliente ya exixte en la base de datos, se le añadira el nuevo vehiculo");
-					;
 					Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
 					imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
 					Container.listaClientes.get(Container.clienteActivo).getListaCoches()
@@ -179,8 +178,21 @@ public class Cliente {
 				} else {
 					Container.listaClientes.add(LeerCliente());
 					Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
-					Container.listaClientes.get(Container.clienteActivo).getListaCoches()
-							.add(Container.listaVehiculos.get(Container.vehiculoActivo));
+					if (!Container.listaClientes.get(Container.clienteActivo).getListaCoches()
+							.contains(Container.listaVehiculos.get(Container.vehiculoActivo))) {
+						Container.listaClientes.get(Container.clienteActivo).getListaCoches()
+								.add(Container.listaVehiculos.get(Container.vehiculoActivo));
+						JOptionPane.showMessageDialog(null, "Vehiculo añadido correctamente");
+
+					} else {
+						JOptionPane.showMessageDialog(null, "El cliente ya tiene este vehiculo guardado");
+					}
+					Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
+					Vehiculo Ventana = new Vehiculo();
+					Ventana.getFrame().setVisible(true);
+					Ventana.imprimirVehiculoPorIndice(Container.vehiculoActivo);
+					Ventana.ModoLeer();
+					frame.dispose();
 				}
 			}
 		});
@@ -216,7 +228,7 @@ public class Cliente {
 		textEmail.setText("");
 	}
 
-	private void imprimirCliente(ClienteModels c) {
+	public void imprimirCliente(ClienteModels c) {
 		textNombre.setText(c.getNombre());
 		textDni.setText(c.getDni());
 		textApellido.setText(c.getApellidos());
