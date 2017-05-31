@@ -162,7 +162,7 @@ public class Cliente {
 		buttonVolver.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonVolver.setBounds(456, 184, 117, 60);
 		frame.getContentPane().add(buttonVolver);
-		
+
 		imagen.setBounds(0, 27, 204, 228);
 		frame.getContentPane().add(imagen);
 	}
@@ -181,6 +181,8 @@ public class Cliente {
 					imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
 					Container.listaClientes.get(Container.clienteActivo).getListaCoches()
 							.add(Container.listaVehiculos.get(Container.vehiculoActivo));
+					modoEditable(false);
+					Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
 				} else {
 					Container.listaClientes.add(LeerCliente());
 					Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());

@@ -294,7 +294,6 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				PantallaPrincipal Ventana = new PantallaPrincipal();
 				Ventana.getFrame().setVisible(true);
-				Container.clienteActivo = -1;
 
 				frame.dispose();
 			}
@@ -307,11 +306,9 @@ public class Vehiculo {
 	}
 
 	/**
-	 * Seleccion del tipo de vehiculo
-	 * En container tenemos guardado un string
-	 * y lo comparamos con los datos guardados en la jlist
-	 * devuelve un indice para seleccionar automaticamente el tipo en la lista 
-	 * y no se puede modificar
+	 * Seleccion del tipo de vehiculo En container tenemos guardado un string y
+	 * lo comparamos con los datos guardados en la jlist devuelve un indice para
+	 * seleccionar automaticamente el tipo en la lista y no se puede modificar
 	 * 
 	 */
 	public void selecciontipo() {
@@ -378,8 +375,7 @@ public class Vehiculo {
 	}
 
 	/**
-	 * Metodo para imprimir el vehiculo
-	 * Devuelve los datos del vehiculo
+	 * Metodo para imprimir el vehiculo Devuelve los datos del vehiculo
 	 * 
 	 * @param v
 	 */
@@ -402,9 +398,10 @@ public class Vehiculo {
 	}
 
 	/**
-	 * Metodo para leer y guardar los datos
-	 * Almacena los datos introducidos en los campos de la pantalla
-	 * en variable que se utilizan para crear un nuevo vehiculo
+	 * Metodo para leer y guardar los datos Almacena los datos introducidos en
+	 * los campos de la pantalla en variable que se utilizan para crear un nuevo
+	 * vehiculo
+	 * 
 	 * @return
 	 */
 	public Models.Vehiculo leerVehiculo() {

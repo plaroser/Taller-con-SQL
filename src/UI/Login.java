@@ -66,6 +66,17 @@ public class Login {
 	 */
 	public static void main(String[] args) {
 		listaMecanicos = new ArrayList<>();
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login window = new Login();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		try {
 			// Establish the connection.
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -86,7 +97,8 @@ public class Login {
 		// Handle any errors that may have occurred.
 		catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "No se puede conectar con la base de datos, se cargara un usuario por defecto.");
+			JOptionPane.showMessageDialog(null,
+					"No se puede conectar con la base de datos, se cargara un usuario por defecto.");
 
 			listaMecanicos.add(new Usuario("usuario", "1234"));
 		} finally {
@@ -106,18 +118,48 @@ public class Login {
 				} catch (Exception e) {
 				}
 		}
+		try {
+			// Establish the connection.
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(connectionUrl);
 
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login window = new Login();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			// Create and execute an SQL statement that returns some data.
+			String SQL = "SELECT * FROM Mecanico";
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(SQL);
+
+			// Iterate through the data in the result set and display it.
+			while (rs.next()) {
+				listaMecanicos.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getFloat(6), rs.getInt(5), rs.getDate(7).toLocalDate()));
 			}
-		});
-		//System.out.println(listaMecanicos.size());
+		}
+
+		// Handle any errors that may have occurred.
+		catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,
+					"No se puede conectar con la base de datos, se cargara un usuario por defecto.");
+
+			listaMecanicos.add(new Usuario("usuario", "1234"));
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+			if (stmt != null)
+				try {
+					stmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+		// System.out.println(listaMecanicos.size());
 	}
 
 	/**
@@ -212,13 +254,13 @@ public class Login {
 			JOptionPane.showMessageDialog(null, "El usuario o la contrase�a no pueden estar vacios.");
 			return false;
 		}
-		
+
 		if (!Constants.CONSTRAINT_CONTRASENIA.matcher(new String(txtContrasenia.getPassword())).matches()) {
 			JOptionPane.showMessageDialog(null, "La contrase�a no coincide con el patron necesario");
 			return false;
 		}
 		Usuario aux = new Usuario(usuario, new String(txtContrasenia.getPassword()));
-		//System.out.println(listaMecanicos.get(0));
+		// System.out.println(listaMecanicos.get(0));
 		if (listaMecanicos.contains(aux)) {
 			Container.usuarioActivo = aux;
 			return true;

@@ -16,7 +16,7 @@ public class Container {
 	public static String tipoVehiculo;
 	public static int reparacionActiva;
 	public static Usuario usuarioActivo = new Usuario("usuario", "", "Rodolfo", "", 25.0F, 20, LocalDate.now());
-	public static ArrayList<ClienteModels> listaClientes;
-	public static int clienteActivo;
+	public static ArrayList<ClienteModels> listaClientes = new ArrayList<>();
+	public static int clienteActivo=-1;
 
 }

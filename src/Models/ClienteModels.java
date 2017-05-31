@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-public class ClienteModels {
+public class ClienteModels extends Object {
 
 	private String Nombre;
 	private String Dni;
