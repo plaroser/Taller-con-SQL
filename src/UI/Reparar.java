@@ -26,6 +26,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
+
 import Containers.Container;
 import Models.Usuario;
 
@@ -319,6 +321,7 @@ public class Reparar {
 		btnSiguiente.setEnabled(true);
 		progressBar.setEnabled(true);
 		btnEditar.setEnabled(true);
+		textTInvertido.setEnabled(true);
 	}
 
 	/**
@@ -338,6 +341,7 @@ public class Reparar {
 		btnAnterior.setEnabled(false);
 		btnSiguiente.setEnabled(false);
 		progressBar.setEnabled(false);
+		textTInvertido.setEnabled(false);
 	}
 
 	public void imprimirLista(int vehiculoDuenio) {
@@ -367,8 +371,7 @@ public class Reparar {
 		iterador = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().listIterator();
 		progressBar
 				.setValue(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().indexOf(r) + 1);
-		//lblTiempoInvertido
-		//		.setText(String.valueOf(r.getFecha_Entrada().getDayOfMonth() - r.getFecha_Salida().getDayOfMonth()));
+		textTInvertido.setText(String.valueOf((Math.random() / 3)).substring(3, 5));
 	}
 
 	public Models.Reparar leerReparacion() {
