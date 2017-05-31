@@ -263,15 +263,15 @@ public class Vehiculo {
 		frame.getContentPane().add(btnReparacion);
 
 		btnGuardar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnGuardar.setBounds(31, 396, 135, 53);
+		btnGuardar.setBounds(23, 396, 112, 53);
 		frame.getContentPane().add(btnGuardar);
 
 		btnEditar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		btnEditar.setBounds(214, 396, 135, 53);
+		btnEditar.setBounds(154, 396, 112, 53);
 		frame.getContentPane().add(btnEditar);
 
 		buttonLimpiar.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-		buttonLimpiar.setBounds(398, 396, 135, 53);
+		buttonLimpiar.setBounds(287, 396, 112, 53);
 		frame.getContentPane().add(buttonLimpiar);
 
 		listaTipoVehiculo.setModel(new AbstractListModel() {
@@ -289,16 +289,17 @@ public class Vehiculo {
 		});
 
 		JButton btnVolver = new JButton("volver");
+		btnVolver.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PantallaPrincipal Ventana = new PantallaPrincipal();
 				Ventana.getFrame().setVisible(true);
-
+				Container.clienteActivo = -1;
 				frame.dispose();
 			}
 		});
-		btnVolver.setBounds(214, 358, 97, 25);
+		btnVolver.setBounds(411, 399, 118, 53);
 		frame.getContentPane().add(btnVolver);
 
 		selecciontipo();
