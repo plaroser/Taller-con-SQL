@@ -289,6 +289,11 @@ public class Vehiculo {
 
 	/**
 	 * Seleccion del tipo de vehiculo
+	 * En container tenemos guardado un string
+	 * y lo comparamos con los datos guardados en la jlist
+	 * devuelve un indice para seleccionar automaticamente el tipo en la lista 
+	 * y no se puede modificar
+	 * 
 	 */
 	public void selecciontipo() {
 		int index = 0;
@@ -355,6 +360,7 @@ public class Vehiculo {
 
 	/**
 	 * Metodo para imprimir el vehiculo
+	 * Devuelve los datos del vehiculo
 	 * 
 	 * @param v
 	 */
@@ -378,7 +384,8 @@ public class Vehiculo {
 
 	/**
 	 * Metodo para leer y guardar los datos
-	 * 
+	 * Almacena los datos introducidos en los campos de la pantalla
+	 * en variable que se utilizan para crear un nuevo vehiculo
 	 * @return
 	 */
 	public Models.Vehiculo leerVehiculo() {
