@@ -276,7 +276,7 @@ public class Reparar {
 		frame.getContentPane().add(btnIniciarContador);
 
 		btnDetenerContador.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnDetenerContador.setBounds(281, 190, 186, 62);
+		btnDetenerContador.setBounds(281, 148, 186, 62);
 		frame.getContentPane().add(btnDetenerContador);
 
 		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -290,7 +290,7 @@ public class Reparar {
 
 		btnNuevaReparacion = new JButton("Nueva Reparacion");
 
-		btnNuevaReparacion.setBounds(370, 260, 97, 25);
+		btnNuevaReparacion.setBounds(281, 260, 186, 53);
 		frame.getContentPane().add(btnNuevaReparacion);
 	}
 

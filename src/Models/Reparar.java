@@ -11,6 +11,8 @@ public class Reparar extends Object {
 	private Usuario Mecanico;
 	private String Estado;
 	private String Comentario;
+	private LocalDate InicioReparacion;
+	private LocalDate FinReparacion;
 
 	public LocalDate getFecha_Entrada() {
 		return Fecha_Entrada;
@@ -30,6 +32,22 @@ public class Reparar extends Object {
 
 	public Reparar(float precioPiezas, Usuario mecanico, String estado, String comentario) {
 		this(null, null, 0.0f, precioPiezas, mecanico, estado, comentario);
+	}
+
+	public LocalDate getInicioReparacion() {
+		return InicioReparacion;
+	}
+
+	public void setInicioReparacion(LocalDate inicioReparacion) {
+		InicioReparacion = inicioReparacion;
+	}
+
+	public LocalDate getFinReparacion() {
+		return FinReparacion;
+	}
+
+	public void setFinReparacion(LocalDate finReparacion) {
+		FinReparacion = finReparacion;
 	}
 
 	public void setFecha_Entrada(LocalDate fecha_Entrada) {

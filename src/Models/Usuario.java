@@ -18,6 +18,11 @@ public class Usuario extends Object {
 		this.contrasenia = contrasenia;
 	}
 
+	public Usuario(String usuario, String contrasenia, String nombre, String apellidos, int diasVacaciones,
+			float sueldo, LocalDate fechaContratacion) {
+		this(usuario, contrasenia, nombre, apellidos, sueldo, diasVacaciones, fechaContratacion);
+	}
+
 	public Usuario(String usuario, String contrasenia, String nombre, String apellidos, float sueldo,
 			int diasVacaciones, LocalDate fechaContratacion) {
 		super();
@@ -93,10 +98,10 @@ public class Usuario extends Object {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Usuario){
-		Usuario m = (Usuario) obj;
-		return this.getUsuario().equals(m.getUsuario())&&this.getContrasenia().equals(m.getContrasenia());
-		}else{
+		if (obj instanceof Usuario) {
+			Usuario m = (Usuario) obj;
+			return this.getUsuario().equals(m.getUsuario()) && this.getContrasenia().equals(m.getContrasenia());
+		} else {
 			return false;
 		}
 	}
