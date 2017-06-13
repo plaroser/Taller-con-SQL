@@ -130,9 +130,9 @@ public class connect {
 
 			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
-				Container.listaVehiculos
-						.add(new Vehiculo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-								rs.getString(5), rs.getDate(7).toLocalDate(), rs.getInt(8), rs.getString(6), null));
+				Container.listaVehiculos.add(
+						new Vehiculo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
+								rs.getDate(7).toLocalDate(), rs.getInt(8), rs.getString(6), rs.getString(7)));
 			}
 		}
 
@@ -164,7 +164,7 @@ public class connect {
 		// Declare the JDBC objects.
 		Connection con = null;
 		Statement stmt = null;
-		int rs ;
+		int rs;
 		try {
 
 			// Establish the connection.
@@ -175,8 +175,8 @@ public class connect {
 			String SQL = "UPDATE [dbo].[Vehiculo] SET " + "[Marca] = '" + v.getMarca() + "',[Modelo] = '"
 					+ v.getModelo() + "',[Puertas] = " + v.getPuertas() + ",[Color] = '" + v.getColor()
 					+ "',[Combustible] = '" + v.getCombustible() + "',[Anio_Matriculacion] = '"
-					+ v.getAnioMatriculacion().toString() + "',[CV] =" + v.getCV() +
-					"WHERE Matricula='" + v.getMatricula()+"'";
+					+ v.getAnioMatriculacion().toString() + "',[CV] =" + v.getCV() + ",[tipo_vehiculo] = '"
+					+ v.getTipovheiculo() + "' WHERE Matricula='" + v.getMatricula() + "'";
 			stmt = con.createStatement();
 			rs = stmt.executeUpdate(SQL);
 
@@ -188,7 +188,7 @@ public class connect {
 			JOptionPane.showMessageDialog(null, "No se puede conectar con la base de datos.");
 
 		} finally {
-			
+
 			if (stmt != null)
 				try {
 					stmt.close();
@@ -214,10 +214,10 @@ public class connect {
 			con = DriverManager.getConnection(connectionUrl);
 
 			// Create and execute an SQL statement that returns some data.
-			String SQL = "INSERT INTO [dbo].[Vehiculo]([Matricula],[Marca],[Modelo],[Puertas],[Color],[Combustible],[Anio_Matriculacion],[CV],[DNI_Cliente])VALUES"
-					+ "('" + v.getMatricula() + "','" + v.getMarca() + "','" + v.getModelo() + "'," + v.getPuertas() + ",'"
-					+ v.getColor() + "','" + v.getCombustible() + "','" + v.getAnioMatriculacion().toString() + "',"
-					+ v.getCV() + ",null)";
+			String SQL = "INSERT INTO [dbo].[Vehiculo]([Matricula],[Marca],[Modelo],[Puertas],[Color],[Combustible],[Anio_Matriculacion],[CV],[DNI_Cliente],[tipo_vehiculo])VALUES"
+					+ "('" + v.getMatricula() + "','" + v.getMarca() + "','" + v.getModelo() + "'," + v.getPuertas()
+					+ ",'" + v.getColor() + "','" + v.getCombustible() + "','" + v.getAnioMatriculacion().toString()
+					+ "'," + v.getCV() + ","+v.getTipovheiculo()+")";
 			stmt = con.createStatement();
 			rs = stmt.executeUpdate(SQL);
 
@@ -229,7 +229,7 @@ public class connect {
 			JOptionPane.showMessageDialog(null, "No se puede conectar con la base de datos.");
 
 		} finally {
-			
+
 			if (stmt != null)
 				try {
 					stmt.close();

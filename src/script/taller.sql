@@ -16,7 +16,8 @@ Color varchar(15),
 Combustible varchar(15),
 Anio_Matriculacion date,
 CV int,
-DNI_Cliente varchar(9) references Cliente 
+DNI_Cliente varchar(9) references Cliente ,
+tipo_vehiculo varchar(15)
 )
 CREATE TABLE MECANICO(
 Usuario varchar(20) primary Key NOT NULL,

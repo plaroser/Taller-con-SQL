@@ -402,6 +402,8 @@ public class Vehiculo {
 		textColor.setText(v.getColor());
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
+		listaTipoVehiculo.setSelectedValue(v.getTipovheiculo(), false);
+		System.out.println(v.getTipovheiculo());
 	}
 
 	public void imprimirVehiculoPorIndice(int Indice) {
