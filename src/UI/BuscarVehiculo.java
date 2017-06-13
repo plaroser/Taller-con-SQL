@@ -53,6 +53,7 @@ public class BuscarVehiculo {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		connections.connect.cargarVehiculos();
 		frame = new JFrame();
 		frame.getContentPane().setLayout(null);
 
@@ -87,7 +88,7 @@ public class BuscarVehiculo {
 				120, "Diesel", "Coche"));
 		Container.listaVehiculos.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro",
 				LocalDate.of(2015, 3, 2), 120, "Diesel", "Coche"));
-		listaActual = Container.listaVehiculos;
+		
 	}
 
 	private void setComponetProperties() {
@@ -127,7 +128,7 @@ public class BuscarVehiculo {
 				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
 					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null, null);
 					// Comprobar que la matricula esta dentro del sistema
-					if (listaActual.contains(vehiculoAux)) {
+					if (Container.listaVehiculos.contains(vehiculoAux)) {
 						// Una vez que sabemos que esta en el sistema recorremos
 						// la lista y buscamos el vehiculo con dicha matricula
 						for (int i = 0; i < Container.listaVehiculos.size(); i++) {

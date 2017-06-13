@@ -20,5 +20,6 @@ public class Container {
 	public static ArrayList<ClienteModels> listaClientes = new ArrayList<>();
 	public static int clienteActivo = -1;
 	public final static Pattern REGEX_EUR = Pattern.compile("^[0-9]{1,3}[.]{0,1}[0-9]{0,3}$");
+	public static ArrayList<Usuario> listaMecanicos=new ArrayList<>();
 
 }

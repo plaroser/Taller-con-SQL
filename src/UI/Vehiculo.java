@@ -63,6 +63,7 @@ public class Vehiculo {
 	private Models.Vehiculo vehiculoSeleccionado;
 	private JLabel lblTipo;
 	private JList listaTipoVehiculo;
+	private boolean esNuevo;
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
 		return listaVehiculo;
@@ -117,6 +118,7 @@ public class Vehiculo {
 		lblAoMatriculacion = new JLabel("Año Matriculacion:");
 		lblPuertas = new JLabel("Puertas:");
 		spinnerAnioMatricula = new JSpinner();
+		esNuevo = true;
 		setComponetProperties();
 		setComponentAdapters();
 	}
@@ -156,6 +158,7 @@ public class Vehiculo {
 		});
 		btnEditar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				esNuevo = false;
 				ModoEditar();
 			}
 		});
@@ -164,10 +167,14 @@ public class Vehiculo {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (btnGuardar.isEnabled()) {
-					Models.Vehiculo aux = leerVehiculo();
-					Container.listaVehiculos.add(aux);
+					if (esNuevo) {
+						connections.connect.insertarVehiculo(leerVehiculo());
+					} else {
+						connections.connect.actualizarVehiculo(leerVehiculo());
+						esNuevo = true;
+					}
 					ModoLeer();
-					Container.vehiculoActivo = Container.listaVehiculos.size() - 1;
+					connections.connect.cargarVehiculos();
 				}
 			}
 		});
@@ -209,7 +216,7 @@ public class Vehiculo {
 		model = new SpinnerNumberModel(new Integer(0), // Dato visualizado al
 				// inicio en el spinner
 				new Integer(0), // Límite inferior
-				new Integer(10), // Límite superior
+				new Integer(1000), // Límite superior
 				new Integer(1)); // incremento-decremento
 		SpinnerCV.setModel(model);
 

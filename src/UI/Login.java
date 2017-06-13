@@ -41,18 +41,8 @@ public class Login {
 
 	private JLabel lblContrasenia;
 
-	private static ArrayList<Usuario> listaMecanicos;
 
 	private JLabel Imagen;
-
-	// Create a variable for the connection string.
-	private static String connectionUrl = "jdbc:sqlserver://MSI\\SERGIOPLA:1433;"
-			+ "databaseName=Taller;user=sergio;password=1234";
-
-	// Declare the JDBC objects.
-	private static Connection con = null;
-	private static Statement stmt = null;
-	private static ResultSet rs = null;
 
 	/**
 	 * GET JFRAME
@@ -65,7 +55,7 @@ public class Login {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		listaMecanicos = new ArrayList<>();
+		Container.listaMecanicos = new ArrayList<>();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -77,56 +67,7 @@ public class Login {
 				}
 			}
 		});
-		try {
-			// Establish the connection.
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			con = DriverManager.getConnection(connectionUrl);
 
-			// Create and execute an SQL statement that returns some data.
-			String SQL = "SELECT * FROM Mecanico";
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(SQL);
-
-			// Iterate through the data in the result set and display it.
-			while (rs.next()) {
-				// listaMecanicos.add(new Usuario(rs.getString(1),
-				// rs.getString(2), rs.getString(3), rs.getString(4),
-				// rs.getFloat(6), rs.getInt(5), rs.getDate(7).toLocalDate()));
-				listaMecanicos.add(new Usuario(rs.getString(1), 
-						rs.getString(2), 
-						rs.getString(3), 
-						rs.getString(4),
-						rs.getInt(5), 
-						rs.getFloat(6), 
-						rs.getDate(7).toLocalDate()));
-			}
-		}
-
-		// Handle any errors that may have occurred.
-		catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,
-					"No se puede conectar con la base de datos, se cargara un usuario por defecto.");
-
-			listaMecanicos.add(new Usuario("usuario", "1234"));
-		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (Exception e) {
-				}
-			if (stmt != null)
-				try {
-					stmt.close();
-				} catch (Exception e) {
-				}
-			if (con != null)
-				try {
-					con.close();
-				} catch (Exception e) {
-				}
-		}
-		
 		// System.out.println(listaMecanicos.size());
 	}
 
@@ -229,7 +170,7 @@ public class Login {
 		}
 		Usuario aux = new Usuario(usuario, new String(txtContrasenia.getPassword()));
 		// System.out.println(listaMecanicos.get(0));
-		if (listaMecanicos.contains(aux)) {
+		if (Container.listaMecanicos.contains(aux)) {
 			Container.usuarioActivo = aux;
 			return true;
 		} else {
