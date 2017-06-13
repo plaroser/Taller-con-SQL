@@ -16,10 +16,11 @@ public class Vehiculo extends Object {
 	private String combustible;
 	private LinkedList<Reparar> listaREparaciones;
 	private String tipovheiculo;
+	private String dniDuenio;
 
 	
 	public Vehiculo(String matricula, String marca, String modelo, int puertas, String color,
-			LocalDate anioMatriculacion, int cV, String combustible, String tipovheiculo) {
+			LocalDate anioMatriculacion, int cV, String combustible, String tipovheiculo,String dniDuenio) {
 		super();
 		Matricula = matricula;
 		this.marca = marca;
@@ -31,6 +32,15 @@ public class Vehiculo extends Object {
 		this.combustible = combustible;
 		this.listaREparaciones = new LinkedList<>();
 		this.tipovheiculo = tipovheiculo;
+		this.dniDuenio=dniDuenio;
+	}
+
+	public String getDniDuenio() {
+		return dniDuenio;
+	}
+
+	public void setDniDuenio(String dniDuenio) {
+		this.dniDuenio = dniDuenio;
 	}
 
 	public String getMatricula() {

@@ -129,13 +129,20 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				Cliente Ventana = new Cliente();
 				Ventana.getFrame().setVisible(true);
-				if (Container.clienteActivo != -1) {
-					Ventana.imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
+				Models.Vehiculo vehiculoAux = Container.listaVehiculos.get(Container.vehiculoActivo);
+				if (vehiculoAux.getDniDuenio() != null) {
+					Ventana.imprimirCliente(connections.connect.getCliente(vehiculoAux.getDniDuenio()));
+					Ventana.setEsNuevo(false);
 					Ventana.modoEditable(false);
+					Ventana.setEsNuevo(false);
 				} else {
+					Ventana.setEsNuevo(true);
+
 					Ventana.modoEditable(true);
 					Ventana.clearTxtField();
+					Ventana.setEsNuevo(true);
 				}
+
 				frame.dispose();
 			}
 		});
@@ -403,7 +410,6 @@ public class Vehiculo {
 		comboBoxCombustible.setSelectedItem("Diesel");
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
 		listaTipoVehiculo.setSelectedValue(v.getTipovheiculo(), false);
-		System.out.println(v.getTipovheiculo());
 	}
 
 	public void imprimirVehiculoPorIndice(int Indice) {
@@ -431,6 +437,6 @@ public class Vehiculo {
 		int AnioMatricula = (int) spinnerAnioMatricula.getValue();
 		String tipoVhe = (String) listaTipoVehiculo.getSelectedValue();
 		return new Models.Vehiculo(Matricula, Marca, Modelo, Puertas, Color, LocalDate.of(AnioMatricula, 1, 1), CV,
-				Combustible, tipoVhe);
+				Combustible, tipoVhe, null);
 	}
 }

@@ -70,25 +70,7 @@ public class BuscarVehiculo {
 		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/Image/images-2.jpg")));
 
 		// Container.listaVehiculos = new ArrayList<Models.Vehiculo>();
-		// Vehiculos de demo
-		Container.listaVehiculos.add(new Vehiculo("1111AAA", "Renault", "Megane", (byte) 3, "Verde",
-				LocalDate.of(2015, 3, 2), 120, "Diesel", "Coche"));
-		Container.listaVehiculos.get(0).getListaREparaciones()
-				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Pendiente", ""));
-		Container.listaVehiculos.get(0).getListaREparaciones()
-				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
-		Container.listaVehiculos.get(0).getListaREparaciones()
-				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
-		Container.listaVehiculos.get(0).getListaREparaciones()
-				.add(new Reparar(LocalDate.now(), null, 0.0f, 0, Container.usuarioActivo, "Entregado", ""));
 
-		Container.listaVehiculos.add(new Vehiculo("2222BBB", "Audi", "A3", (byte) 3, "Blanco", LocalDate.of(2015, 3, 2),
-				140, "Diesel", "Moto"));
-		Container.listaVehiculos.add(new Vehiculo("3333CCC", "BMW", "335", (byte) 2, "Gris", LocalDate.of(2015, 3, 2),
-				120, "Diesel", "Coche"));
-		Container.listaVehiculos.add(new Vehiculo("4444DDD", "Mercedes", "350", (byte) 2, "Negro",
-				LocalDate.of(2015, 3, 2), 120, "Diesel", "Coche"));
-		
 	}
 
 	private void setComponetProperties() {
@@ -126,7 +108,7 @@ public class BuscarVehiculo {
 				// Comprobar que la matricula cumple los requisitos de una
 				// matricula
 				if (Constants.REGEX_MATRICULA.matcher(s).matches()) {
-					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null, null);
+					Models.Vehiculo vehiculoAux = new Vehiculo(s, null, null, 0, null, null, 0, null, null, null);
 					// Comprobar que la matricula esta dentro del sistema
 					if (Container.listaVehiculos.contains(vehiculoAux)) {
 						// Una vez que sabemos que esta en el sistema recorremos
@@ -134,8 +116,8 @@ public class BuscarVehiculo {
 						for (int i = 0; i < Container.listaVehiculos.size(); i++) {
 							if (Container.listaVehiculos.get(i).equals(vehiculoAux)) {
 								// Container.vehiculoActivo;
-								for(Models.ClienteModels valor : Container.listaClientes){
-									if(valor.getListaCoches().contains(vehiculoAux)){
+								for (Models.ClienteModels valor : Container.listaClientes) {
+									if (valor.getListaCoches().contains(vehiculoAux)) {
 										Container.clienteActivo = Container.listaClientes.indexOf(valor);
 									}
 								}
