@@ -153,10 +153,10 @@ public class Vehiculo {
 				if (btnReparacion.isEnabled()) {
 					Reparar Ventana = new Reparar();
 					connect.cargarClientes();
-					
+					Container.vehiculoActivo = Container.listaVehiculos.indexOf(leerVehiculo());
 					Ventana.getFrame().setVisible(true);
 					Ventana.imprimirLista();
-					Ventana.ModoLectura();
+					Ventana.editable(false);
 					frame.dispose();
 				}
 			}

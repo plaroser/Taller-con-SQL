@@ -412,7 +412,7 @@ public class connect {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void cargarReparacionesVehiculo(Models.Vehiculo v) {
+	public static void cargarReparacionesVehiculo(Models.Vehiculo v) {
 		// Declare the JDBC objects.
 		Connection con = null;
 		Statement stmt = null;
@@ -431,11 +431,19 @@ public class connect {
 			// LocalDateTime(int year, int monthOfYear, int dayOfMonth, int
 			// hourOfDay, int minuteOfHour)
 			while (rs.next()) {
-				@SuppressWarnings("deprecation")
-				LocalDateTime momentoEntrada = new LocalDateTime(rs.getDate(4).getYear(), rs.getDate(4).getMonth(),
-						rs.getDate(4).getDay(), rs.getTime(4).getHours(), rs.getTime(4).getMinutes());
-				LocalDateTime momentoSalida = new LocalDateTime(rs.getDate(5).getYear(), rs.getDate(5).getMonth(),
-						rs.getDate(5).getDay(), rs.getTime(5).getHours(), rs.getTime(5).getMinutes());
+				LocalDateTime momentoEntrada, momentoSalida;
+				try {
+					momentoEntrada = new LocalDateTime(rs.getDate(4).getYear(), rs.getDate(4).getMonth(),
+							rs.getDate(4).getDay(), rs.getTime(4).getHours(), rs.getTime(4).getMinutes());
+				} catch (Exception e) {
+					momentoEntrada = null;
+				}
+				try {
+					momentoSalida = new LocalDateTime(rs.getDate(5).getYear(), rs.getDate(5).getMonth(),
+							rs.getDate(5).getDay(), rs.getTime(5).getHours(), rs.getTime(5).getMinutes());
+				} catch (Exception e) {
+					momentoSalida = null;
+				}
 
 				Container.listaReparaciones.add(new Reparar(momentoEntrada, momentoSalida, rs.getFloat(6),
 						Container.mecanicoActivo.getUsuario(), rs.getString(8), rs.getString(9), rs.getString(10),
@@ -467,7 +475,7 @@ public class connect {
 		}
 	}
 
-	public void insertarReparacion(Models.Reparar r) {
+	public static void insertarReparacion(Models.Reparar r) {
 		// Declare the JDBC objects.
 		Connection con = null;
 		Statement stmt = null;
@@ -477,12 +485,11 @@ public class connect {
 			// Establish the connection.
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			con = DriverManager.getConnection(connectionUrl);
-
+			System.out.println(r.getMatricula());
 			// Create and execute an SQL statement that returns some data.
-			String SQL = "INSERT INTO [dbo].[REPARACION] VALUES" + "('" + r.getMatricula() + "'" + ",(NEWID())" + ",'"
-					+ r.getPiezas() + "'" + ",'" + r.getFecha_Entrada().toString() + "'" + ",'"
-					+ r.getFecha_Salida().toString() + "'" + "," + r.getPrecio() + "," + 0 + ",'"
-					+ Container.mecanicoActivo.getUsuario() + "'" + ",'" + r.getEstado() + "'" + ",'"
+			String SQL = "INSERT INTO [dbo].[REPARACION] ([Matricula],[Cod_Reparacion],[piezas],[Precio],[Precio_reparacion],[usuario_mecanico],[estado],[comentarios]) VALUES"
+					+ "('" + r.getMatricula() + "',(NEWID())" + ",'" + r.getPiezas() + "'" + "," + r.getPrecio() + ","
+					+ 0 + ",'" + Container.mecanicoActivo.getUsuario() + "'" + ",'" + r.getEstado() + "'" + ",'"
 					+ r.getComentario() + "')";
 			stmt = con.createStatement();
 			rs = stmt.executeUpdate(SQL);

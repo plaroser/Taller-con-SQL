@@ -171,7 +171,7 @@ public class Login {
 		Usuario aux = new Usuario(usuario, new String(txtContrasenia.getPassword()));
 		// System.out.println(listaMecanicos.get(0));
 		if (Container.listaMecanicos.contains(aux)) {
-			Container.usuarioActivo = aux;
+			Container.mecanicoActivo = aux;
 			return true;
 		} else {
 			JOptionPane.showMessageDialog(null, "El usuario o la contrase�a no son correctos.");

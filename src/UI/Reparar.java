@@ -72,6 +72,7 @@ public class Reparar {
 	private ImageIcon imagen;
 	private ImageIcon imagen1;
 	private JButton btnNuevaReparacion;
+	private boolean esNueva;
 
 	private Models.Vehiculo vehiculoActivo;
 
@@ -94,15 +95,19 @@ public class Reparar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		esNueva = false;
 		frame = new JFrame();
 		lblFechaEntrada = new JLabel("Fecha Entrada:");
 		textFEntrada = new JTextField();
+		textFEntrada.setEditable(false);
 		lblFechaSalida = new JLabel("Fecha Salida:");
 		textFsalida = new JTextField();
+		textFsalida.setEditable(false);
 		lblPrecio = new JLabel("Coste piezas:");
 		textPrecio = new JTextField();
 		lblMecnico = new JLabel("Mec\u00E1nico:");
 		textMecanico = new JTextField();
+		textMecanico.setEditable(false);
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Pendiente", "Entregado" }));
 		btnLimpiar = new JButton();
@@ -120,13 +125,15 @@ public class Reparar {
 		imagen1 = new ImageIcon(this.getClass().getResource("/Image/right.png"));
 		btnSiguiente = new JButton(imagen1);
 		textTInvertido = new JTextField();
+		textTInvertido.setEditable(false);
 		lblTiempoInvertido = new JLabel("Tiempo Invertido:");
 		textTotal = new JTextField();
+		textTotal.setEditable(false);
 		btnIniciar = new JButton("Iniciar Reparacion");
 		btnFinalizar = new JButton("Finalizar Reparacion");
 		lblTotal = new JLabel("TOTAL:");
 		btnNuevaReparacion = new JButton("Nueva Reparacion");
-
+		vehiculoActivo = Container.listaVehiculos.get(Container.vehiculoActivo);
 		setComponentPropierties();
 		setComponentAdapters();
 
@@ -152,15 +159,24 @@ public class Reparar {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				editable(false);
-				if (Container.reparacionActiva == -1) {
-					Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().add(leerReparacion());
-					Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
-							.getListaREparaciones().indexOf(leerReparacion());
+				if (!esNueva) {
+					if (Container.reparacionActiva == -1) {
+						Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+								.add(leerReparacion());
+						Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
+								.getListaREparaciones().indexOf(leerReparacion());
+					} else {
+						Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
+								.add(Container.reparacionActiva, leerReparacion());
+						Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
+								.getListaREparaciones().indexOf(leerReparacion());
+					}
 				} else {
-					Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
-							.add(Container.reparacionActiva, leerReparacion());
-					Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
-							.getListaREparaciones().indexOf(leerReparacion());
+					connections.connect.insertarReparacion(leerReparacion());
+					connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
+					editable(false);
+					esNueva = false;
+
 				}
 			}
 		});
@@ -198,7 +214,8 @@ public class Reparar {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				clearText();
-				Container.reparacionActiva = -1;
+				textMecanico.setText(Container.mecanicoActivo.getUsuario());
+				esNueva = true;
 				editable(true);
 			}
 		});
@@ -319,8 +336,6 @@ public class Reparar {
 	 * Metodo para bloquear los datos para editar modificarlos.
 	 */
 	public void editable(boolean activo) {
-		textFEntrada.setEnabled(activo);
-		textFsalida.setEnabled(activo);
 		textPrecio.setEnabled(activo);
 		textMecanico.setEnabled(activo);
 		comboBox.setEnabled(activo);
@@ -331,7 +346,6 @@ public class Reparar {
 		btnSiguiente.setEnabled(!activo);
 		progressBar.setEnabled(!activo);
 		btnEditar.setEnabled(!activo);
-		textTInvertido.setEnabled(activo);
 	}
 
 	public void imprimirLista() {
@@ -375,11 +389,17 @@ public class Reparar {
 
 		// spinnerFEntrada.setValue(r.getFecha_Entrada().toString());
 		// spinnerFsalida.setValue(r.getFecha_Salida().toString());
-		float precio = Float.parseFloat(textPrecio.getText());
-		String mecanico = Container.usuarioActivo.getUsuario();
+		float precio;
+		try {
+			precio = Float.parseFloat(textPrecio.getText());
+		} catch (Exception e) {
+			precio = 0.0f;
+		}
+		String mecanico = Container.mecanicoActivo.getUsuario();
 		String estado = (String) comboBox.getSelectedItem();
 		String comentarios = textComentarios.getText();
-		return new Models.Reparar(null, null, precio, mecanico, estado, comentarios, comentarios, comentarios);
+		return new Models.Reparar("", mecanico, estado, comentarios,
+				Container.listaVehiculos.get(Container.vehiculoActivo).getMatricula());
 	}
 
 	public JFrame getFrame() {
