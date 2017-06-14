@@ -231,6 +231,12 @@ public class Cliente {
 		textEmail.setText("");
 	}
 
+	/**
+	 * Activa la pantalla para editar o leer
+	 * 
+	 * @param activo
+	 *            indica si se quiere leer o escribir
+	 */
 	public void modoEditable(Boolean activo) {
 		textNombre.setEnabled(activo);
 		textDni.setEnabled(activo);
@@ -243,6 +249,12 @@ public class Cliente {
 		btnEditar.setEnabled(!activo);
 	}
 
+	/**
+	 * Muestra un cliente por pantalla
+	 * 
+	 * @param c
+	 *            Cliente a mostrar
+	 */
 	public void imprimirCliente(ClienteModels c) {
 		textNombre.setText(c.getNombre());
 		textDni.setText(c.getDni());
@@ -253,9 +265,9 @@ public class Cliente {
 	}
 
 	/**
-	 * Leer Cliente
+	 * Recoge los datos de un cliente de la pantalla y genera un cliente
 	 * 
-	 * @return
+	 * @return cliente creado a partir de los datos de la pantalla
 	 */
 	private ClienteModels LeerCliente() {
 		return new ClienteModels(textNombre.getText().toUpperCase(), textDni.getText().toUpperCase(),

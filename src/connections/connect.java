@@ -19,6 +19,9 @@ public class connect {
 	private static String connectionUrl = "jdbc:sqlserver://MSI\\SERGIOPLA:1433;"
 			+ "databaseName=Taller;user=sergio;password=1234";
 
+	/**
+	 * Carga todos los mecanicos en una lista
+	 */
 	public static void cargarMecanicos() {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -67,6 +70,9 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Carga todos los vehiculos en una lista
+	 */
 	public static void cargarVehiculos() {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -114,6 +120,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Avtualiza un vehiculo en la base de datos con sus nuevos valores
+	 * 
+	 * @param v
+	 *            vehiculo cambiado para actualizarlo
+	 */
 	public static void actualizarVehiculo(Models.Vehiculo v) {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -156,6 +168,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Inserta un vehiculo en la BBDD
+	 * 
+	 * @param v
+	 *            Vehiculo a insertar
+	 */
 	public static void insertarVehiculo(Models.Vehiculo v) {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -197,6 +215,14 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Le asigna a un vehiculo su cliente dueño
+	 * 
+	 * @param c
+	 *            cliente para asignar
+	 * @param v
+	 *            vahiculo que recive el cliente
+	 */
 	public static void asignarDuenio(Models.ClienteModels c, Models.Vehiculo v) {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -236,6 +262,9 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Carga todos los clientes en una lista
+	 */
 	public static void cargarClientes() {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -283,6 +312,13 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Busca un cliente a traves de su DNI
+	 * 
+	 * @param dniCliente
+	 *            DNI que buscar
+	 * @return Cliente encontrado con dicho DNI
+	 */
 	@SuppressWarnings("finally")
 	public static ClienteModels getCliente(String dniCliente) {
 		// Declare the JDBC objects.
@@ -332,6 +368,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Inserta un cliente dentro de la BBDD
+	 * 
+	 * @param c
+	 *            Cliente a insertar
+	 */
 	public static void insertarCliente(ClienteModels c) {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -372,6 +414,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * ACtualiza un cliente dentro de la BBDD
+	 * 
+	 * @param c
+	 *            Cliente a modificar con los cambios ya realizados
+	 */
 	public static void actualizarCliente(ClienteModels c) {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -412,6 +460,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Carga en una lista todas las reparaciones de un vehiculo
+	 * 
+	 * @param v
+	 *            Vehiculo del que buscar las reparaciones
+	 */
 	@SuppressWarnings("deprecation")
 	public static void cargarReparacionesVehiculo(Models.Vehiculo v) {
 		// Declare the JDBC objects.
@@ -476,6 +530,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Inserta una reparacion en la BBDD
+	 * 
+	 * @param r
+	 *            Reparacion a insertar
+	 */
 	public static void insertarReparacion(Models.Reparar r) {
 		// Declare the JDBC objects.
 		Connection con = null;
@@ -517,6 +577,12 @@ public class connect {
 		}
 	}
 
+	/**
+	 * Actualiza una reparacion en la BBDD
+	 * 
+	 * @param r
+	 *            Reparacion con los cambios a realizar
+	 */
 	public static void actualizarReparacion(Models.Reparar r) {
 		// Declare the JDBC objects.
 		Connection con = null;

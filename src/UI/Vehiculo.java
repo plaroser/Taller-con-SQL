@@ -406,6 +406,7 @@ public class Vehiculo {
 	 * Metodo para imprimir el vehiculo Devuelve los datos del vehiculo
 	 * 
 	 * @param v
+	 *            Vehiculo a mostrar
 	 */
 	public void imprimirVehiculo(Models.Vehiculo v) {
 		txtMatricula.setText(v.getMatricula());
@@ -431,7 +432,7 @@ public class Vehiculo {
 	 * los campos de la pantalla en variable que se utilizan para crear un nuevo
 	 * vehiculo
 	 * 
-	 * @return
+	 * @return EL vehiculo generado
 	 */
 	public Models.Vehiculo leerVehiculo() {
 		String Matricula = txtMatricula.getText().toUpperCase();

@@ -187,7 +187,7 @@ public class Reparar {
 						Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
 								.getListaREparaciones().indexOf(leerReparacion());
 					} else {
-						connections.connect.actualizarReparacion(leerReparacion());
+						// connections.connect.actualizarReparacion(leerReparacion());
 						connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
 						imprimirLista();
 					}
@@ -342,6 +342,9 @@ public class Reparar {
 		frame.getContentPane().add(btnNuevaReparacion);
 	}
 
+	/**
+	 * Limpia el texto d ela pantalla
+	 */
 	public void clearText() {
 		textFEntrada.setText("");
 		textFsalida.setText("");
@@ -372,6 +375,9 @@ public class Reparar {
 		btnEditar.setEnabled(!activo);
 	}
 
+	/**
+	 * Imprime una lista de reparaciones en la pantalla para navegar entre ellas
+	 */
 	public void imprimirLista() {
 		if (Container.listaReparaciones.size() > 0) {
 			imprimirReparacion(Container.listaReparaciones.get(0));
@@ -384,11 +390,26 @@ public class Reparar {
 		}
 	}
 
+	/**
+	 * Imprime una reparacion en la pantalla y establece el valor de la variable
+	 * de progreso segun su indice
+	 * 
+	 * @param r
+	 *            reparacion a mostrar
+	 * @param indice
+	 *            Indice a mostrar
+	 */
 	public void imprimirReparacion(Models.Reparar r, int indice) {
 		imprimirReparacion(r);
 		progressBar.setValue(indice + 1);
 	}
 
+	/**
+	 * Imprime una reparacion por pantalla
+	 * 
+	 * @param r
+	 *            Reparacion a mostrar
+	 */
 	public void imprimirReparacion(Models.Reparar r) {
 		progressBar.setValue(Container.reparacionActiva);
 		textMecanico.setText(r.getMecanico());
@@ -421,14 +442,12 @@ public class Reparar {
 
 	}
 
-	public void imprimirLista1() {
-
-	}
-
+	/**
+	 * Crea una reparaciona partir de los datos que se introducen en la pantalla
+	 * 
+	 * @return reparacion creada
+	 */
 	public Models.Reparar leerReparacion() {
-
-		// spinnerFEntrada.setValue(r.getFecha_Entrada().toString());
-		// spinnerFsalida.setValue(r.getFecha_Salida().toString());
 		float precio;
 		try {
 			precio = Float.parseFloat(textTotal.getText());
