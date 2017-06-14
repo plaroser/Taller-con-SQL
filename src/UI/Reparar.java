@@ -24,6 +24,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -44,11 +45,11 @@ public class Reparar {
 	private JFrame frame;
 	private JLabel lblFechaEntrada;
 	private JLabel lblFechaSalida;
-	private JLabel lblPrecio;
+	private JLabel lblPiezas;
 	private JLabel lblMecnico;
 	private JLabel lblEstadoDeLa;
 	private JLabel lblNewLabel;
-	private JTextField textPrecio;
+	private JTextField textPiezas;
 	private JTextField textMecanico;
 	private JButton btnEditar;
 	private JButton btnLimpiar;
@@ -104,8 +105,8 @@ public class Reparar {
 		lblFechaSalida = new JLabel("Fecha Salida:");
 		textFsalida = new JTextField();
 		textFsalida.setEditable(false);
-		lblPrecio = new JLabel("Coste piezas:");
-		textPrecio = new JTextField();
+		lblPiezas = new JLabel("Piezas:");
+		textPiezas = new JTextField();
 		lblMecnico = new JLabel("Mec\u00E1nico:");
 		textMecanico = new JTextField();
 		textMecanico.setEditable(false);
@@ -131,6 +132,7 @@ public class Reparar {
 		textTotal = new JTextField();
 		textTotal.setEditable(false);
 		btnIniciar = new JButton("Iniciar Reparacion");
+
 		btnFinalizar = new JButton("Finalizar Reparacion");
 		lblTotal = new JLabel("TOTAL:");
 		btnNuevaReparacion = new JButton("Nueva Reparacion");
@@ -141,6 +143,21 @@ public class Reparar {
 	}
 
 	private void setComponentAdapters() {
+		btnIniciar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (btnIniciar.isEnabled()) {
+					// Establecer fecha de entrada
+					Container.listaReparaciones.get(Container.reparacionActiva).setFecha_Entrada(new LocalDateTime());
+					;
+					connections.connect
+							.actualizarReparacion(Container.listaReparaciones.get(Container.reparacionActiva));
+					connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
+					imprimirLista();
+				}
+			}
+		});
+
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (btnLimpiar.isEnabled())
@@ -170,10 +187,9 @@ public class Reparar {
 						Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
 								.getListaREparaciones().indexOf(leerReparacion());
 					} else {
-						Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
-								.add(Container.reparacionActiva, leerReparacion());
-						Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo)
-								.getListaREparaciones().indexOf(leerReparacion());
+						connections.connect.actualizarReparacion(leerReparacion());
+						connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
+						imprimirLista();
 					}
 				} else {
 					connections.connect.insertarReparacion(leerReparacion());
@@ -195,22 +211,23 @@ public class Reparar {
 		btnSiguiente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				int SiguienteIndice = Container.reparacionActiva + 1;
-				if (SiguienteIndice < Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
-						.size())
-					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
-							.get(SiguienteIndice));
+				if (btnSiguiente.isEnabled()) {
+					imprimirReparacion(Container.listaReparaciones.get(++Container.reparacionActiva));
+					btnSiguiente.setEnabled(
+							Container.reparacionActiva < (Containers.Container.listaReparaciones.size() - 1));
+					btnAnterior.setEnabled(true);
+				}
 			}
 		});
 
 		btnAnterior.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int AnteriorIndice = Container.reparacionActiva - 1;
-				if (AnteriorIndice >= 0)
-					imprimirReparacion(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
-							.get(AnteriorIndice));
+				if (btnAnterior.isEnabled()) {
+					imprimirReparacion(Container.listaReparaciones.get(--Container.reparacionActiva));
+					btnAnterior.setEnabled(Container.reparacionActiva > 0);
+					btnSiguiente.setEnabled(true);
+				}
 			}
 		});
 
@@ -237,8 +254,8 @@ public class Reparar {
 		lblFechaSalida.setBounds(55, 211, 86, 14);
 		frame.getContentPane().add(lblFechaSalida);
 
-		lblPrecio.setBounds(55, 315, 72, 14);
-		frame.getContentPane().add(lblPrecio);
+		lblPiezas.setBounds(55, 315, 72, 14);
+		frame.getContentPane().add(lblPiezas);
 
 		lblMecnico.setBounds(55, 260, 63, 14);
 		frame.getContentPane().add(lblMecnico);
@@ -249,9 +266,9 @@ public class Reparar {
 		lblNewLabel.setBounds(55, 429, 86, 14);
 		frame.getContentPane().add(lblNewLabel);
 
-		textPrecio.setBounds(150, 309, 86, 20);
-		frame.getContentPane().add(textPrecio);
-		textPrecio.setColumns(10);
+		textPiezas.setBounds(150, 309, 86, 53);
+		frame.getContentPane().add(textPiezas);
+		textPiezas.setColumns(10);
 
 		textMecanico.setBounds(150, 257, 86, 20);
 		frame.getContentPane().add(textMecanico);
@@ -328,7 +345,7 @@ public class Reparar {
 	public void clearText() {
 		textFEntrada.setText("");
 		textFsalida.setText("");
-		textPrecio.setText("");
+		textPiezas.setText("");
 		textComentarios.setText("");
 	}
 
@@ -340,14 +357,17 @@ public class Reparar {
 	 * Metodo para bloquear los datos para editar modificarlos.
 	 */
 	public void editable(boolean activo) {
-		textPrecio.setEnabled(activo);
+		textPiezas.setEnabled(activo);
 		textMecanico.setEnabled(activo);
 		comboBox.setEnabled(activo);
 		textComentarios.setEnabled(activo);
 		btnLimpiar.setEnabled(activo);
 		btnGuardar.setEnabled(activo);
-		btnAnterior.setEnabled(!activo);
-		btnSiguiente.setEnabled(!activo);
+		btnAnterior.setEnabled(false);
+		if (!activo)
+			btnSiguiente.setEnabled(Container.listaReparaciones.size() > 1);
+		else
+			btnSiguiente.setEnabled(false);
 		progressBar.setEnabled(!activo);
 		btnEditar.setEnabled(!activo);
 	}
@@ -355,8 +375,8 @@ public class Reparar {
 	public void imprimirLista() {
 		if (Container.listaReparaciones.size() > 0) {
 			imprimirReparacion(Container.listaReparaciones.get(0));
-			progressBar.setMaximum(Container.listaReparaciones.size());
-			progressBar.setValue(1);
+			progressBar.setMaximum(Container.listaReparaciones.size() - 1);
+			progressBar.setValue(0);
 			Container.reparacionActiva = 0;
 			editable(false);
 		} else {
@@ -370,23 +390,39 @@ public class Reparar {
 	}
 
 	public void imprimirReparacion(Models.Reparar r) {
-
-		textPrecio.setText(String.valueOf(r.getPrecio()));
+		progressBar.setValue(Container.reparacionActiva);
 		textMecanico.setText(r.getMecanico());
 		comboBox.setSelectedItem(r.getEstado());
 		textComentarios.setText(r.getComentario());
-		Container.reparacionActiva = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones()
-				.indexOf(r);
-		iterador = Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().listIterator();
-		progressBar
-				.setValue(Container.listaVehiculos.get(Container.vehiculoActivo).getListaREparaciones().indexOf(r) + 1);
-		LocalDateTime inicio = r.getFecha_Entrada();
-		LocalDateTime fin = r.getFecha_Salida();
+		if (r.getFecha_Entrada() != null) {
+			if (r.getFecha_Entrada() != null && r.getFecha_Salida() != null) {
+				LocalDateTime inicio = r.getFecha_Entrada();
+				LocalDateTime fin = r.getFecha_Salida();
 
-		Duration duration = new Duration(inicio.toDateTime(), fin.toDateTime());
-		textTInvertido.setText(duration.toString());
-		textPrecio.setText("");
-		textTotal.setText("");
+				Duration duration = new Duration(inicio.toDateTime(), fin.toDateTime());
+				textTInvertido.setText(duration.toString());
+				textTInvertido.setText(duration.toString());
+				textFEntrada.setText(r.getFecha_Entrada().toString());
+				textFsalida.setText(r.getFecha_Salida().toString());
+			} else {
+				textFEntrada.setText(r.getFecha_Entrada().toString());
+				textFsalida.setText("---");
+				textTInvertido.setText("---");
+			}
+		}
+
+		textMecanico.setText(r.getMecanico());
+		textPiezas.setText(r.getPiezas());
+		comboBox.setSelectedItem(r.getEstado());
+		textComentarios.setText(r.getComentario());
+		textTotal.setText(String.valueOf(r.getPrecio()));
+		btnIniciar.setEnabled(r.getFecha_Entrada() == null);
+		btnFinalizar.setEnabled(r.getFecha_Salida() == null && !btnIniciar.isEnabled());
+
+	}
+
+	public void imprimirLista1() {
+
 	}
 
 	public Models.Reparar leerReparacion() {
@@ -395,15 +431,16 @@ public class Reparar {
 		// spinnerFsalida.setValue(r.getFecha_Salida().toString());
 		float precio;
 		try {
-			precio = Float.parseFloat(textPrecio.getText());
+			precio = Float.parseFloat(textTotal.getText());
 		} catch (Exception e) {
 			precio = 0.0f;
 		}
 		String mecanico = Container.mecanicoActivo.getUsuario();
 		String estado = (String) comboBox.getSelectedItem();
 		String comentarios = textComentarios.getText();
-		return new Models.Reparar("", mecanico, estado, comentarios,
-				Container.listaVehiculos.get(Container.vehiculoActivo).getMatricula());
+		String piezas = textPiezas.getText();
+		return new Models.Reparar(null, null, precio, piezas, Container.mecanicoActivo.getUsuario(), estado,
+				comentarios, Container.listaVehiculos.get(Container.vehiculoActivo).getMatricula());
 	}
 
 	public JFrame getFrame() {

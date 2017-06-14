@@ -153,6 +153,8 @@ public class Vehiculo {
 				if (btnReparacion.isEnabled()) {
 					Reparar Ventana = new Reparar();
 					connect.cargarClientes();
+					connections.connect.cargarReparacionesVehiculo(
+							Container.listaVehiculos.get(Containers.Container.vehiculoActivo));
 					Container.vehiculoActivo = Container.listaVehiculos.indexOf(leerVehiculo());
 					Ventana.getFrame().setVisible(true);
 					Ventana.imprimirLista();

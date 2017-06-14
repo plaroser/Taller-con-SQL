@@ -2,6 +2,7 @@ package connections;
 
 import java.awt.Frame;
 import java.sql.*;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -430,6 +431,7 @@ public class connect {
 			// Iterate through the data in the result set and display it.
 			// LocalDateTime(int year, int monthOfYear, int dayOfMonth, int
 			// hourOfDay, int minuteOfHour)
+			Container.listaReparaciones = new ArrayList<>();
 			while (rs.next()) {
 				LocalDateTime momentoEntrada, momentoSalida;
 				try {
@@ -446,8 +448,7 @@ public class connect {
 				}
 
 				Container.listaReparaciones.add(new Reparar(momentoEntrada, momentoSalida, rs.getFloat(6),
-						Container.mecanicoActivo.getUsuario(), rs.getString(8), rs.getString(9), rs.getString(10),
-						rs.getString(1)));
+						rs.getString(3), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(1)));
 			}
 		}
 
@@ -500,6 +501,45 @@ public class connect {
 		catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error en insertarReparacion.");
+
+		} finally {
+
+			if (stmt != null)
+				try {
+					stmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+	}
+
+	public static void actualizarReparacion(Models.Reparar r) {
+		// Declare the JDBC objects.
+		Connection con = null;
+		Statement stmt = null;
+		int rs = 0;
+		try {
+
+			// Establish the connection.
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(connectionUrl);
+			System.out.println(r.getMatricula());
+			// Create and execute an SQL statement that returns some data.
+			String SQL = "UPDATE [dbo].[REPARACION]SET " + "[piezas] = '" + r.getPiezas() + "'" + ",[Precio] = '"
+					+ r.getPrecio() + "'" + ",[estado] = '" + r.getEstado() + "'" + ",[comentarios] = '"
+					+ r.getComentario() + "'" + "WHERE [Matricula] LIKE '" + r.getMatricula() + "'";
+			stmt = con.createStatement();
+			rs = stmt.executeUpdate(SQL);
+		}
+
+		// Handle any errors that may have occurred.
+		catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error en actualizarReparacion.");
 
 		} finally {
 

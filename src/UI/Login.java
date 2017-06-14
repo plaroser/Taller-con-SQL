@@ -87,7 +87,7 @@ public class Login {
 		txtUsuario = new JTextField();
 		txtContrasenia = new JPasswordField();
 		btnLogin = new JButton(Constants.go);
-		lblContrasenia = new JLabel("Contraseña:");
+		lblContrasenia = new JLabel("Contrase\u00F1a:");
 		lblUsuario = new JLabel("Usuario:");
 		Imagen = new JLabel(new ImageIcon(this.getClass().getResource("/Image/tech_icon.png")));
 		setComponetProperties();
@@ -103,7 +103,7 @@ public class Login {
 		// listaMecanicos.add(new Usuario("usuario", "1234"));
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 601, 375);
+		frame.setBounds(100, 100, 601, 422);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Login");

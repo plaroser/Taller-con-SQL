@@ -94,7 +94,7 @@ public class PantallaPrincipal {
 	}
 
 	private void setComponetProperties() {
-		frame.setBounds(100, 100, 519, 270);
+		frame.setBounds(100, 100, 519, 324);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Pantalla Principal");
 		frame.getContentPane().setLayout(null);
@@ -119,6 +119,7 @@ public class PantallaPrincipal {
 	private void initialize() {
 		listaVehiculo = Container.listaVehiculos;
 		frame = new JFrame();
+		frame.setResizable(false);
 		btnBV = new JButton("Buscar Vehiculo");
 		btnNV = new JButton("Nuevo Vehiculo");
 		btnCS = new JButton("Cerrar Sesion");
