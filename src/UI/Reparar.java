@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -151,7 +152,10 @@ public class Reparar {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Vehiculo ventana = new Vehiculo();
+				Container.listaReparaciones = new ArrayList<>();
 				ventana.getFrame().setVisible(true);
+				ventana.imprimirVehiculo(Container.listaVehiculos.get(Container.vehiculoActivo));
+				ventana.ModoLeer();
 				frame.setVisible(false);
 			}
 		});
