@@ -176,46 +176,16 @@ public class Cliente {
 
 					if (!esNuevo) {
 						// Si la lista de clientes contiene el cliente
-						if (Container.listaClientes.contains(LeerCliente())) {
-
-							Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
-							imprimirCliente(Container.listaClientes.get(Container.clienteActivo));
-							Container.listaClientes.get(Container.clienteActivo).getListaCoches()
-									.add(Container.listaVehiculos.get(Container.vehiculoActivo));
-							modoEditable(false);
-							Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
-							connections.connect.asignarDuenio(LeerCliente(),
-									Container.listaVehiculos.get(Container.vehiculoActivo));
-
-						} else {
-							Container.listaClientes.add(LeerCliente());
-							Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
-							if (!Container.listaClientes.get(Container.clienteActivo).getListaCoches()
-									.contains(Container.listaVehiculos.get(Container.vehiculoActivo))) {
-								Container.listaClientes.get(Container.clienteActivo).getListaCoches()
-										.add(Container.listaVehiculos.get(Container.vehiculoActivo));
-								connections.connect.asignarDuenio(LeerCliente(),
-										Container.listaVehiculos.get(Container.vehiculoActivo));
-								JOptionPane.showMessageDialog(frame, "Vehiculo a�adido correctamente");
-
-							} else {
-								JOptionPane.showMessageDialog(frame, "El cliente ya tiene este vehiculo guardado");
-							}
-							Container.clienteActivo = Container.listaClientes.indexOf(LeerCliente());
-							Vehiculo Ventana = new Vehiculo();
-							Ventana.getFrame().setVisible(true);
-							Ventana.imprimirVehiculoPorIndice(Container.vehiculoActivo);
-							Ventana.ModoLeer();
-							connections.connect.cargarClientes();
-							frame.dispose();
-						}
+						connections.connect.actualizarCliente(LeerCliente());
 					} else {
 						connections.connect.insertarCliente(LeerCliente());
-						connections.connect.asignarDuenio(LeerCliente(),
-								Container.listaVehiculos.get(Container.vehiculoActivo));
-						connections.connect.cargarClientes();
-						modoEditable(false);
 					}
+					esNuevo = false;
+
+					connections.connect.asignarDuenio(LeerCliente(),
+							Container.listaVehiculos.get(Container.vehiculoActivo));
+					connections.connect.cargarClientes();
+					modoEditable(false);
 				}
 			}
 		});

@@ -1,64 +1,64 @@
 package Models;
 
-import java.time.LocalDate;
+import org.joda.time.*;
 
 public class Reparar extends Object {
 
-	private LocalDate Fecha_Entrada;
-	private LocalDate Fecha_Salida;
+	private LocalDateTime Fecha_Entrada;
+	private LocalDateTime Fecha_Salida;
 	private float Precio;
-	private float PrecioPiezas;
-	private Usuario Mecanico;
+	private String Piezas;
+	private String Mecanico;
 	private String Estado;
 	private String Comentario;
-	private LocalDate InicioReparacion;
-	private LocalDate FinReparacion;
+	private String Matricula;
+	private String codReparacion;
 
-	public LocalDate getFecha_Entrada() {
+	public LocalDateTime getFecha_Entrada() {
 		return Fecha_Entrada;
 	}
 
-	public Reparar(LocalDate fecha_Entrada, LocalDate fecha_Salida, float precio, float precioPiezas, Usuario mecanico,
-			String estado, String comentario) {
+	public Reparar(LocalDateTime fecha_Entrada, LocalDateTime fecha_Salida, float precio, String precioPiezas,
+			String mecanico, String estado, String comentario, String matricula, String codReparacion) {
 		super();
 		Fecha_Entrada = fecha_Entrada;
 		Fecha_Salida = fecha_Salida;
 		Precio = precio;
-		PrecioPiezas = precioPiezas;
+		Piezas = precioPiezas;
 		Mecanico = mecanico;
 		Estado = estado;
 		Comentario = comentario;
+		this.Matricula = matricula;
+		this.codReparacion = codReparacion;
 	}
 
-	public Reparar(float precioPiezas, Usuario mecanico, String estado, String comentario) {
-		this(null, null, 0.0f, precioPiezas, mecanico, estado, comentario);
+	public Reparar(LocalDateTime fecha_Entrada, LocalDateTime fecha_Salida, float precio, String Piezas,
+			String mecanico, String estado, String comentario, String matricula) {
+		this(fecha_Entrada, fecha_Salida, precio, Piezas, mecanico, estado, comentario, matricula, null);
+
 	}
 
-	public LocalDate getInicioReparacion() {
-		return InicioReparacion;
+	public Reparar(String Piezas, String mecanico, String estado, String comentario, String matricula) {
+		this(null, null, 0.0f, Piezas, mecanico, estado, comentario, matricula, null);
 	}
 
-	public void setInicioReparacion(LocalDate inicioReparacion) {
-		InicioReparacion = inicioReparacion;
+	public String getMatricula() {
+		return Matricula;
 	}
 
-	public LocalDate getFinReparacion() {
-		return FinReparacion;
+	public void setMatricula(String matricula) {
+		Matricula = matricula;
 	}
 
-	public void setFinReparacion(LocalDate finReparacion) {
-		FinReparacion = finReparacion;
-	}
-
-	public void setFecha_Entrada(LocalDate fecha_Entrada) {
+	public void setFecha_Entrada(LocalDateTime fecha_Entrada) {
 		this.Fecha_Entrada = fecha_Entrada;
 	}
 
-	public LocalDate getFecha_Salida() {
+	public LocalDateTime getFecha_Salida() {
 		return Fecha_Salida;
 	}
 
-	public void setFecha_Salida(LocalDate fecha_Salida) {
+	public void setFecha_Salida(LocalDateTime fecha_Salida) {
 		this.Fecha_Salida = fecha_Salida;
 	}
 
@@ -70,11 +70,11 @@ public class Reparar extends Object {
 		this.Precio = precio;
 	}
 
-	public Usuario getMecanico() {
+	public String getMecanico() {
 		return Mecanico;
 	}
 
-	public void setMecanico(Usuario mecanico) {
+	public void setMecanico(String mecanico) {
 		this.Mecanico = mecanico;
 	}
 
@@ -94,12 +94,22 @@ public class Reparar extends Object {
 		this.Comentario = comentario;
 	}
 
-	public float getPrecioPiezas() {
-		return PrecioPiezas;
+	
+
+	public String getPiezas() {
+		return Piezas;
 	}
 
-	public void setPrecioPiezas(float precioPiezas) {
-		PrecioPiezas = precioPiezas;
+	public void setPiezas(String piezas) {
+		Piezas = piezas;
+	}
+
+	public String getCodReparacion() {
+		return codReparacion;
+	}
+
+	public void setCodReparacion(String codReparacion) {
+		this.codReparacion = codReparacion;
 	}
 
 	@Override

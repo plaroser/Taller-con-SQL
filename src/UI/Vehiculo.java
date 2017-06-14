@@ -21,6 +21,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.Spring;
 
 import Containers.Container;
+import connections.connect;
 
 import javax.swing.JSpinner;
 import javax.swing.JList;
@@ -149,11 +150,15 @@ public class Vehiculo {
 		btnReparacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Reparar Ventana = new Reparar();
-				Ventana.getFrame().setVisible(true);
-				Ventana.imprimirLista(Container.vehiculoActivo);
-				Ventana.ModoLectura();
-				frame.dispose();
+				if (btnReparacion.isEnabled()) {
+					Reparar Ventana = new Reparar();
+					connect.cargarClientes();
+					
+					Ventana.getFrame().setVisible(true);
+					Ventana.imprimirLista();
+					Ventana.ModoLectura();
+					frame.dispose();
+				}
 			}
 		});
 
@@ -407,7 +412,7 @@ public class Vehiculo {
 		SpinnerCV.setValue(v.getCV());
 		spinnerPuertas.setValue(v.getPuertas());
 		textColor.setText(v.getColor());
-		comboBoxCombustible.setSelectedItem("Diesel");
+		comboBoxCombustible.setSelectedItem(v.getCombustible());
 		spinnerAnioMatricula.setValue(v.getAnioMatriculacion().getYear());
 		listaTipoVehiculo.setSelectedValue(v.getTipovheiculo(), false);
 	}

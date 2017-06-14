@@ -1,10 +1,5 @@
 package Models;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import javax.swing.JLabel;
-
 public class ClienteModels extends Object {
 
 	private String Nombre;
@@ -13,7 +8,6 @@ public class ClienteModels extends Object {
 	private String Direccion;
 	private String Telefono;
 	private String Email;
-	private ArrayList<Vehiculo> listaCoches;
 
 	public ClienteModels(String nombre, String dni, String apellidos, String direccion, String telefono, String email) {
 		Nombre = nombre;
@@ -22,15 +16,6 @@ public class ClienteModels extends Object {
 		Direccion = direccion;
 		Telefono = telefono;
 		Email = email;
-		this.listaCoches = new ArrayList<>();
-	}
-
-	public ArrayList<Vehiculo> getListaCoches() {
-		return listaCoches;
-	}
-
-	public void setListaCoches(ArrayList<Vehiculo> listaCoches) {
-		this.listaCoches = listaCoches;
 	}
 
 	public String getNombre() {

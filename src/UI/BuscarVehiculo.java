@@ -116,11 +116,7 @@ public class BuscarVehiculo {
 						for (int i = 0; i < Container.listaVehiculos.size(); i++) {
 							if (Container.listaVehiculos.get(i).equals(vehiculoAux)) {
 								// Container.vehiculoActivo;
-								for (Models.ClienteModels valor : Container.listaClientes) {
-									if (valor.getListaCoches().contains(vehiculoAux)) {
-										Container.clienteActivo = Container.listaClientes.indexOf(valor);
-									}
-								}
+
 								UI.Vehiculo ventana = new UI.Vehiculo();
 								Container.vehiculoActivo = i;
 								ventana.imprimirVehiculo(Container.listaVehiculos.get(i));

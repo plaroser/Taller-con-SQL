@@ -30,14 +30,13 @@ Fecha_Contratacion date
 )
 CREATE TABLE REPARACION(
 Matricula varchar(15) references vehiculo not null,
-Cod_Reparacion varchar(10) primary key not null,
-detalles varchar(100),
-fecha_entrada date,
-fecha_salida date,
-inicio_reparacion date,
-fin_reparacion date,
+Cod_Reparacion uniqueidentifier primary key not null,
+piezas varchar(100),
+fecha_entrada datetime,
+fecha_salida datetime,
 Precio float,
 Precio_reparacion float,
 usuario_mecanico varchar(20) references MECANICO,
-estado varchar(20)
+estado varchar(20),
+comentarios varchar(100)
 )
