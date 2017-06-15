@@ -36,7 +36,7 @@ public class connect {
 			String SQL = "SELECT * FROM Mecanico";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(SQL);
-
+			Container.listaMecanicos = new ArrayList<>();
 			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
 				Container.listaMecanicos.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3),
@@ -87,7 +87,7 @@ public class connect {
 			String SQL = "SELECT * FROM Vehiculo";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(SQL);
-
+			Container.listaVehiculos = new ArrayList<>();
 			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
 				Container.listaVehiculos.add(new Vehiculo(rs.getString(1), rs.getString(2), rs.getString(3),
@@ -279,7 +279,7 @@ public class connect {
 			String SQL = "SELECT * FROM [Taller].[dbo].[Cliente]";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(SQL);
-
+			Container.listaClientes = new ArrayList<>();
 			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
 				Container.listaClientes.add(new ClienteModels(rs.getString(2), rs.getString(1), rs.getString(3),
@@ -598,6 +598,7 @@ public class connect {
 			String SQL = "UPDATE [dbo].[REPARACION]SET " + "[piezas] = '" + r.getPiezas() + "'" + ",[Precio] = '"
 					+ r.getPrecio() + "'" + ",[estado] = '" + r.getEstado() + "'" + ",[comentarios] = '"
 					+ r.getComentario() + "'" + "WHERE [Matricula] LIKE '" + r.getMatricula() + "'";
+			
 			stmt = con.createStatement();
 			rs = stmt.executeUpdate(SQL);
 		}

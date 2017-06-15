@@ -91,6 +91,7 @@ public class Vehiculo {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		btnCliente = new JButton("Cliente");
 		btnReparacion = new JButton("Reparar");
 		btnGuardar = new JButton("Guardar");
@@ -116,7 +117,7 @@ public class Vehiculo {
 		listaTipoVehiculo = new JList();
 		listaTipoVehiculo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lblColor = new JLabel("Color");
-		lblAoMatriculacion = new JLabel("Año Matriculacion:");
+		lblAoMatriculacion = new JLabel("A\u00F1o Matriculaci\u00F3n:");
 		lblPuertas = new JLabel("Puertas:");
 		spinnerAnioMatricula = new JSpinner();
 		esNuevo = true;
@@ -196,7 +197,7 @@ public class Vehiculo {
 	}
 
 	private void setComponetProperties() {
-		frame.setBounds(100, 100, 555, 493);
+		frame.setBounds(100, 100, 555, 516);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Vehiculo");
 		frame.getContentPane().setLayout(null);
@@ -302,17 +303,13 @@ public class Vehiculo {
 		frame.getContentPane().add(buttonLimpiar);
 
 		listaTipoVehiculo.setModel(new AbstractListModel() {
-			String[] values = new String[] { "Coche", "Moto", "Cami\u00C3\u00B3n", "Bicicleta" };
-
+			String[] values = new String[] {"Coche", "Moto", "Cami\u00F3n", "Bicicleta"};
 			public int getSize() {
 				return values.length;
 			}
-
 			public Object getElementAt(int index) {
-
 				return values[index];
 			}
-
 		});
 
 		JButton btnVolver = new JButton("volver");
