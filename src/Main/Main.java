@@ -11,13 +11,13 @@ import Containers.Container;
 import Models.Usuario;
 import UI.Login;
 import connections.connect;
+import connections.mecanicoCN;
 
 public class Main {
-	
 
 	public static void main(String[] args) {
 		Login login = new Login();
-		connect.cargarMecanicos();
+		mecanicoCN.cargarMecanicos();
 		login.getFrame().setVisible(true);
 	}
 

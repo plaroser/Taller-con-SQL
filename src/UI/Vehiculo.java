@@ -21,7 +21,10 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.Spring;
 
 import Containers.Container;
+import connections.clienteCN;
 import connections.connect;
+import connections.reparacionCN;
+import connections.vehiculosCN;
 
 import javax.swing.JSpinner;
 import javax.swing.JList;
@@ -131,9 +134,10 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				Cliente Ventana = new Cliente();
 				Ventana.getFrame().setVisible(true);
-				Models.Vehiculo vehiculoAux = Container.listaVehiculos.get(Container.vehiculoActivo);
+				Models.Vehiculo vehiculoAux = Container.listaVehiculos
+						.get(Container.listaVehiculos.indexOf(leerVehiculo()));
 				if (vehiculoAux.getDniDuenio() != null) {
-					Ventana.imprimirCliente(connections.connect.getCliente(vehiculoAux.getDniDuenio()));
+					Ventana.imprimirCliente(clienteCN.getCliente(vehiculoAux.getDniDuenio()));
 					Ventana.setEsNuevo(false);
 					Ventana.modoEditable(false);
 					Ventana.setEsNuevo(false);
@@ -144,7 +148,7 @@ public class Vehiculo {
 					Ventana.clearTxtField();
 					Ventana.setEsNuevo(true);
 				}
-
+				Ventana.vehiculoAux = vehiculoAux;
 				frame.dispose();
 			}
 		});
@@ -153,8 +157,8 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				if (btnReparacion.isEnabled()) {
 					Reparar Ventana = new Reparar();
-					connect.cargarClientes();
-					connections.connect.cargarReparacionesVehiculo(
+					clienteCN.cargarClientes();
+					reparacionCN.cargarReparacionesVehiculo(
 							Container.listaVehiculos.get(Containers.Container.vehiculoActivo));
 					Container.vehiculoActivo = Container.listaVehiculos.indexOf(leerVehiculo());
 					Ventana.getFrame().setVisible(true);
@@ -175,6 +179,7 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent e) {
 				esNuevo = false;
 				ModoEditar();
+				txtMatricula.setEditable(false);
 			}
 		});
 
@@ -183,13 +188,18 @@ public class Vehiculo {
 			public void mouseClicked(MouseEvent arg0) {
 				if (btnGuardar.isEnabled()) {
 					if (esNuevo) {
-						connections.connect.insertarVehiculo(leerVehiculo());
+						vehiculosCN.insertarVehiculo(leerVehiculo());
+						vehiculosCN.cargarVehiculos();
+
+						Container.vehiculoActivo = Container.listaVehiculos.indexOf(leerVehiculo());
 					} else {
-						connections.connect.actualizarVehiculo(leerVehiculo());
+						vehiculosCN.actualizarVehiculo(leerVehiculo());
+						vehiculosCN.cargarVehiculos();
+						imprimirVehiculo(
+								Container.listaVehiculos.get(Container.listaVehiculos.indexOf(leerVehiculo())));
 						esNuevo = true;
 					}
 					ModoLeer();
-					connections.connect.cargarVehiculos();
 				}
 			}
 		});
@@ -303,10 +313,12 @@ public class Vehiculo {
 		frame.getContentPane().add(buttonLimpiar);
 
 		listaTipoVehiculo.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Coche", "Moto", "Cami\u00F3n", "Bicicleta"};
+			String[] values = new String[] { "Coche", "Moto", "Cami\u00F3n", "Bicicleta" };
+
 			public int getSize() {
 				return values.length;
 			}
+
 			public Object getElementAt(int index) {
 				return values[index];
 			}

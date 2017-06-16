@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import Containers.Container;
 import Models.Reparar;
 import Models.Vehiculo;
+import connections.vehiculosCN;
 import res.Constants;
 
 import javax.swing.ImageIcon;
@@ -53,7 +54,7 @@ public class BuscarVehiculo {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		connections.connect.cargarVehiculos();
+		vehiculosCN.cargarVehiculos();
 		frame = new JFrame();
 		frame.getContentPane().setLayout(null);
 

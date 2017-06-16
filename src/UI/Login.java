@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 import Containers.Container;
 import Models.Usuario;
+import connections.connect;
+import connections.mecanicoCN;
 import res.Constants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,7 +43,6 @@ public class Login {
 
 	private JLabel lblContrasenia;
 
-
 	private JLabel Imagen;
 
 	/**
@@ -49,26 +50,6 @@ public class Login {
 	 */
 	public JFrame getFrame() {
 		return frame;
-	}
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Container.listaMecanicos = new ArrayList<>();
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login window = new Login();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-		// System.out.println(listaMecanicos.size());
 	}
 
 	/**
@@ -158,9 +139,9 @@ public class Login {
 	 */
 	private boolean validarLogin() {
 		String usuario = txtUsuario.getText();
-
+		mecanicoCN.cargarMecanicos();
 		if (usuario.isEmpty() || new String(txtContrasenia.getPassword()).isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El usuario o la contraseï¿½a no pueden estar vacios.");
+			JOptionPane.showMessageDialog(null, "El usuario o la contraseña no pueden estar vacios.");
 			return false;
 		}
 
@@ -174,7 +155,7 @@ public class Login {
 			Container.mecanicoActivo = aux;
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null, "El usuario o la contraseï¿½a no son correctos.");
+			JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctos.");
 			return false;
 		}
 

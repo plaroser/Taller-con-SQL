@@ -6,9 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.plaf.ActionMapUIResource;
 
 import Containers.Container;
 import Models.ClienteModels;
+import connections.clienteCN;
+import connections.connect;
+import connections.vehiculosCN;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,6 +43,7 @@ public class Cliente {
 	private JLabel imagen;
 	private JButton btnEditar;
 	private boolean esNuevo;
+	public Models.Vehiculo vehiculoAux;
 
 	public boolean isEsNuevo() {
 		return esNuevo;
@@ -69,6 +74,7 @@ public class Cliente {
 	 */
 	private void initialize() {
 		esNuevo = true;
+		vehiculoAux = null;
 		frame = new JFrame();
 		frame.setBounds(100, 100, 599, 376);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,7 +98,7 @@ public class Cliente {
 		btnEditar = new JButton("Editar");
 
 		imagen = new JLabel(new ImageIcon(this.getClass().getResource("/Image/new_add_user_16734.png")));
-		connections.connect.cargarClientes();
+		clienteCN.cargarClientes();
 		setComponentProperties();
 		setComponentAdapters();
 
@@ -172,19 +178,23 @@ public class Cliente {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (btnGuardar.isEnabled()) {
-					connections.connect.cargarClientes();
-
+					clienteCN.cargarClientes();
+					esNuevo = !Container.listaClientes.contains(LeerCliente());
 					if (!esNuevo) {
+
+						clienteCN.actualizarCliente(LeerCliente());
+
 						// Si la lista de clientes contiene el cliente
-						connections.connect.actualizarCliente(LeerCliente());
 					} else {
-						connections.connect.insertarCliente(LeerCliente());
+
+						clienteCN.insertarCliente(LeerCliente());
+
 					}
 					esNuevo = false;
 
-					connections.connect.asignarDuenio(LeerCliente(),
-							Container.listaVehiculos.get(Container.vehiculoActivo));
-					connections.connect.cargarClientes();
+					vehiculosCN.asignarDuenio(LeerCliente(), Container.listaVehiculos.get(Container.vehiculoActivo));
+					clienteCN.cargarClientes();
+					imprimirCliente(clienteCN.getCliente(LeerCliente().getDni()));
 					modoEditable(false);
 				}
 			}
@@ -202,7 +212,10 @@ public class Cliente {
 			public void mouseClicked(MouseEvent e) {
 				Vehiculo Ventana = new Vehiculo();
 				Ventana.getFrame().setVisible(true);
+				vehiculosCN.cargarVehiculos();
 				Ventana.imprimirVehiculoPorIndice(Container.vehiculoActivo);
+
+				Container.vehiculoActivo = Container.listaVehiculos.indexOf(vehiculoAux);
 				Ventana.ModoLeer();
 				frame.dispose();
 			}
@@ -214,6 +227,7 @@ public class Cliente {
 				if (btnEditar.isEnabled()) {
 					modoEditable(true);
 					esNuevo = false;
+					textDni.setEditable(false);
 				}
 			}
 		});

@@ -35,6 +35,7 @@ import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
 
 import Containers.Container;
 import Models.Usuario;
+import connections.reparacionCN;
 
 import javax.swing.JTextPane;
 import javax.swing.JProgressBar;
@@ -150,9 +151,8 @@ public class Reparar {
 					// Establecer fecha de entrada
 					Container.listaReparaciones.get(Container.reparacionActiva).setFecha_Entrada(new LocalDateTime());
 					;
-					connections.connect
-							.actualizarReparacion(Container.listaReparaciones.get(Container.reparacionActiva));
-					connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
+					reparacionCN.actualizarReparacion(Container.listaReparaciones.get(Container.reparacionActiva));
+					reparacionCN.cargarReparacionesVehiculo(vehiculoActivo);
 					imprimirLista();
 				}
 			}
@@ -188,12 +188,12 @@ public class Reparar {
 								.getListaREparaciones().indexOf(leerReparacion());
 					} else {
 						// connections.connect.actualizarReparacion(leerReparacion());
-						connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
+						reparacionCN.cargarReparacionesVehiculo(vehiculoActivo);
 						imprimirLista();
 					}
 				} else {
-					connections.connect.insertarReparacion(leerReparacion());
-					connections.connect.cargarReparacionesVehiculo(vehiculoActivo);
+					reparacionCN.insertarReparacion(leerReparacion());
+					reparacionCN.cargarReparacionesVehiculo(vehiculoActivo);
 					editable(false);
 					esNueva = false;
 

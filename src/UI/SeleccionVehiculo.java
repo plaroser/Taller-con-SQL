@@ -14,18 +14,19 @@ import java.awt.event.MouseEvent;
 import java.util.spi.TimeZoneNameProvider;
 
 public class SeleccionVehiculo {
-	
+
 	/**
-	 *  ATRIBUTOS
+	 * ATRIBUTOS
 	 */
 	private JFrame frame;
 	private JButton btnCoche;
 	private JButton buttonCamion;
 	private JButton buttonBicicleta;
 	private JButton buttonMoto;
-	
+
 	/**
 	 * SET AND GET FRAME
+	 * 
 	 * @return
 	 */
 	public JFrame getFrame() {
@@ -34,22 +35,6 @@ public class SeleccionVehiculo {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
-	}
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SeleccionVehiculo window = new SeleccionVehiculo();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	/**
@@ -66,91 +51,88 @@ public class SeleccionVehiculo {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		
-		
+
 		btnCoche = new JButton("Coche");
-		
-		
-		buttonCamion = new JButton("Camión");
-		
+
+		buttonCamion = new JButton("Cami\u00F3n");
+
 		buttonBicicleta = new JButton("Bicicleta");
-		
-		
+
 		buttonMoto = new JButton("Moto");
-		
+
 	}
-	
+
 	/**
 	 * PROPIEDADES DE LOS COMPONENTES
 	 */
-	private void setComponentProperties(){
+	private void setComponentProperties() {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		btnCoche.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		btnCoche.setBounds(23, 27, 171, 78);
 		frame.getContentPane().add(btnCoche);
-		
+
 		buttonCamion.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonCamion.setBounds(23, 153, 171, 78);
 		frame.getContentPane().add(buttonCamion);
-		
+
 		buttonBicicleta.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonBicicleta.setBounds(248, 153, 171, 78);
 		frame.getContentPane().add(buttonBicicleta);
-		
+
 		buttonMoto.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
 		buttonMoto.setBounds(248, 27, 171, 78);
 		frame.getContentPane().add(buttonMoto);
-		
+
 	}
-	
+
 	/**
 	 * ADAPTADORES
 	 */
 	private void setComponentAdapters() {
-		btnCoche.addMouseListener(new MouseAdapter (){
+		btnCoche.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					lanzarVehiculo("Coche");	
+				lanzarVehiculo("Coche");
 			}
 		});
-		
-		buttonMoto.addMouseListener(new MouseAdapter (){
+
+		buttonMoto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					lanzarVehiculo("Moto");	
+				lanzarVehiculo("Moto");
 			}
 		});
-		
-		buttonCamion.addMouseListener(new MouseAdapter (){
+
+		buttonCamion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					lanzarVehiculo("Camión");	
+				lanzarVehiculo("Camión");
 			}
 		});
-		
-		buttonBicicleta.addMouseListener(new MouseAdapter (){
+
+		buttonBicicleta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					lanzarVehiculo("Bicicleta");	
+				lanzarVehiculo("Bicicleta");
 			}
 		});
-		
+
 	}
-	
+
 	/**
 	 * SELECCIONA EL TIPO DE VEHICULO
-	 * @param tipo RECOGE EL STRING DE TIPO DE VEHICULO
+	 * 
+	 * @param tipo
+	 *            RECOGE EL STRING DE TIPO DE VEHICULO
 	 */
-	private void lanzarVehiculo(String tipo){
+	private void lanzarVehiculo(String tipo) {
 		Container.tipoVehiculo = tipo;
 		Vehiculo Ventana = new Vehiculo();
 		Ventana.getFrame().setVisible(true);
 		frame.dispose();
 	}
 
-	
 }
-
