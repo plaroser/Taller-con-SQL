@@ -1,7 +1,6 @@
 package Models;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Usuario extends Object {
 	private String usuario;

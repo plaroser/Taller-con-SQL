@@ -1,40 +1,27 @@
 package UI;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.renderable.ContextualRenderedImageFactory;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.Spring;
 
 import Containers.Container;
 import connections.clienteCN;
-import connections.connect;
 import connections.reparacionCN;
 import connections.vehiculosCN;
-
-import javax.swing.JSpinner;
-import javax.swing.JList;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractListModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ListSelectionModel;
 
 public class Vehiculo {
 
@@ -46,6 +33,7 @@ public class Vehiculo {
 	private JTextField txtMatricula;
 	private JTextField textMarca;
 	private JTextField textModelo;
+	@SuppressWarnings("unused")
 	private JLabel lblMatricula;
 	private JSpinner SpinnerCV;
 	private JLabel lblMarca;
@@ -59,14 +47,13 @@ public class Vehiculo {
 	private SpinnerNumberModel model1;
 	private SpinnerNumberModel model;
 	private JLabel lblPuertas;
-	private JComboBox comboBoxCombustible;
+	private JComboBox<String> comboBoxCombustible;
 	private JLabel lblColor;
 	private JSpinner spinnerPuertas;
 	private JButton buttonLimpiar;
 	private JLabel lblCV;
-	private Models.Vehiculo vehiculoSeleccionado;
 	private JLabel lblTipo;
-	private JList listaTipoVehiculo;
+	private JList<String> listaTipoVehiculo;
 	private boolean esNuevo;
 
 	public Collection<Models.Vehiculo> getListaVehiculo() {
@@ -92,6 +79,7 @@ public class Vehiculo {
 		initialize();
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -206,6 +194,7 @@ public class Vehiculo {
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
 	private void setComponetProperties() {
 		frame.setBounds(100, 100, 555, 516);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

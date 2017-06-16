@@ -1,13 +1,10 @@
 package Containers;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.regex.Pattern;
 
 import Models.ClienteModels;
 import Models.Usuario;
-import Models.Vehiculo;
 
 public class Container {
 	// Lista en la que guardar los vehiculos

@@ -1,23 +1,16 @@
 package UI;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import Containers.Container;
-import Models.Vehiculo;
-
-import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import Containers.Container;
+import connections.connect;
 
 public class PantallaPrincipal {
 
@@ -25,9 +18,7 @@ public class PantallaPrincipal {
 	private JButton btnBV;
 	private JButton btnNV;
 	private JButton btnCS;
-	private Collection<Models.Vehiculo> listaVehiculo;
 
-	// FD
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -75,6 +66,20 @@ public class PantallaPrincipal {
 				frame.setVisible(false);
 			}
 		});
+
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				try {
+					connect.stmt.close();
+					connect.con.close();
+					System.out.println("Conexion cerrada.\nHasta pronto!!!");
+				} catch (Exception e) {
+					System.out.println("ERROR al cerrar la conexion.\n" + e.getMessage());
+				}
+
+				System.exit(0);
+			}
+		});
 	}
 
 	private void setComponetProperties() {
@@ -101,7 +106,6 @@ public class PantallaPrincipal {
 	 * Componentes principales
 	 */
 	private void initialize() {
-		listaVehiculo = Container.listaVehiculos;
 		frame = new JFrame();
 		frame.setResizable(false);
 		btnBV = new JButton("Buscar Vehiculo");

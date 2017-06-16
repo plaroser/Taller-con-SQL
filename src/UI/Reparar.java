@@ -1,45 +1,29 @@
 package UI;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
-import javax.swing.JEditorPane;
-import javax.swing.JList;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JSpinner;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.ArrayList;
-import java.util.Calendar;
-import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SwingConstants;
 
-import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.LocalDateTime;
-import org.omg.CORBA.TRANSACTION_UNAVAILABLE;
 
 import Containers.Container;
-import Models.Usuario;
 import connections.reparacionCN;
-
-import javax.swing.JTextPane;
-import javax.swing.JProgressBar;
-import javax.swing.JTable;
 
 public class Reparar {
 
@@ -58,8 +42,7 @@ public class Reparar {
 	private JTextField textFsalida;
 	private JTextField textFEntrada;
 	private JTextPane textComentarios;
-	private JComboBox comboBox;
-	private SpinnerDateModel model;
+	private JComboBox<String> comboBox;
 	private JButton btnGuardar;
 	private JButton btnAnterior;
 	private JProgressBar progressBar;
@@ -71,7 +54,6 @@ public class Reparar {
 	private JButton btnIniciar;
 	private JButton btnFinalizar;
 
-	private ListIterator<Models.Reparar> iterador;
 	private ImageIcon imagen;
 	private ImageIcon imagen1;
 	private JButton btnNuevaReparacion;
@@ -97,6 +79,7 @@ public class Reparar {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		esNueva = false;
 		frame = new JFrame();
@@ -116,7 +99,7 @@ public class Reparar {
 		btnLimpiar = new JButton();
 		lblEstadoDeLa = new JLabel("Estado de la reparacion:");
 		lblNewLabel = new JLabel("Comentarios:");
-		model = new SpinnerDateModel();
+		new SpinnerDateModel();
 		btnGuardar = new JButton("Guardar");
 		btnLimpiar = new JButton("Limpiar");
 		btnVolver = new JButton("Volver");
@@ -150,7 +133,7 @@ public class Reparar {
 				if (btnIniciar.isEnabled()) {
 					// Establecer fecha de entrada
 					Container.listaReparaciones.get(Container.reparacionActiva).setFecha_Entrada(new LocalDateTime());
-					;
+
 					reparacionCN.actualizarReparacion(Container.listaReparaciones.get(Container.reparacionActiva));
 					reparacionCN.cargarReparacionesVehiculo(vehiculoActivo);
 					imprimirLista();
@@ -454,7 +437,6 @@ public class Reparar {
 		} catch (Exception e) {
 			precio = 0.0f;
 		}
-		String mecanico = Container.mecanicoActivo.getUsuario();
 		String estado = (String) comboBox.getSelectedItem();
 		String comentarios = textComentarios.getText();
 		String piezas = textPiezas.getText();
