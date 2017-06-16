@@ -3,6 +3,8 @@ package UI;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -20,6 +22,7 @@ import javax.swing.SpinnerNumberModel;
 
 import Containers.Container;
 import connections.clienteCN;
+import connections.connect;
 import connections.reparacionCN;
 import connections.vehiculosCN;
 
@@ -117,6 +120,20 @@ public class Vehiculo {
 	}
 
 	private void setComponentAdapters() {
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				try {
+					connect.stmt.close();
+					connect.con.close();
+					System.out.println("Conexion cerrada.\nHasta pronto!!!");
+				} catch (Exception e) {
+					System.out.println("ERROR al cerrar la conexion.\n" + e.getMessage());
+				}
+
+				System.exit(0);
+			}
+		});
+
 		btnCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

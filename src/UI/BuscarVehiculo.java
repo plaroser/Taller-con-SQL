@@ -1,27 +1,22 @@
 package UI;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Containers.Container;
-import Models.Reparar;
 import Models.Vehiculo;
+import connections.connect;
 import connections.vehiculosCN;
 import res.Constants;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.time.LocalDate;
-import java.util.Collection;
-import javax.swing.SwingConstants;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 public class BuscarVehiculo {
 
@@ -31,7 +26,6 @@ public class BuscarVehiculo {
 	JButton btnBuscar;
 	private JButton buttonVolver;
 	private JLabel Imagen;
-	private Collection<Vehiculo> listaActual;
 
 	/**
 	 * Create the application.
@@ -100,6 +94,20 @@ public class BuscarVehiculo {
 	}
 
 	private void setComponentAdapters() {
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				try {
+					connect.stmt.close();
+					connect.con.close();
+					System.out.println("Conexion cerrada.\nHasta pronto!!!");
+				} catch (Exception e) {
+					System.out.println("ERROR al cerrar la conexion.\n" + e.getMessage());
+				}
+
+				System.exit(0);
+			}
+		});
+
 		btnBuscar.addMouseListener(new MouseAdapter() {
 
 			@Override

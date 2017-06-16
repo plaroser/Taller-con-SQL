@@ -3,6 +3,8 @@ package UI;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +16,7 @@ import javax.swing.JTextField;
 
 import Containers.Container;
 import Models.Usuario;
+import connections.connect;
 import connections.mecanicoCN;
 import res.Constants;
 
@@ -110,6 +113,20 @@ public class Login {
 	 * ADAPTADORES
 	 */
 	private void setComponentAdapters() {
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				try {
+					connect.stmt.close();
+					connect.con.close();
+					System.out.println("Conexion cerrada.\nHasta pronto!!!");
+				} catch (Exception e) {
+					System.out.println("ERROR al cerrar la conexion.\n" + e.getMessage());
+				}
+
+				System.exit(0);
+			}
+		});
+
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

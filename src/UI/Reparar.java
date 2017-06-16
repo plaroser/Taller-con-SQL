@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -23,6 +25,7 @@ import org.joda.time.Duration;
 import org.joda.time.LocalDateTime;
 
 import Containers.Container;
+import connections.connect;
 import connections.reparacionCN;
 
 public class Reparar {
@@ -127,6 +130,20 @@ public class Reparar {
 	}
 
 	private void setComponentAdapters() {
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				try {
+					connect.stmt.close();
+					connect.con.close();
+					System.out.println("Conexion cerrada.\nHasta pronto!!!");
+				} catch (Exception e) {
+					System.out.println("ERROR al cerrar la conexion.\n" + e.getMessage());
+				}
+
+				System.exit(0);
+			}
+		});
+		
 		btnIniciar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
